@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murder Mate: India · all boards · Kob House</title><meta name="robots" content="noindex"><meta name="theme-color" content="#0F7B5F">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><style>
+@font-face{font-family:'Anton';src:url(/assets/fonts/Anton-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Nunito';font-weight:400;src:url(/assets/fonts/Nunito-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Nunito';font-weight:700;src:url(/assets/fonts/Nunito-Bold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Space Mono';font-weight:700;src:url(/assets/fonts/SpaceMono-Bold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'MMPieces';src:url(/assets/mm/chesspieces.woff2) format('woff2');font-display:block}
+:root{--bg:#0F7B5F;--shade:#0B5A45;--acc:#CDB8F5;--pale:#E9E0FB;--ink:#141414;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#fff;background:var(--bg);line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.mono{font-family:'Space Mono',monospace;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+header{padding:16px 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+header .brand{font-family:'Anton',Impact,sans-serif;font-size:18px;text-decoration:none;letter-spacing:.02em}
+header .series{font-size:11px;color:var(--acc)}
+h1{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-weight:400;line-height:.95;margin:6px 0 4px;font-size:44px}
+h1 .num{color:var(--acc)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 14px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--ink);border:2.5px solid var(--ink);padding:4px 9px 3px;font-size:11px}
+.tag.inv{background:var(--ink);color:#fff;border-color:var(--ink)}
+.kings{font-family:'MMPieces';font-size:15px;letter-spacing:1px;line-height:1}
+.boardbox{position:relative;background:var(--ink);padding:0;box-shadow:6px 6px 0 var(--ink);border:3px solid var(--ink);margin:6px 0 4px}
+.board{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);aspect-ratio:1/1;width:100%;user-select:none;-webkit-user-select:none}
+.sq{position:relative;border:0;padding:0;margin:0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'MMPieces';color:var(--ink);font-size:min(9.6vw,52px);line-height:1;-webkit-tap-highlight-color:transparent}
+.sq .shade{position:absolute;inset:0;background:var(--ink);opacity:.16;pointer-events:none}
+.sq .pc{position:relative;z-index:1;pointer-events:none}
+.sq .lt{position:absolute;left:2px;top:2px;z-index:2;background:var(--ink);color:#fff;font:700 9px/1 'Space Mono',monospace;padding:2px 3px;pointer-events:none}
+.sq .no{position:absolute;right:2px;bottom:2px;z-index:2;background:var(--ink);color:#fff;font:700 9px/1 'Space Mono',monospace;padding:2px 3px;pointer-events:none}
+.sq.sel{outline:3px solid #F2B705;outline-offset:-3px}
+.sq.last::after{content:'';position:absolute;inset:0;background:#F2B705;opacity:.28;pointer-events:none}
+.sq.tgt::before{content:'';position:absolute;width:26%;height:26%;border-radius:50%;background:var(--ink);opacity:.35;z-index:3;pointer-events:none}
+.sq.tgt.cap::before{width:84%;height:84%;background:transparent;border:4px solid var(--ink);opacity:.35}
+.sq.chk .pc{text-shadow:0 0 8px #ff3b30,0 0 14px #ff3b30}
+.coords{display:grid;grid-template-columns:repeat(8,1fr);font-size:10px;color:var(--acc);text-align:center;margin-top:8px}
+.status{margin:12px 0 6px;font-weight:700;min-height:24px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+button.ctl{font:700 12px/1 'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink);border:2.5px solid var(--ink);padding:9px 12px 8px;box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+button.ctl:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.moves{font-family:'Space Mono',monospace;font-size:13px;color:#fff;min-height:20px;word-spacing:4px}
+.card{background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:12px 14px;margin:22px 0}
+.card h2{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;margin:0 0 8px}
+.card ul{list-style:none;margin:0;padding:0}
+.card li{display:flex;gap:10px;align-items:center;padding:4px 0;border-top:1.5px solid #eee}
+.card li:first-child{border-top:0}
+.card .g{font-family:'MMPieces';font-size:26px;width:30px;text-align:center;line-height:1}
+.card small{color:#555}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:13px}
+.rooms span b{display:inline-block;background:var(--ink);color:#fff;font:700 10px/1 'Space Mono',monospace;padding:3px 4px;margin-right:6px}
+.btn{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.03em;padding:13px 16px 11px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--shade);margin:10px 0}
+.btn.light{background:var(--acc);color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn small{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:none}
+.note{font-size:13px;color:#e8fff5;margin:4px 0 0}
+nav.pn{display:flex;justify-content:space-between;margin:26px 0 10px;font-size:12px}
+nav.pn a{text-decoration:none}
+footer{border-top:3px solid var(--ink);background:var(--ink);color:#bbb;font-size:12px;padding:16px 0 26px;margin-top:26px}
+footer a{color:#fff}
+</style></head><body><div class="wrap">
+<header><a class="brand" href="/">KOB HOUSE</a><span class="series mono">Murder Mate: India</span></header>
+<h1>All the boards</h1><p class="note">Every case of the book, set up and ready to play. No engine, no spoilers.</p><a class="btn light" href="/mm/1/01/">01 · THE LAST FOOTNOTE <small>Rookie</small></a><a class="btn light" href="/mm/1/02/">02 · NESSUN DORMA <small>Rookie</small></a><a class="btn light" href="/mm/1/03/">03 · THE B-SIDE <small>Rookie</small></a><a class="btn light" href="/mm/1/04/">04 · PINNED <small>Rookie</small></a><a class="btn light" href="/mm/1/05/">05 · FAIR WEATHER <small>Rookie</small></a><a class="btn light" href="/mm/1/06/">06 · A GOOD LIKENESS <small>Rookie</small></a><a class="btn light" href="/mm/1/07/">07 · NOW YOU SEE HIM <small>Rookie</small></a><a class="btn light" href="/mm/1/08/">08 · SCREEN TEST <small>Rookie</small></a><a class="btn light" href="/mm/1/09/">09 · THE DYING SWAN <small>Detective</small></a><a class="btn light" href="/mm/1/10/">10 · SUDDEN DEATH <small>Detective</small></a><a class="btn light" href="/mm/1/11/">11 · THROWING IN THE SPONGE <small>Detective</small></a><a class="btn light" href="/mm/1/12/">12 · SWISS TIME <small>Detective</small></a><a class="btn light" href="/mm/1/13/">13 · RETURNS POLICY <small>Detective</small></a><a class="btn light" href="/mm/1/14/">14 · THE LITTLE BLACK BOOK <small>Detective</small></a><a class="btn light" href="/mm/1/15/">15 · HYMN 212 <small>Detective</small></a><a class="btn light" href="/mm/1/16/">16 · PLUMB IN FRONT <small>Detective</small></a><a class="btn light" href="/mm/1/17/">17 · CORKED <small>Detective</small></a><a class="btn light" href="/mm/1/18/">18 · THE COUCH <small>Detective</small></a><a class="btn light" href="/mm/1/19/">19 · CULTURED <small>Detective</small></a><a class="btn light" href="/mm/1/20/">20 · THE SENSIBLE LINE <small>Detective</small></a><a class="btn light" href="/mm/1/21/">21 · FORTY-THREE STEPS <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/22/">22 · HERE BE DRAGONS <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/23/">23 · NINETY-ONE GAMES <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/24/">24 · NON-RUNNER <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/25/">25 · IS ANYBODY THERE? <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/26/">26 · THIRD TIME LUCKY <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/27/">27 · FROM THE TOP <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/28/">28 · COLD FEET <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/29/">29 · ONE MORE CHORUS <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/30/">30 · ALTERATIONS <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/31/">31 · PASTE <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/32/">32 · OFF THE RECORD <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/33/">33 · BEZIQUE <small>Chief Inspector</small></a><a class="btn light" href="/mm/1/34/">34 · DEAD STICK <small>Commissioner</small></a><a class="btn light" href="/mm/1/35/">35 · SECOND FLUSH <small>Commissioner</small></a><a class="btn light" href="/mm/1/36/">36 · ROOM WITH A VIEW <small>Commissioner</small></a><a class="btn light" href="/mm/1/37/">37 · FINDERS KEEPERS <small>Commissioner</small></a><a class="btn light" href="/mm/1/38/">38 · LIGHTER THAN AIR <small>Commissioner</small></a><a class="btn light" href="/mm/1/39/">39 · ROUGH CUT <small>Commissioner</small></a><a class="btn light" href="/mm/1/40/">40 · THE BUTLER DID IT <small>Commissioner</small></a></div>
+<footer><div class="wrap">Murder Mate: India is a puzzle book by <a href="/">Kob House</a>.</div></footer></body></html>

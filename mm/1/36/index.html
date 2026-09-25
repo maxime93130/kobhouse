@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case 36 · Room With A View · Murder Mate: India</title>
+<meta name="description" content="The board for case 36 of Murder Mate: India, set up and ready. No engine, no spoilers.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0F7B5F">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:'Anton';src:url(/assets/fonts/Anton-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Nunito';font-weight:400;src:url(/assets/fonts/Nunito-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Nunito';font-weight:700;src:url(/assets/fonts/Nunito-Bold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Space Mono';font-weight:700;src:url(/assets/fonts/SpaceMono-Bold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'MMPieces';src:url(/assets/mm/chesspieces.woff2) format('woff2');font-display:block}
+:root{--bg:#0F7B5F;--shade:#0B5A45;--acc:#CDB8F5;--pale:#E9E0FB;--ink:#141414;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#fff;background:var(--bg);line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.mono{font-family:'Space Mono',monospace;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+header{padding:16px 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+header .brand{font-family:'Anton',Impact,sans-serif;font-size:18px;text-decoration:none;letter-spacing:.02em}
+header .series{font-size:11px;color:var(--acc)}
+h1{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-weight:400;line-height:.95;margin:6px 0 4px;font-size:44px}
+h1 .num{color:var(--acc)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 14px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--ink);border:2.5px solid var(--ink);padding:4px 9px 3px;font-size:11px}
+.tag.inv{background:var(--ink);color:#fff;border-color:var(--ink)}
+.kings{font-family:'MMPieces';font-size:15px;letter-spacing:1px;line-height:1}
+.boardbox{position:relative;background:var(--ink);padding:0;box-shadow:6px 6px 0 var(--ink);border:3px solid var(--ink);margin:6px 0 4px}
+.board{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);aspect-ratio:1/1;width:100%;user-select:none;-webkit-user-select:none}
+.sq{position:relative;border:0;padding:0;margin:0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'MMPieces';color:var(--ink);font-size:min(9.6vw,52px);line-height:1;-webkit-tap-highlight-color:transparent}
+.sq .shade{position:absolute;inset:0;background:var(--ink);opacity:.16;pointer-events:none}
+.sq .pc{position:relative;z-index:1;pointer-events:none}
+.sq .lt{position:absolute;left:2px;top:2px;z-index:2;background:var(--ink);color:#fff;font:700 9px/1 'Space Mono',monospace;padding:2px 3px;pointer-events:none}
+.sq .no{position:absolute;right:2px;bottom:2px;z-index:2;background:var(--ink);color:#fff;font:700 9px/1 'Space Mono',monospace;padding:2px 3px;pointer-events:none}
+.sq.sel{outline:3px solid #F2B705;outline-offset:-3px}
+.sq.last::after{content:'';position:absolute;inset:0;background:#F2B705;opacity:.28;pointer-events:none}
+.sq.tgt::before{content:'';position:absolute;width:26%;height:26%;border-radius:50%;background:var(--ink);opacity:.35;z-index:3;pointer-events:none}
+.sq.tgt.cap::before{width:84%;height:84%;background:transparent;border:4px solid var(--ink);opacity:.35}
+.sq.chk .pc{text-shadow:0 0 8px #ff3b30,0 0 14px #ff3b30}
+.coords{display:grid;grid-template-columns:repeat(8,1fr);font-size:10px;color:var(--acc);text-align:center;margin-top:8px}
+.status{margin:12px 0 6px;font-weight:700;min-height:24px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+button.ctl{font:700 12px/1 'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink);border:2.5px solid var(--ink);padding:9px 12px 8px;box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+button.ctl:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.moves{font-family:'Space Mono',monospace;font-size:13px;color:#fff;min-height:20px;word-spacing:4px}
+.card{background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:12px 14px;margin:22px 0}
+.card h2{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;margin:0 0 8px}
+.card ul{list-style:none;margin:0;padding:0}
+.card li{display:flex;gap:10px;align-items:center;padding:4px 0;border-top:1.5px solid #eee}
+.card li:first-child{border-top:0}
+.card .g{font-family:'MMPieces';font-size:26px;width:30px;text-align:center;line-height:1}
+.card small{color:#555}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:13px}
+.rooms span b{display:inline-block;background:var(--ink);color:#fff;font:700 10px/1 'Space Mono',monospace;padding:3px 4px;margin-right:6px}
+.btn{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.03em;padding:13px 16px 11px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--shade);margin:10px 0}
+.btn.light{background:var(--acc);color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn small{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:none}
+.note{font-size:13px;color:#e8fff5;margin:4px 0 0}
+nav.pn{display:flex;justify-content:space-between;margin:26px 0 10px;font-size:12px}
+nav.pn a{text-decoration:none}
+footer{border-top:3px solid var(--ink);background:var(--ink);color:#bbb;font-size:12px;padding:16px 0 26px;margin-top:26px}
+footer a{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="/">KOB HOUSE</a><span class="series mono">Murder Mate: India</span></header>
+<div class="mono" style="font-size:11px;color:var(--acc)">Case file</div>
+<h1><span class="num">36</span> ROOM WITH A VIEW</h1>
+<div class="meta">
+  <span class="tag mono"><span class="kings">&#x265A;&#xFE0E;&#x265A;&#xFE0E;&#x265A;&#xFE0E;&#x265A;&#xFE0E;</span>Commissioner</span>
+  <span class="tag inv mono">Mate in three · White to play</span>
+</div>
+<div id="mm" data-fen="4Nk2/5pp1/3P1B2/8/6Q1/1R1PK3/8/8 w - - 0 1" data-nums='{"g4": 1, "b3": 2, "f6": 3, "e8": 4}'>
+  <div class="boardbox"><div class="board" id="board"></div></div>
+  <div class="coords mono"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div>
+  <div class="status" id="status">White to play.</div>
+  <div class="controls"><button class="ctl" id="undo" type="button">Undo</button><button class="ctl" id="reset" type="button">Reset</button></div>
+  <div class="moves" id="moves"></div>
+</div>
+<p class="note">Try your theories here: you play both sides, Black's replies included. There is no engine and no hint on this page. The testimonies are in the book.</p>
+<div class="card">
+  <h2>On the board</h2>
+  <ul><li><span class="g">♕&#xFE0E;</span><span><b>1 · Maharani Leela</b><br><small>Queen, g4, Stepwell</small></span></li><li><span class="g">♖&#xFE0E;</span><span><b>2 · Captain Arjun</b><br><small>Rook, b3, Durbar Hall</small></span></li><li><span class="g">♗&#xFE0E;</span><span><b>3 · Pandit Mohan</b><br><small>Bishop, f6, Monsoon Courtyard</small></span></li><li><span class="g">♘&#xFE0E;</span><span><b>4 · Mr Rustom Irani</b><br><small>Knight, e8, Mirror Hall</small></span></li><li><span class="g">♚&#xFE0E;</span><span><b>The victim</b><br><small>Mr Silas Crane, of Crane Hotels, Chicago. King, f8, Mirror Hall</small></span></li><li><span class="g">♔&#xFE0E;</span><span><b>You, Inspector Rao</b><br><small>King, e3, Stepwell. Not a suspect.</small></span></li><li><span class="g">♙&#xFE0E;</span><span><b>Palace guards</b><br><small>d3, d6. Never move, never kill.</small></span></li></ul>
+</div>
+<div class="card">
+  <h2>The palace</h2>
+  <div class="rooms"><span><b>L</b>Library</span><span><b>M</b>Mirror Hall</span><span><b>C</b>Monsoon Courtyard</span><span><b>D</b>Durbar Hall</span><span><b>S</b>Stepwell</span><span><b>K</b>Kitchens</span><span><b>E</b>Elephant Stables</span></div>
+</div>
+<a class="btn light" href="https://lichess.org/editor/4Nk2/5pp1/3P1B2/8/6Q1/1R1PK3/8/8_w_-_-_0_1" target="_blank" rel="noopener">Open on Lichess <small>engine off</small></a>
+<a class="btn" href="https://www.chess.com/analysis?fen=4Nk2/5pp1/3P1B2/8/6Q1/1R1PK3/8/8%20w%20-%20-%200%201" target="_blank" rel="noopener">Open on chess.com <small>switch the engine off first</small></a>
+<nav class="pn mono"><a href="/mm/1/35/">&larr; Case 35</a><a href="/mm/1/37/">Case 37 &rarr;</a></nav>
+</div>
+<footer><div class="wrap">Murder Mate: India is a puzzle book by <a href="/">Kob House</a>. Solutions are at the back of the book, and nowhere else.</div></footer>
+<script type="module">
+import { Chess } from '/assets/mm/chess.js';
+const START = document.getElementById('mm').dataset.fen;
+const NUMS = JSON.parse(document.getElementById('mm').dataset.nums);
+const G = {K:'♔',Q:'♕',R:'♖',B:'♗',N:'♘',P:'♙',k:'♚',q:'♛',r:'♜',b:'♝',n:'♞',p:'♟'};
+let game = new Chess(START), sel = null, last = null, origin = {};
+const stack = [];
+const board = document.getElementById('board');
+const files = 'abcdefgh';
+function zone(f, r){ if(r>=7) return f<=2?'L':'M'; if(r>=5) return 'C'; if(r>=3) return f<=3?'D':'S'; return f<=3?'K':'E'; }
+const TINT = {L:'var(--acc)',M:'#fff',C:'var(--pale)',D:'#fff',S:'var(--acc)',K:'var(--acc)',E:'#fff'};
+// piece identity: follows each suspect so its number moves with it
+function resetOrigin(){ origin = {}; for (const [sq, n] of Object.entries(NUMS)) origin[sq] = n; }
+function build(){
+  board.innerHTML = '';
+  for (let r = 8; r >= 1; r--) for (let f = 0; f < 8; f++) {
+    const sq = files[f] + r, z = zone(f, r);
+    const d = document.createElement('button');
+    d.className = 'sq'; d.dataset.sq = sq; d.setAttribute('aria-label', sq);
+    d.style.background = TINT[z];
+    const walls = [];
+    if (f < 7 && zone(f + 1, r) !== z) walls.push('inset -3px 0 0 var(--ink)');
+    if (f > 0 && zone(f - 1, r) !== z) walls.push('inset 3px 0 0 var(--ink)');
+    if (r < 8 && zone(f, r + 1) !== z) walls.push('inset 0 3px 0 var(--ink)');
+    if (r > 1 && zone(f, r - 1) !== z) walls.push('inset 0 -3px 0 var(--ink)');
+    if (walls.length) d.style.boxShadow = walls.join(',');
+    if ((f + r) % 2 === 1) { const s = document.createElement('span'); s.className = 'shade'; d.appendChild(s); }
+    const first = {L:'a8',M:'d8',C:'a6',D:'a4',S:'e4',K:'a2',E:'e2'}[z];
+    if (first === sq) { const l = document.createElement('span'); l.className = 'lt'; l.textContent = z; d.appendChild(l); }
+    const p = document.createElement('span'); p.className = 'pc'; d.appendChild(p);
+    const no = document.createElement('span'); no.className = 'no'; no.hidden = true; d.appendChild(no);
+    d.addEventListener('click', () => click(sq));
+    board.appendChild(d);
+  }
+}
+function render(){
+  const turnChk = game.inCheck() ? game.findPiece({type:'k', color: game.turn()})[0] : null;
+  for (const d of board.children) {
+    const sq = d.dataset.sq, pc = game.get(sq);
+    d.querySelector('.pc').textContent = pc ? G[pc.color === 'w' ? pc.type.toUpperCase() : pc.type] + '︎' : '';
+    const no = d.querySelector('.no'); const n = origin[sq];
+    no.hidden = !(n && pc && pc.color === 'w'); if (!no.hidden) no.textContent = n;
+    d.classList.toggle('sel', sel === sq);
+    d.classList.toggle('last', !!last && (last.from === sq || last.to === sq));
+    d.classList.toggle('chk', turnChk === sq);
+    d.classList.remove('tgt', 'cap');
+  }
+  if (sel) for (const m of game.moves({square: sel, verbose: true})) {
+    const t = board.querySelector(`[data-sq="${m.to}"]`); t.classList.add('tgt'); if (m.captured) t.classList.add('cap');
+  }
+  const h = game.history();
+  document.getElementById('moves').textContent = h.map((m, i) => (i % 2 === 0 ? (i / 2 + 1) + '. ' : '') + m).join(' ');
+  let s = (game.turn() === 'w' ? 'White' : 'Black') + ' to play.';
+  if (game.isCheckmate()) s = 'Checkmate. Now: who, where and how?';
+  else if (game.isStalemate()) s = 'Stalemate. Nobody dies tonight.';
+  else if (game.inCheck()) s = 'Check. ' + s;
+  document.getElementById('status').textContent = s;
+}
+function click(sq){
+  const pc = game.get(sq);
+  if (sel) {
+    const mv = game.moves({square: sel, verbose: true}).find(m => m.to === sq);
+    if (mv) {
+      let promo;
+      if (mv.promotion) { promo = (prompt('Promote to q, r, b or n?', 'q') || 'q').toLowerCase()[0]; if (!'qrbn'.includes(promo)) promo = 'q'; }
+      stack.push({...origin});
+      const n = origin[sel]; delete origin[sel]; delete origin[sq]; if (n) origin[sq] = n;
+      game.move({from: sel, to: sq, promotion: promo}); last = {from: sel, to: sq}; sel = null; render(); return;
+    }
+  }
+  sel = pc && pc.color === game.turn() && sel !== sq ? sq : null; render();
+}
+document.getElementById('undo').onclick = () => { if (game.undo()) origin = stack.pop() || origin; last = null; sel = null; render(); };
+document.getElementById('reset').onclick = () => { game = new Chess(START); stack.length = 0; resetOrigin(); last = null; sel = null; render(); };
+resetOrigin(); build(); render();
+</script>
+</body>
+</html>
