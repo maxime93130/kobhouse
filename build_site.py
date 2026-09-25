@@ -348,7 +348,7 @@ WHY_HTML = '''
 </div></section>
 '''
 
-HUB_NAV = [('/#books', 'The books', False), ('/#how', 'How it works', False), ('/#why', 'Why it works', False), ('/#twists', 'The twists', False), ('/murder-mate/', 'Murder Mate', False), ('/#about', 'Kob House', False)]
+HUB_NAV = [('/#murder-map', 'Murder Map', False), ('/#how', 'How it works', False), ('/#murder-mate', 'Murder Mate', False), ('/#about', 'Kob House', False)]
 
 def book_nav(b):
     items = [('/#books', 'All books', False), ('#how', 'How it works', False)]
@@ -461,7 +461,7 @@ MURDER_MATE_HUB = """
 <section id="murder-mate" style="background:#0F7B5F;border-top:4px solid #000;border-bottom:4px solid #000;color:#fff"><div class="wrap mmhub">
   <div class="mmcov"><a href="/murder-mate/"><img src="/assets/murdermate/cover-sm.png" width="400" height="600" alt="Murder Mate: India cover" loading="lazy"></a></div>
   <div>
-    <span class="tag eyebrow">New collection · Coming soon</span>
+    <span class="tag eyebrow">Murder Mate: India · October 2026</span>
     <h2 class="display" style="color:#fff">Murder Mate. <span style="color:#CDB8F5">The weapon is a checkmate.</span></h2>
     <p class="lead" style="color:#fff">Chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. Several of them could have delivered mate. The witnesses say only one did.</p>
     <div class="tags"><span class="tag">40 cases</span><span class="tag">Mate in 1 to 3</span><span class="tag">4 levels</span><span class="tag">A QR board on every case</span></div>
@@ -471,6 +471,43 @@ MURDER_MATE_HUB = """
 """ % ARROW
 
 MM_CSS = """
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
+.spread .pg{position:relative}.spread .pg:first-child{border-right:2px solid #ddd}
+.spread img{width:100%;height:auto;display:block}
+.spread i{position:absolute;font-style:normal;width:34px;height:34px;border-radius:50%;background:#0F7B5F;color:#fff;border:3px solid #000;display:flex;align-items:center;justify-content:center;font-family:'Anton',Impact,sans-serif;font-size:18px;transform:translate(-50%,-50%)}
+.anat{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.anat div{border:3px solid #000;padding:16px;background:#fff;position:relative}
+.anat b{position:absolute;top:-17px;left:14px;width:34px;height:34px;border-radius:50%;background:#0F7B5F;color:#fff;border:3px solid #000;display:flex;align-items:center;justify-content:center;font-family:'Anton',Impact,sans-serif;font-size:18px;font-weight:400}
+.anat h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:21px;margin:10px 0 6px;line-height:1}
+.anat p{margin:0;font-size:14px;font-weight:700}
+.rules3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px}
+.rule{background:#CDB8F5;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:20px;color:#000}
+.rule h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:24px;margin:0 0 10px;line-height:1}
+.rule p{margin:0;font-weight:700;font-size:15px}
+.look{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:34px}
+.look figure{margin:0}.look img{border:3px solid #000;box-shadow:8px 8px 0 #000;background:#fff;width:100%;height:auto}
+.look figcaption{margin-top:14px;font-weight:700;font-size:14px}
+@media(max-width:860px){.spread{grid-template-columns:1fr}.spread .pg:first-child{border-right:0;border-bottom:2px solid #ddd}.anat,.rules3{grid-template-columns:1fr 1fr}.look{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.anat,.rules3{grid-template-columns:1fr}}
+
+.khtitle{font-size:clamp(46px,6.4vw,92px);margin:4px 0 18px;color:#000}
+.collections{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.coll{display:flex;flex-direction:column;gap:8px;background:var(--c);color:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:18px;text-decoration:none;transition:transform .12s}
+.coll:hover{transform:translate(-2px,-2px)}
+.coll .mono{font-size:11px;color:var(--a)}
+.coll b{font-family:'Anton',Impact,sans-serif;font-size:32px;text-transform:uppercase;line-height:1;font-weight:400}
+.coll>span:not(.mono):not(.tag){font-weight:700;font-size:15px}
+.coll .tag{align-self:flex-start;margin-top:4px}
+.colband{background:var(--c);color:#fff;border-top:4px solid #000;border-bottom:4px solid #000;padding:34px 0 30px}
+.colband .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.colband .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--a);flex-basis:100%;margin-bottom:-12px}
+.colband p{margin:0;font-weight:700;font-size:19px;max-width:420px}
+.colband .mm .m1{font-size:44px}
+.colband .mm .m2{font-size:72px;color:var(--a)}
+.mmate{font-family:'Anton',Impact,sans-serif;font-size:72px;line-height:.9;text-transform:uppercase}
+.mmate .l{color:var(--a)}
+@media(max-width:860px){.collections{grid-template-columns:1fr}.colband .mm .m2,.mmate{font-size:56px}}
+
 .mmhub{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:center}
 .mmcov img{border:3px solid #000;box-shadow:12px 12px 0 #000;transform:rotate(-2deg)}
 .mmcta{display:flex;flex-wrap:wrap;gap:16px;margin-top:28px}
@@ -520,6 +557,49 @@ def murder_mate_page():
   </div>
 </div></section>
 
+
+<section id="inside" class="paper"><div class="wrap">
+  <span class="tag inv eyebrow">Anatomy of a case</span>
+  <h2 class="display">Two pages, one murder.</h2>
+  <p class="lead">Every case fills a double page: the crime on the left, the suspects and the witnesses on the right. Here is case 01, the first and easiest of the forty.</p>
+  <div class="spread">
+    <div class="pg"><img src="/assets/murdermate/page-case-left.png" width="800" height="1200" alt="Case 01, left page: story and board" loading="lazy">
+      <i style="left:3%%;top:5%%">1</i><i style="left:3%%;top:18%%">2</i><i style="left:3%%;top:39%%">3</i><i style="left:86%%;top:86%%">4</i></div>
+    <div class="pg"><img src="/assets/murdermate/page-case-right.png" width="800" height="1200" alt="Case 01, right page: suspects, testimonies and verdict" loading="lazy">
+      <i style="left:3%%;top:5%%">5</i><i style="left:3%%;top:37%%">6</i><i style="left:3%%;top:76%%">7</i></div>
+  </div>
+  <div class="anat">
+    <div><b>1</b><h3>The case file</h3><p>Case number, level, how many moves the killer needs, and a rough thinking time.</p></div>
+    <div><b>2</b><h3>The victim</h3><p>A short story: who died, and why half the palace wanted them to. Then who stood around the victim, which is to say the black pieces.</p></div>
+    <div><b>3</b><h3>The board is the palace</h3><p>A real chess position. Every square belongs to a room, drawn with thick walls and a letter: Library, Mirror Hall, Monsoon Courtyard, Stepwell...</p></div>
+    <div><b>4</b><h3>The QR code</h3><p>Scan it and the position opens on your phone, set up and ready to play, with no engine to spoil it.</p></div>
+    <div><b>5</b><h3>The suspects</h3><p>Every white piece is a guest of the palace, with a name and a room. The white king is you, Inspector Rao. The white pawns are guards.</p></div>
+    <div><b>6</b><h3>The testimonies</h3><p>The staff saw who went where. Each statement is one of three sentences, defined in the rules, so nothing is vague.</p></div>
+    <div><b>7</b><h3>Your verdict</h3><p>Who gave mate, in which room, and how. The answer, and the reasoning, are at the back of the book.</p></div>
+  </div>
+</div></section>
+
+<section id="rules"><div class="wrap">
+  <span class="tag inv eyebrow">The rules in one minute</span>
+  <h2 class="display">Find every mate. Then believe the witnesses.</h2>
+  <div class="rules3">
+    <div class="rule"><h3>The killer acts alone</h3><p>Only one white piece moves. Black answers with anything he likes, and the killer still mates in the number of moves the case states. Several suspects can usually manage it on the board. That is the point.</p></div>
+    <div class="rule"><h3>Three sentences, no gossip</h3><p><b>“X never left the Library.”</b> Every square X touched was in the Library.<br><b>“Nobody set foot in the Stepwell.”</b> No suspect passed through it.<br><b>“Somebody went through the Kitchens.”</b> The killer crossed it at least once.</p></div>
+    <div class="rule"><h3>Who, where, how</h3><p>Name the guest, the room where the mating move lands, and the kind of mate: back-rank, smothered, queen's kiss, or named after the piece. From Chief Inspector on, one witness is lying: find out who.</p></div>
+  </div>
+</div></section>
+
+<section id="look" class="tint"><div class="wrap">
+  <span class="tag inv eyebrow">Look inside</span>
+  <h2 class="display">A palace, eight guests, forty evenings.</h2>
+  <div class="look">
+    <figure><img src="/assets/murdermate/page-palace.png" width="800" height="1200" alt="The palace map" loading="lazy"><figcaption>The palace: seven rooms laid over the chessboard.</figcaption></figure>
+    <figure><img src="/assets/murdermate/page-guests.png" width="800" height="1200" alt="The guests" loading="lazy"><figcaption>The guests: eight suspects, always the same piece.</figcaption></figure>
+    <figure><img src="/assets/murdermate/page-testimonies.png" width="800" height="1200" alt="The testimonies rules" loading="lazy"><figcaption>The testimonies: what each sentence means, exactly.</figcaption></figure>
+    <figure><img src="/assets/murdermate/page-levels.png" width="800" height="1200" alt="Choose your case" loading="lazy"><figcaption>Choose your case: four levels, from Rookie to Commissioner.</figcaption></figure>
+  </div>
+</div></section>
+
 <section id="levels"><div class="wrap">
   <span class="tag inv eyebrow">Four levels, one book</span>
   <h2 class="display">Start easy. End at 1800.</h2>
@@ -534,7 +614,7 @@ def murder_mate_page():
   <div class="mmseries">%s</div>
 </div></section>
 """ % (lv, se)
-    nav = [('/#books', 'Murder Map', False), ('#how', 'How it works', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/mm/1/01/', 'Try a board', False)]
+    nav = [('/', 'Kob House', False), ('#how', 'How it works', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/mm/1/01/', 'Try a board', False)]
     return page('Murder Mate: India · Chess murder mysteries · Kob House',
                 'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Coming soon from Kob House.',
                 body, MM_BG, MM_ACC, '/murder-mate/', '/assets/murdermate/cover.png', nav)
@@ -546,34 +626,42 @@ def hub():
         st = '<span class="tag">Out now</span>' if b['status'] == 'out' else '<span class="tag inv">Coming soon</span>'
         cards += '<a class="book" style="--bg:%s;--acc:%s" href="/%s/"><img src="/assets/%s/cover-sm.png" width="400" height="600" alt="Murder Map: %s cover" loading="lazy"><h3>Murder Map: %s</h3><p>%s</p><div class="meta">%s</div>%s<span class="go">See the book %s</span></a>' % (
             b['bg'], b['acc'], b['slug'], b['key'], b['city'], b['city'], b['card_blurb'], meta, st, ARROW)
-    twists = '''
+    twists = """
 <div class="twist"><span class="tag inv">Paris</span><h3>The original</h3><p>Rive gauche or rive droite, along the Seine or by the périphérique: twenty arrondissements and the clues to cut them down, one statement at a time.</p></div>
 <div class="twist"><span class="tag inv">Tokyo</span><h3>The train is a witness</h3><p>The Yamanote loop circles the city with 30 stations. Witnesses tell you how far someone rode, clockwise or against the clock, and the loop closes in on the killer.</p></div>
-<div class="twist"><span class="tag inv">New York</span><h3>Count the blocks</h3><p>Manhattan on a lettered grid, avenues straight up the page. Witnesses tell you how far they walked, up, down or across, never diagonally.</p></div>'''
-    fan = ''.join('<img src="/assets/%s/cover-sm.png" width="400" height="600" alt="Murder Map: %s cover">' % (b['key'], b['city']) for b in BOOKS)
-    body = '''
+<div class="twist"><span class="tag inv">New York</span><h3>Count the blocks</h3><p>Manhattan on a lettered grid, avenues straight up the page. Witnesses tell you how far they walked, up, down or across, never diagonally.</p></div>"""
+    fan = ''.join('<img src="/assets/%s/cover-sm.png" width="400" height="600" alt="%s cover">' % (k, t) for k, t in
+                  [('paris', 'Murder Map: Paris'), ('newyork', 'Murder Map: New York'), ('murdermate', 'Murder Mate: India')])
+    why = WHY_HTML.replace('<span class="tag inv eyebrow">Why it works</span>', '<span class="tag inv eyebrow">Murder Map · Why it works</span>')
+    body = """
 <section class="hero"><div class="wrap">
   <div>
-    <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
-    <div class="tagbox">A real city. Three crime scenes.<br><mark>Cross out the city</mark> until one door is left.</div>
-    <div class="tags"><span class="tag">3 books</span><span class="tag">Real streets</span><span class="tag">One twist per city</span><span class="tag">One solution</span></div>
-    <div class="stamp">Case file · Kob House</div><br>
-    <a class="btn" href="#books">%s See the books</a>
+    <div class="stamp">Kob House · Puzzle books</div>
+    <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
+    <p class="lead">Two collections of paper murder cases. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
+    <div class="collections">
+      <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">Collection 01 · 3 books</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now</span></a>
+      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">Collection 02 · New</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag inv">Coming soon</span></a>
+    </div>
   </div>
   <div class="fan">%s</div>
 </div></section>
 
+<div id="murder-map" class="colband" style="--c:#1F6BED;--a:#F4FF1E"><div class="wrap">
+  <span class="mono">Collection 01</span>
+  <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
+  <p>A real city, three crime scenes. <b>Cross out the city</b> until one door is left.</p>
+</div></div>
+
 <section id="books"><div class="wrap">
-  <span class="tag inv eyebrow">The books</span>
+  <span class="tag inv eyebrow">Murder Map · The books</span>
   <h2 class="display">Three cities. Nine murders. One pen.</h2>
   <p class="lead">Each book hides three killers in a real city and hands you the witness statements, the map and the street grids. Same rules everywhere, and one twist per city taken from something real about it.</p>
   <div class="books">%s</div>
 </div></section>
 
-%s
-
 <section id="how" class="paper"><div class="wrap">
-  <span class="tag inv eyebrow">How it works</span>
+  <span class="tag inv eyebrow">Murder Map · How it works</span>
   <h2 class="display">Every witness tells the truth. None of them knows the address.</h2>
   <p class="lead">Read the statements in order. Each one is true, and each one lets you cross out part of the city. Four steps, one pen, no knowledge of the city needed.</p>
   <div class="steps">
@@ -586,23 +674,30 @@ def hub():
 
 %s
 <section id="twists"><div class="wrap">
-  <span class="tag inv eyebrow">One twist per city</span>
+  <span class="tag inv eyebrow">Murder Map · One twist per city</span>
   <h2 class="display">Same rules. A different way to close in.</h2>
   <p class="lead">Every city gets one mechanic of its own, taken from something real: a loop line, a street grid. The books stand alone and can be played in any order.</p>
   <div class="twists">%s</div>
 </div></section>
 
+<div class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
+  <span class="mono">Collection 02 · Coming soon</span>
+  <div class="mmate"><span class="w">Murder</span> <span class="l">Mate</span></div>
+  <p>Chess murder mysteries. <b>The board is the crime scene.</b></p>
+</div></div>
+%s
+
 <section id="about" class="tint"><div class="wrap about">
   <div><div class="logo biglogo" style="pointer-events:none"><span class="k">K%sB</span><span class="h">HOUSE</span></div></div>
   <div>
-    <h2 class="display">Kob House makes puzzle books you solve with a pen, a map, and a suspicious mind.</h2>
+    <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
-    <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide. About two hours per case, six hours per book.</p>
-    <div class="series"><a href="/paris/">Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
+    <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
+    <div class="series"><a href="/paris/">Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a><a class="soon" href="/murder-mate/">Murder Mate · soon</a></div>
   </div>
 </div></section>
-''' % (ARROW, fan, cards, MURDER_MATE_HUB, WHY_HTML, twists, FROG)
-    return page('Murder Map · Kob House', 'Murder Map: deduction puzzle books set in real cities. Paris, Tokyo, New York. Three murder cases per book, thousands of addresses, one killer to find. By Kob House.',
+""" % (fan, cards, why, twists, MURDER_MATE_HUB, FROG)
+    return page('Kob House · Murder Map and Murder Mate puzzle books', 'Kob House makes pen-and-paper mystery books with exactly one solution. Murder Map: deduction in real cities (Paris, Tokyo, New York). Murder Mate: chess murder mysteries, coming soon.',
                 body, BRAND_BG, BRAND_ACC, '/', '/assets/paris/cover.png', HUB_NAV)
 
 # ------------------------------------------------------------------ legal + files

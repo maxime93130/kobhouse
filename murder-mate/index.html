@@ -169,6 +169,43 @@ footer a{color:#fff}
 @media(max-width:900px){.hero .wrap,.two,.about{grid-template-columns:1fr}.steps,.pages,.whys{grid-template-columns:1fr 1fr}.cases,.books,.twists{grid-template-columns:1fr}nav ul{display:none}.cover img{transform:none}.cover .sticker{left:8px}}
 @media(max-width:560px){.steps,.pages,.whys{grid-template-columns:1fr}section{padding:56px 0}.fan{width:min(86%,520px);margin:10px auto 0}.fan img:nth-child(1){left:2%}.fan img:nth-child(3){left:46%}}
 
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
+.spread .pg{position:relative}.spread .pg:first-child{border-right:2px solid #ddd}
+.spread img{width:100%;height:auto;display:block}
+.spread i{position:absolute;font-style:normal;width:34px;height:34px;border-radius:50%;background:#0F7B5F;color:#fff;border:3px solid #000;display:flex;align-items:center;justify-content:center;font-family:'Anton',Impact,sans-serif;font-size:18px;transform:translate(-50%,-50%)}
+.anat{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.anat div{border:3px solid #000;padding:16px;background:#fff;position:relative}
+.anat b{position:absolute;top:-17px;left:14px;width:34px;height:34px;border-radius:50%;background:#0F7B5F;color:#fff;border:3px solid #000;display:flex;align-items:center;justify-content:center;font-family:'Anton',Impact,sans-serif;font-size:18px;font-weight:400}
+.anat h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:21px;margin:10px 0 6px;line-height:1}
+.anat p{margin:0;font-size:14px;font-weight:700}
+.rules3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px}
+.rule{background:#CDB8F5;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:20px;color:#000}
+.rule h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:24px;margin:0 0 10px;line-height:1}
+.rule p{margin:0;font-weight:700;font-size:15px}
+.look{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:34px}
+.look figure{margin:0}.look img{border:3px solid #000;box-shadow:8px 8px 0 #000;background:#fff;width:100%;height:auto}
+.look figcaption{margin-top:14px;font-weight:700;font-size:14px}
+@media(max-width:860px){.spread{grid-template-columns:1fr}.spread .pg:first-child{border-right:0;border-bottom:2px solid #ddd}.anat,.rules3{grid-template-columns:1fr 1fr}.look{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.anat,.rules3{grid-template-columns:1fr}}
+
+.khtitle{font-size:clamp(46px,6.4vw,92px);margin:4px 0 18px;color:#000}
+.collections{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.coll{display:flex;flex-direction:column;gap:8px;background:var(--c);color:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:18px;text-decoration:none;transition:transform .12s}
+.coll:hover{transform:translate(-2px,-2px)}
+.coll .mono{font-size:11px;color:var(--a)}
+.coll b{font-family:'Anton',Impact,sans-serif;font-size:32px;text-transform:uppercase;line-height:1;font-weight:400}
+.coll>span:not(.mono):not(.tag){font-weight:700;font-size:15px}
+.coll .tag{align-self:flex-start;margin-top:4px}
+.colband{background:var(--c);color:#fff;border-top:4px solid #000;border-bottom:4px solid #000;padding:34px 0 30px}
+.colband .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.colband .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--a);flex-basis:100%;margin-bottom:-12px}
+.colband p{margin:0;font-weight:700;font-size:19px;max-width:420px}
+.colband .mm .m1{font-size:44px}
+.colband .mm .m2{font-size:72px;color:var(--a)}
+.mmate{font-family:'Anton',Impact,sans-serif;font-size:72px;line-height:.9;text-transform:uppercase}
+.mmate .l{color:var(--a)}
+@media(max-width:860px){.collections{grid-template-columns:1fr}.colband .mm .m2,.mmate{font-size:56px}}
+
 .mmhub{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:center}
 .mmcov img{border:3px solid #000;box-shadow:12px 12px 0 #000;transform:rotate(-2deg)}
 .mmcta{display:flex;flex-wrap:wrap;gap:16px;margin-top:28px}
@@ -186,7 +223,7 @@ footer a{color:#fff}
 </style>
 </head>
 <body>
-<header><div class="wrap"><nav><a class="logo" href="/" aria-label="Kob House"><span class="k">K<svg viewBox="0 0 120 100" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="26" r="22"/><circle cx="86" cy="26" r="22"/><path d="M6 46 Q60 14 114 46 L114 66 Q114 96 60 96 Q6 96 6 66 Z"/></g><g fill="#fff"><circle cx="34" cy="26" r="11"/><circle cx="86" cy="26" r="11"/></g><g fill="currentColor"><circle cx="38" cy="28" r="6"/><circle cx="90" cy="28" r="6"/></g><path d="M28 70 Q60 92 92 70" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>B</span><span class="h">HOUSE</span></a><ul><li><a href="/#books">Murder Map</a></li><li><a href="#how">How it works</a></li><li><a href="#levels">The levels</a></li><li><a href="#series">The series</a></li><li><a href="/mm/1/01/">Try a board</a></li></ul></nav></div></header>
+<header><div class="wrap"><nav><a class="logo" href="/" aria-label="Kob House"><span class="k">K<svg viewBox="0 0 120 100" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="26" r="22"/><circle cx="86" cy="26" r="22"/><path d="M6 46 Q60 14 114 46 L114 66 Q114 96 60 96 Q6 96 6 66 Z"/></g><g fill="#fff"><circle cx="34" cy="26" r="11"/><circle cx="86" cy="26" r="11"/></g><g fill="currentColor"><circle cx="38" cy="28" r="6"/><circle cx="90" cy="28" r="6"/></g><path d="M28 70 Q60 92 92 70" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>B</span><span class="h">HOUSE</span></a><ul><li><a href="/">Kob House</a></li><li><a href="#how">How it works</a></li><li><a href="#inside">Inside a case</a></li><li><a href="#levels">The levels</a></li><li><a href="#series">The series</a></li><li><a href="/mm/1/01/">Try a board</a></li></ul></nav></div></header>
 
 <section class="hero" style="background:#0F7B5F;color:#fff"><div class="wrap mmhub">
   <div class="mmcov"><img src="/assets/murdermate/cover.png" width="1000" height="1500" alt="Murder Mate: India cover"></div>
@@ -208,6 +245,49 @@ footer a{color:#fff}
     <div class="step"><div class="n">2</div><h3>Find every mate</h3><p>Only one white piece moves, whatever Black tries. Several suspects can still pull it off. List them all.</p></div>
     <div class="step"><div class="n">3</div><h3>Read the witnesses</h3><p>The cook, the butler and the palace clockmaker saw who went where. From Chief Inspector on, one of them is lying.</p></div>
     <div class="step"><div class="n">4</div><h3>Name the killer</h3><p>Who gave mate, in which room, and how. Exactly one answer per case, checked by an independent solver before printing.</p></div>
+  </div>
+</div></section>
+
+
+<section id="inside" class="paper"><div class="wrap">
+  <span class="tag inv eyebrow">Anatomy of a case</span>
+  <h2 class="display">Two pages, one murder.</h2>
+  <p class="lead">Every case fills a double page: the crime on the left, the suspects and the witnesses on the right. Here is case 01, the first and easiest of the forty.</p>
+  <div class="spread">
+    <div class="pg"><img src="/assets/murdermate/page-case-left.png" width="800" height="1200" alt="Case 01, left page: story and board" loading="lazy">
+      <i style="left:3%;top:5%">1</i><i style="left:3%;top:18%">2</i><i style="left:3%;top:39%">3</i><i style="left:86%;top:86%">4</i></div>
+    <div class="pg"><img src="/assets/murdermate/page-case-right.png" width="800" height="1200" alt="Case 01, right page: suspects, testimonies and verdict" loading="lazy">
+      <i style="left:3%;top:5%">5</i><i style="left:3%;top:37%">6</i><i style="left:3%;top:76%">7</i></div>
+  </div>
+  <div class="anat">
+    <div><b>1</b><h3>The case file</h3><p>Case number, level, how many moves the killer needs, and a rough thinking time.</p></div>
+    <div><b>2</b><h3>The victim</h3><p>A short story: who died, and why half the palace wanted them to. Then who stood around the victim, which is to say the black pieces.</p></div>
+    <div><b>3</b><h3>The board is the palace</h3><p>A real chess position. Every square belongs to a room, drawn with thick walls and a letter: Library, Mirror Hall, Monsoon Courtyard, Stepwell...</p></div>
+    <div><b>4</b><h3>The QR code</h3><p>Scan it and the position opens on your phone, set up and ready to play, with no engine to spoil it.</p></div>
+    <div><b>5</b><h3>The suspects</h3><p>Every white piece is a guest of the palace, with a name and a room. The white king is you, Inspector Rao. The white pawns are guards.</p></div>
+    <div><b>6</b><h3>The testimonies</h3><p>The staff saw who went where. Each statement is one of three sentences, defined in the rules, so nothing is vague.</p></div>
+    <div><b>7</b><h3>Your verdict</h3><p>Who gave mate, in which room, and how. The answer, and the reasoning, are at the back of the book.</p></div>
+  </div>
+</div></section>
+
+<section id="rules"><div class="wrap">
+  <span class="tag inv eyebrow">The rules in one minute</span>
+  <h2 class="display">Find every mate. Then believe the witnesses.</h2>
+  <div class="rules3">
+    <div class="rule"><h3>The killer acts alone</h3><p>Only one white piece moves. Black answers with anything he likes, and the killer still mates in the number of moves the case states. Several suspects can usually manage it on the board. That is the point.</p></div>
+    <div class="rule"><h3>Three sentences, no gossip</h3><p><b>“X never left the Library.”</b> Every square X touched was in the Library.<br><b>“Nobody set foot in the Stepwell.”</b> No suspect passed through it.<br><b>“Somebody went through the Kitchens.”</b> The killer crossed it at least once.</p></div>
+    <div class="rule"><h3>Who, where, how</h3><p>Name the guest, the room where the mating move lands, and the kind of mate: back-rank, smothered, queen's kiss, or named after the piece. From Chief Inspector on, one witness is lying: find out who.</p></div>
+  </div>
+</div></section>
+
+<section id="look" class="tint"><div class="wrap">
+  <span class="tag inv eyebrow">Look inside</span>
+  <h2 class="display">A palace, eight guests, forty evenings.</h2>
+  <div class="look">
+    <figure><img src="/assets/murdermate/page-palace.png" width="800" height="1200" alt="The palace map" loading="lazy"><figcaption>The palace: seven rooms laid over the chessboard.</figcaption></figure>
+    <figure><img src="/assets/murdermate/page-guests.png" width="800" height="1200" alt="The guests" loading="lazy"><figcaption>The guests: eight suspects, always the same piece.</figcaption></figure>
+    <figure><img src="/assets/murdermate/page-testimonies.png" width="800" height="1200" alt="The testimonies rules" loading="lazy"><figcaption>The testimonies: what each sentence means, exactly.</figcaption></figure>
+    <figure><img src="/assets/murdermate/page-levels.png" width="800" height="1200" alt="Choose your case" loading="lazy"><figcaption>Choose your case: four levels, from Rookie to Commissioner.</figcaption></figure>
   </div>
 </div></section>
 
