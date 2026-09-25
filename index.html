@@ -9,7 +9,7 @@
 <meta property="og:description" content="Murder Map: deduction puzzle books set in real cities. Paris, Tokyo, New York. Three murder cases per book, thousands of addresses, one killer to find. By Kob House.">
 <meta property="og:image" content="https://kobhouse.com/assets/paris/cover.png">
 <meta property="og:url" content="https://kobhouse.com/">
-<meta name="theme-color" content="#1F6BED">
+<meta name="theme-color" content="#EFE8D6">
 <link rel="canonical" href="https://kobhouse.com/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <style>
@@ -18,7 +18,7 @@
 @font-face{font-family:'Nunito';font-weight:700;src:url(/assets/fonts/Nunito-Bold.woff2) format('woff2');font-display:swap}
 @font-face{font-family:'Space Mono';font-weight:400;src:url(/assets/fonts/SpaceMono-Regular.woff2) format('woff2');font-display:swap}
 @font-face{font-family:'Space Mono';font-weight:700;src:url(/assets/fonts/SpaceMono-Bold.woff2) format('woff2');font-display:swap}
-:root{--bg:#1F6BED;--acc:#F4FF1E;--ink:#000;--paper:#fff}
+:root{--bg:#EFE8D6;--acc:#D8261C;--ink:#000;--paper:#fff}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -71,6 +71,8 @@ h2.display{font-size:clamp(38px,5vw,64px);margin-bottom:24px}
 .accent{background:var(--acc)}
 .tint{background:var(--bg)}
 .dark{background:#000;color:#fff}
+.paper{background:#fff}
+.stamp{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:4px;text-transform:uppercase;border:4px solid var(--acc);color:var(--acc);padding:10px 14px;transform:rotate(-6deg);line-height:1.5;margin:0 0 30px 6px}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
 .step{background:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:24px}
 .step .n{font-family:'Anton',Impact,sans-serif;font-size:72px;line-height:.9;color:var(--acc);-webkit-text-stroke:3px #000;paint-order:stroke fill}
@@ -104,7 +106,7 @@ h2.display{font-size:clamp(38px,5vw,64px);margin-bottom:24px}
 .about .biglogo .k svg{width:96px}
 .about .biglogo .h{font-size:22px;letter-spacing:14px;margin-left:12px}
 .books{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
-.book{--bg:#1F6BED;--acc:#F4FF1E;background:var(--bg);border:3px solid #000;box-shadow:10px 10px 0 #000;padding:28px;display:flex;flex-direction:column;gap:16px;text-decoration:none;color:#000;transition:transform .12s}
+.book{--bg:#EFE8D6;--acc:#D8261C;background:var(--bg);border:3px solid #000;box-shadow:10px 10px 0 #000;padding:28px;display:flex;flex-direction:column;gap:16px;text-decoration:none;color:#000;transition:transform .12s}
 .book:hover{transform:translate(-3px,-3px)}
 .book img{width:70%;margin:0 auto;border:3px solid #000;box-shadow:8px 8px 0 #000;transform:rotate(2deg)}
 .book h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:34px;line-height:.95;margin:14px 0 0}
@@ -136,6 +138,7 @@ footer a{color:#fff}
     <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
     <div class="tagbox">A real city. Three crime scenes.<br><mark>Cross out the city</mark> until one door is left.</div>
     <div class="tags"><span class="tag">3 books</span><span class="tag">Real streets</span><span class="tag">One twist per city</span><span class="tag">One solution</span></div>
+    <div class="stamp">Case file · Kob House</div><br>
     <a class="btn" href="#books"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg> See the books</a>
   </div>
   <div class="fan"><img src="/assets/paris/cover-sm.png" width="400" height="600" alt="Murder Map: Paris cover"><img src="/assets/tokyo/cover-sm.png" width="400" height="600" alt="Murder Map: Tokyo cover"><img src="/assets/newyork/cover-sm.png" width="400" height="600" alt="Murder Map: New York cover"></div>
@@ -148,7 +151,7 @@ footer a{color:#fff}
   <div class="books"><a class="book" style="--bg:#1F6BED;--acc:#F4FF1E" href="/paris/"><img src="/assets/paris/cover-sm.png" width="400" height="600" alt="Murder Map: Paris cover" loading="lazy"><h3>Murder Map: Paris</h3><p>Inspector Marchetti retired to Biarritz and left you her notebook. Twenty arrondissements, one killer.</p><div class="meta">156 pages · 14,400 addresses</div><span class="tag">Out now</span><span class="go">See the book <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span></a><a class="book" style="--bg:#F26A4B;--acc:#D9F2E3" href="/tokyo/"><img src="/assets/tokyo/cover-sm.png" width="400" height="600" alt="Murder Map: Tokyo cover" loading="lazy"><h3>Murder Map: Tokyo</h3><p>Three case files in an unclaimed umbrella. Twenty-three wards, one loop line, and a station that is not on the map.</p><div class="meta">177 pages · 16,560 addresses</div><span class="tag inv">Coming soon</span><span class="go">See the book <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span></a><a class="book" style="--bg:#FBBA16;--acc:#F7F1E1" href="/new-york/"><img src="/assets/newyork/cover-sm.png" width="400" height="600" alt="Murder Map: New York cover" loading="lazy"><h3>Murder Map: New York</h3><p>Three cases pencilled into a taxi driver's street atlas. Twenty-four neighborhoods, and a grid nobody walks diagonally.</p><div class="meta">185 pages · 17,280 addresses</div><span class="tag inv">Coming soon</span><span class="go">See the book <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span></a></div>
 </div></section>
 
-<section id="how" class="accent"><div class="wrap">
+<section id="how" class="paper"><div class="wrap">
   <span class="tag inv eyebrow">How it works</span>
   <h2 class="display">Every witness tells the truth. None of them knows the address.</h2>
   <p class="lead">Read the statements in order. Each one is true, and each one lets you cross out part of the city. Four steps, one pen, no knowledge of the city needed.</p>

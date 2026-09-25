@@ -1,6 +1,9 @@
 """Builds kobhouse.com: a series hub (index.html) and one page per book (paris/, tokyo/, new-york/)."""
 import json, os, re, random
 H = os.path.dirname(os.path.abspath(__file__))
+# Kob House brand (charte A « Dossier »): cream paper, black ink, one red stamp accent. Book pages keep their own duo.
+BRAND_BG = '#EFE8D6'
+BRAND_ACC = '#D8261C'
 D = os.path.join(H, 'data')
 
 FROG = '''<svg viewBox="0 0 120 100" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="26" r="22"/><circle cx="86" cy="26" r="22"/><path d="M6 46 Q60 14 114 46 L114 66 Q114 96 60 96 Q6 96 6 66 Z"/></g><g fill="#fff"><circle cx="34" cy="26" r="11"/><circle cx="86" cy="26" r="11"/></g><g fill="currentColor"><circle cx="38" cy="28" r="6"/><circle cx="90" cy="28" r="6"/></g><path d="M28 70 Q60 92 92 70" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>'''
@@ -162,6 +165,8 @@ h2.display{font-size:clamp(38px,5vw,64px);margin-bottom:24px}
 .accent{background:var(--acc)}
 .tint{background:var(--bg)}
 .dark{background:#000;color:#fff}
+.paper{background:#fff}
+.stamp{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:4px;text-transform:uppercase;border:4px solid var(--acc);color:var(--acc);padding:10px 14px;transform:rotate(-6deg);line-height:1.5;margin:0 0 30px 6px}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
 .step{background:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:24px}
 .step .n{font-family:'Anton',Impact,sans-serif;font-size:72px;line-height:.9;color:var(--acc);-webkit-text-stroke:3px #000;paint-order:stroke fill}
@@ -393,6 +398,7 @@ def hub():
     <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
     <div class="tagbox">A real city. Three crime scenes.<br><mark>Cross out the city</mark> until one door is left.</div>
     <div class="tags"><span class="tag">3 books</span><span class="tag">Real streets</span><span class="tag">One twist per city</span><span class="tag">One solution</span></div>
+    <div class="stamp">Case file · Kob House</div><br>
     <a class="btn" href="#books">%s See the books</a>
   </div>
   <div class="fan">%s</div>
@@ -405,7 +411,7 @@ def hub():
   <div class="books">%s</div>
 </div></section>
 
-<section id="how" class="accent"><div class="wrap">
+<section id="how" class="paper"><div class="wrap">
   <span class="tag inv eyebrow">How it works</span>
   <h2 class="display">Every witness tells the truth. None of them knows the address.</h2>
   <p class="lead">Read the statements in order. Each one is true, and each one lets you cross out part of the city. Four steps, one pen, no knowledge of the city needed.</p>
@@ -435,7 +441,7 @@ def hub():
 </div></section>
 ''' % (ARROW, fan, cards, twists, FROG)
     return page('Murder Map · Kob House', 'Murder Map: deduction puzzle books set in real cities. Paris, Tokyo, New York. Three murder cases per book, thousands of addresses, one killer to find. By Kob House.',
-                body, '#1F6BED', '#F4FF1E', '/', '/assets/paris/cover.png', HUB_NAV)
+                body, BRAND_BG, BRAND_ACC, '/', '/assets/paris/cover.png', HUB_NAV)
 
 # ------------------------------------------------------------------ legal + files
 exec(open(D + '/_legal.txt').read())
@@ -445,7 +451,7 @@ open(H + '/index.html', 'w').write(hub())
 for b in BOOKS:
     os.makedirs(os.path.join(H, b['slug']), exist_ok=True)
     open(os.path.join(H, b['slug'], 'index.html'), 'w').write(book_page(b))
-open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, '#1F6BED', '#F4FF1E', '/legal.html', '/assets/paris/cover.png', HUB_NAV))
+open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, BRAND_BG, BRAND_ACC, '/legal.html', '/assets/paris/cover.png', HUB_NAV))
 open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
 open(H + '/.nojekyll', 'w').write('')
