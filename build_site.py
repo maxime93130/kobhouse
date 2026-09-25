@@ -209,6 +209,15 @@ h2.display{font-size:clamp(38px,5vw,64px);margin-bottom:24px}
 .book .meta{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
 .book .go{margin-top:auto;display:inline-flex;align-items:center;gap:10px;font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;background:#000;color:#fff;padding:12px 18px;align-self:flex-start}
 .book .go svg{width:20px;height:20px}
+.why{background:#000;color:#fff}
+.why .tag{background:#fff;color:#000}
+.why .lead{color:#fff}
+.whys{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.why-card{background:#fff;color:#000;border:3px solid #000;box-shadow:8px 8px 0 var(--acc);padding:24px;display:flex;flex-direction:column;gap:10px}
+.why-k{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;background:#000;color:var(--acc);padding:4px 8px;align-self:flex-start}
+.why-card h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:24px;line-height:1;margin:0}
+.why-card p{margin:0;font-weight:700;font-size:15px}
+.why-foot{margin:36px 0 0;font-size:12px;color:var(--acc)}
 .twists{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
 .twist{background:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:26px}
 .twist h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:26px;line-height:1;margin:12px 0 10px}
@@ -251,8 +260,8 @@ footer a{color:#fff}
 .logo .k svg{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
 .logo:hover .k svg{transform:rotate(-12deg) scale(1.15)}
 @media(prefers-reduced-motion:reduce){.js .hero *,.js .fan img,.js .cover img,.js .cover .sticker,.js .map .pin{animation:none!important}.js .rv{opacity:1;transform:none;transition:none}*{scroll-behavior:auto!important}}
-@media(max-width:900px){.hero .wrap,.two,.about{grid-template-columns:1fr}.steps,.pages{grid-template-columns:1fr 1fr}.cases,.books,.twists{grid-template-columns:1fr}nav ul{display:none}.cover img{transform:none}.cover .sticker{left:8px}}
-@media(max-width:560px){.steps,.pages{grid-template-columns:1fr}section{padding:56px 0}.fan{width:min(86%%,520px);margin:10px auto 0}.fan img:nth-child(1){left:2%%}.fan img:nth-child(3){left:46%%}}
+@media(max-width:900px){.hero .wrap,.two,.about{grid-template-columns:1fr}.steps,.pages,.whys{grid-template-columns:1fr 1fr}.cases,.books,.twists{grid-template-columns:1fr}nav ul{display:none}.cover img{transform:none}.cover .sticker{left:8px}}
+@media(max-width:560px){.steps,.pages,.whys{grid-template-columns:1fr}section{padding:56px 0}.fan{width:min(86%%,520px);margin:10px auto 0}.fan img:nth-child(1){left:2%%}.fan img:nth-child(3){left:46%%}}
 '''
 
 LOGO = '<a class="logo" href="/" aria-label="Kob House"><span class="k">K%sB</span><span class="h">HOUSE</span></a>' % FROG
@@ -261,7 +270,7 @@ MOTION_JS = r'''
 // Motion: mark the page as JS-enabled, then reveal cards and sections as they scroll in.
 document.documentElement.classList.add("js");
 (function(){
-  var sel=".book,.step,.twist,.case,.stat,.pages figure,#books .lead,#how .lead,#twists .lead,#cases .lead,#inside .lead,#city .lead,.about h2,.about .lead,h2.display,.eyebrow";
+  var sel=".book,.step,.twist,.why-card,.case,.stat,.pages figure,#books .lead,#how .lead,#twists .lead,#cases .lead,#inside .lead,#city .lead,.about h2,.about .lead,h2.display,.eyebrow";
   var groups=new WeakMap();
   document.querySelectorAll(sel).forEach(function(el){
     if(el.closest(".hero"))return;
@@ -323,12 +332,28 @@ def page(title, desc, body, bg, acc, url, image, nav_items, extra_js=''):
 </html>
 ''' % (title, desc, title, desc, image, url, bg, url, CSS % (bg, acc, bg, acc), LOGO, nav, body, AMAZON_JS + MOTION_JS + extra_js)
 
-HUB_NAV = [('/#books', 'The books', False), ('/#how', 'How it works', False), ('/#twists', 'The twists', False), ('/#about', 'Kob House', False)]
+
+WHY_HTML = '''
+<section id="why" class="why"><div class="wrap">
+  <span class="tag inv eyebrow">Why it works</span>
+  <h2 class="display">The slow puzzle.</h2>
+  <p class="lead">You'll know the rules in two minutes. You'll need about two hours per case. That is the point: one pen, one city, one thing on your mind.</p>
+  <div class="whys">
+    <div class="why-card"><span class="why-k">Calm</span><h3>Calm is a method</h3><p>A clear task, a simple gesture, progress you can see. Cross out the city one line at a time and let the rest of the day wait.</p></div>
+    <div class="why-card"><span class="why-k">Focus</span><h3>Two hours where your phone doesn't exist</h3><p>Paper, pen, sixteen statements. Nothing to swipe, nothing to check, nothing to charge.</p></div>
+    <div class="why-card"><span class="why-k">Finish</span><h3>You don't guess the ending, you earn it</h3><p>Every hatched district and every crossed-out number is work you did. When one door is left, the code at the back confirms it.</p></div>
+    <div class="why-card"><span class="why-k">Fair</span><h3>Hard, never unfair</h3><p>Every witness tells the truth. Every case has exactly one solution, checked by an independent solver before printing. No trick questions.</p></div>
+  </div>
+  <p class="why-foot mono">A case for a rainy Sunday · a long flight · a quiet evening</p>
+</div></section>
+'''
+
+HUB_NAV = [('/#books', 'The books', False), ('/#how', 'How it works', False), ('/#why', 'Why it works', False), ('/#twists', 'The twists', False), ('/#about', 'Kob House', False)]
 
 def book_nav(b):
     items = [('/#books', 'All books', False), ('#how', 'How it works', False)]
     if b['twist']: items.append(('#twist', 'The twist', False))
-    items += [('#city', 'Real %s' % b['city'], False), ('#cases', 'The cases', False), ('#buy', 'Buy', False)]
+    items += [('#why', 'Why it works', False), ('#city', 'Real %s' % b['city'], False), ('#cases', 'The cases', False), ('#buy', 'Buy', False)]
     return items
 
 def buy_buttons(b, cls='light'):
@@ -378,6 +403,7 @@ def book_page(b):
   <div class="steps">%s</div>
 </div></section>
 %s
+%s
 <section id="city" class="tint"><div class="wrap two">
   <div>
     <span class="tag inv eyebrow">Real streets</span>
@@ -419,7 +445,7 @@ def book_page(b):
   </div>
 </div></section>
 ''' % (b['city'], b['addresses'], ''.join('<span class="tag">%s</span>' % t for t in b['hero_tags']), hero_cta(b), A, b['city'], sticker,
-       b['addresses'], b['how_lead'], steps, twist_html,
+       b['addresses'], b['how_lead'], steps, twist_html, WHY_HTML,
        b['real_title'], b['real_lead'], stats, silhouette(b),
        b['cases_title'], b['cases_lead'], cases, b['pages'], pages,
        b['city'], 'Paperback, printed on demand and shipped by Amazon. Pick your store.' if b['status'] == 'out' else 'The paperback is on its way to Amazon. Check back in a few days, or follow Kob House on Instagram.',
@@ -472,6 +498,7 @@ def hub():
   </div>
 </div></section>
 
+%s
 <section id="twists"><div class="wrap">
   <span class="tag inv eyebrow">One twist per city</span>
   <h2 class="display">Same rules. A different way to close in.</h2>
@@ -488,7 +515,7 @@ def hub():
     <div class="series"><a href="/paris/">Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
   </div>
 </div></section>
-''' % (ARROW, fan, cards, twists, FROG)
+''' % (ARROW, fan, cards, WHY_HTML, twists, FROG)
     return page('Murder Map · Kob House', 'Murder Map: deduction puzzle books set in real cities. Paris, Tokyo, New York. Three murder cases per book, thousands of addresses, one killer to find. By Kob House.',
                 body, BRAND_BG, BRAND_ACC, '/', '/assets/paris/cover.png', HUB_NAV)
 
