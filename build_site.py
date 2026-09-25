@@ -330,7 +330,7 @@ def page(title, desc, body, bg, acc, url, image, nav_items, extra_js=''):
 <script>%s</script>
 </body>
 </html>
-''' % (title, desc, title, desc, image, url, bg, url, CSS % (bg, acc, bg, acc), LOGO, nav, body, AMAZON_JS + MOTION_JS + extra_js)
+''' % (title, desc, title, desc, image, url, bg, url, (CSS % (bg, acc, bg, acc)) + MM_CSS, LOGO, nav, body, AMAZON_JS + MOTION_JS + extra_js)
 
 
 WHY_HTML = '''
@@ -348,7 +348,7 @@ WHY_HTML = '''
 </div></section>
 '''
 
-HUB_NAV = [('/#books', 'The books', False), ('/#how', 'How it works', False), ('/#why', 'Why it works', False), ('/#twists', 'The twists', False), ('/#about', 'Kob House', False)]
+HUB_NAV = [('/#books', 'The books', False), ('/#how', 'How it works', False), ('/#why', 'Why it works', False), ('/#twists', 'The twists', False), ('/murder-mate/', 'Murder Mate', False), ('/#about', 'Kob House', False)]
 
 def book_nav(b):
     items = [('/#books', 'All books', False), ('#how', 'How it works', False)]
@@ -455,6 +455,90 @@ def book_page(b):
                 body, b['bg'], b['acc'], '/%s/' % b['slug'], A + 'cover.png', book_nav(b))
 
 # ------------------------------------------------------------------ hub
+# ------------------------------------------------------------------ Murder Mate (next collection, coming soon)
+MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
+MURDER_MATE_HUB = """
+<section id="murder-mate" style="background:#0F7B5F;border-top:4px solid #000;border-bottom:4px solid #000;color:#fff"><div class="wrap mmhub">
+  <div class="mmcov"><a href="/murder-mate/"><img src="/assets/murdermate/cover-sm.png" width="400" height="600" alt="Murder Mate: India cover" loading="lazy"></a></div>
+  <div>
+    <span class="tag eyebrow">New collection · Coming soon</span>
+    <h2 class="display" style="color:#fff">Murder Mate. <span style="color:#CDB8F5">The weapon is a checkmate.</span></h2>
+    <p class="lead" style="color:#fff">Chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. Several of them could have delivered mate. The witnesses say only one did.</p>
+    <div class="tags"><span class="tag">40 cases</span><span class="tag">Mate in 1 to 3</span><span class="tag">4 levels</span><span class="tag">A QR board on every case</span></div>
+    <div class="mmcta"><a class="btn" href="/murder-mate/">%s Discover Murder Mate</a><a class="btn ghost" href="/mm/1/01/">Play the board of case 01</a></div>
+  </div>
+</div></section>
+""" % ARROW
+
+MM_CSS = """
+.mmhub{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:center}
+.mmcov img{border:3px solid #000;box-shadow:12px 12px 0 #000;transform:rotate(-2deg)}
+.mmcta{display:flex;flex-wrap:wrap;gap:16px;margin-top:28px}
+.mmlevels{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+.mmlevel{background:#CDB8F5;color:#000;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:20px}
+.mmlevel .k{font-size:26px;letter-spacing:2px;font-family:'DejaVu Sans','Segoe UI Symbol',sans-serif}
+.mmlevel h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:26px;margin:8px 0 6px;line-height:1}
+.mmlevel p{margin:0;font-weight:700;font-size:14px}
+.mmlevel .mono{font-size:11px;margin-top:10px;display:block}
+.mmseries{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.mmc{border:3px solid #000;padding:14px 16px;color:#fff;box-shadow:6px 6px 0 #000}
+.mmc b{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;display:block;line-height:1}
+.mmc span{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+@media(max-width:860px){.mmhub{grid-template-columns:1fr;gap:32px}.mmcov{max-width:260px}.mmlevels,.mmseries{grid-template-columns:1fr 1fr}}
+"""
+
+def murder_mate_page():
+    levels = [(1, 'Rookie', 'Mate in one. Anyone who knows how the pieces move.', 'Cases 01-08 · 5-10 min'),
+              (2, 'Detective', 'Mate in two, and the obvious check is usually a trap.', 'Cases 09-20 · 15-30 min'),
+              (3, 'Chief Inspector', 'Five suspects on a busy board, and one witness is lying.', 'Cases 21-33 · 30-40 min'),
+              (4, 'Commissioner', 'Mate in three. One liar. Trust nobody, least of all the Maharani.', 'Cases 34-40 · 30-45 min')]
+    lv = ''.join('<div class="mmlevel"><div class="k">%s</div><h3>%s</h3><p>%s</p><span class="mono">%s</span></div>' % ('&#x265A;&#xFE0E;' * n, t, d, m) for n, t, d, m in levels)
+    series = [('India', 'Udaipur · 1932', '#0F7B5F', 'October 2026'), ('Uzbekistan', 'Samarkand · 1403', '#0E6E8C', 'Early 2027'),
+              ('Persia', 'Isfahan · 1611', '#243A8C', '2027'), ('And more', 'Chess countries', '#141414', 'To be announced')]
+    se = ''.join('<div class="mmc" style="background:%s"><b>%s</b><span>%s</span><br><span style="color:#CDB8F5">%s</span></div>' % (bg, n, c, w) for n, c, bg, w in series)
+    body = """
+<section class="hero" style="background:#0F7B5F;color:#fff"><div class="wrap mmhub">
+  <div class="mmcov"><img src="/assets/murdermate/cover.png" width="1000" height="1500" alt="Murder Mate: India cover"></div>
+  <div>
+    <span class="tag">Coming soon · October 2026</span>
+    <h1 class="display" style="color:#fff;font-size:clamp(48px,8vw,96px);margin:18px 0 10px">Murder Mate: <span style="color:#CDB8F5">India</span></h1>
+    <p class="lead" style="color:#fff">Udaipur, 1932. The monsoon has cut the palace off from the world, the telephone line is down, and guests keep dying at a rate of roughly one per evening. Inspector Rao of the Bombay police was only supposed to stay for the weekend.</p>
+    <div class="tags"><span class="tag">40 cases</span><span class="tag">From your first mate to 1800+</span><span class="tag">Full solutions</span><span class="tag">Any board or app</span></div>
+    <div class="mmcta"><a class="btn ghost" href="/mm/1/01/">Play the board of case 01</a></div>
+  </div>
+</div></section>
+
+<section id="how" class="paper"><div class="wrap">
+  <span class="tag inv eyebrow">How it works</span>
+  <h2 class="display">The board is the palace. The black king is the victim.</h2>
+  <p class="lead">Every case is a real chess position, and every square belongs to a room of the palace. The white pieces are the guests, and all of them had a reason.</p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Set up the board</h3><p>On a real chessboard, or scan the QR code on the case: the position opens on your phone, ready to play, with no engine.</p></div>
+    <div class="step"><div class="n">2</div><h3>Find every mate</h3><p>Only one white piece moves, whatever Black tries. Several suspects can still pull it off. List them all.</p></div>
+    <div class="step"><div class="n">3</div><h3>Read the witnesses</h3><p>The cook, the butler and the palace clockmaker saw who went where. From Chief Inspector on, one of them is lying.</p></div>
+    <div class="step"><div class="n">4</div><h3>Name the killer</h3><p>Who gave mate, in which room, and how. Exactly one answer per case, checked by an independent solver before printing.</p></div>
+  </div>
+</div></section>
+
+<section id="levels"><div class="wrap">
+  <span class="tag inv eyebrow">Four levels, one book</span>
+  <h2 class="display">Start easy. End at 1800.</h2>
+  <p class="lead">You only need to know how the pieces move. The cases get harder as the book goes on, and the last ones will keep strong club players busy.</p>
+  <div class="mmlevels">%s</div>
+</div></section>
+
+<section id="series" class="tint"><div class="wrap">
+  <span class="tag inv eyebrow">The series</span>
+  <h2 class="display">One chess country per book.</h2>
+  <p class="lead">Same rules everywhere, a new palace, new suspects, and one chess rule that turns into a plot: promotion hides an impostor, a discovered check needs an accomplice. Each book stands alone.</p>
+  <div class="mmseries">%s</div>
+</div></section>
+""" % (lv, se)
+    nav = [('/#books', 'Murder Map', False), ('#how', 'How it works', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/mm/1/01/', 'Try a board', False)]
+    return page('Murder Mate: India · Chess murder mysteries · Kob House',
+                'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Coming soon from Kob House.',
+                body, MM_BG, MM_ACC, '/murder-mate/', '/assets/murdermate/cover.png', nav)
+
 def hub():
     cards = ''
     for b in BOOKS:
@@ -486,6 +570,8 @@ def hub():
   <div class="books">%s</div>
 </div></section>
 
+%s
+
 <section id="how" class="paper"><div class="wrap">
   <span class="tag inv eyebrow">How it works</span>
   <h2 class="display">Every witness tells the truth. None of them knows the address.</h2>
@@ -515,7 +601,7 @@ def hub():
     <div class="series"><a href="/paris/">Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
   </div>
 </div></section>
-''' % (ARROW, fan, cards, WHY_HTML, twists, FROG)
+''' % (ARROW, fan, cards, MURDER_MATE_HUB, WHY_HTML, twists, FROG)
     return page('Murder Map · Kob House', 'Murder Map: deduction puzzle books set in real cities. Paris, Tokyo, New York. Three murder cases per book, thousands of addresses, one killer to find. By Kob House.',
                 body, BRAND_BG, BRAND_ACC, '/', '/assets/paris/cover.png', HUB_NAV)
 
@@ -527,11 +613,13 @@ open(H + '/index.html', 'w').write(hub())
 for b in BOOKS:
     os.makedirs(os.path.join(H, b['slug']), exist_ok=True)
     open(os.path.join(H, b['slug'], 'index.html'), 'w').write(book_page(b))
+os.makedirs(os.path.join(H, 'murder-mate'), exist_ok=True)
+open(os.path.join(H, 'murder-mate', 'index.html'), 'w').write(murder_mate_page())
 open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, BRAND_BG, BRAND_ACC, '/legal.html', '/assets/paris/cover.png', HUB_NAV))
 open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
 open(H + '/.nojekyll', 'w').write('')
 open(H + '/robots.txt', 'w').write('User-agent: *\nAllow: /\nSitemap: https://kobhouse.com/sitemap.xml\n')
-urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/legal.html']
+urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/legal.html']
 open(H + '/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % ''.join('<url><loc>%s</loc></url>' % u for u in urls))
 print('ok')
