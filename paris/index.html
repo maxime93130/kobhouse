@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murder Map: Paris · Kob House</title>
+<meta name="description" content="A deduction puzzle book set in the real Paris: 3 murder cases, 14,400 addresses, one killer to find. By Kob House.">
+<meta property="og:title" content="Murder Map: Paris · Kob House">
+<meta property="og:description" content="A deduction puzzle book set in the real Paris: 3 murder cases, 14,400 addresses, one killer to find. By Kob House.">
+<meta property="og:image" content="https://kobhouse.com/assets/paris/cover.png">
+<meta property="og:url" content="https://kobhouse.com/paris/">
+<meta name="theme-color" content="#1F6BED">
+<link rel="canonical" href="https://kobhouse.com/paris/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:'Anton';src:url(/assets/fonts/Anton-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Nunito';font-weight:400;src:url(/assets/fonts/Nunito-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Nunito';font-weight:700;src:url(/assets/fonts/Nunito-Bold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Space Mono';font-weight:400;src:url(/assets/fonts/SpaceMono-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Space Mono';font-weight:700;src:url(/assets/fonts/SpaceMono-Bold.woff2) format('woff2');font-display:swap}
+:root{--bg:#1F6BED;--acc:#F4FF1E;--ink:#000;--paper:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.display{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;line-height:.95;letter-spacing:.5px;margin:0}
+.mono{font-family:'Space Mono',monospace;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.tag{display:inline-block;background:#fff;color:#000;border:3px solid #000;font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:3px;padding:8px 14px 6px;text-transform:uppercase}
+.tag.inv{background:#000;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:12px;background:#000;color:#fff;text-decoration:none;font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:1px;padding:16px 26px;border:3px solid #000;box-shadow:6px 6px 0 var(--acc);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--acc)}
+.btn.light{background:var(--acc);color:#000;box-shadow:6px 6px 0 #000}
+.btn.light:hover{box-shadow:8px 8px 0 #000}
+.btn.ghost{background:#fff;color:#000;box-shadow:6px 6px 0 #000}
+.btn.ghost:hover{box-shadow:8px 8px 0 #000}
+.btn.off{background:#fff;color:#000;box-shadow:none;border-style:dashed;cursor:default;pointer-events:none}
+.btn svg{width:22px;height:22px}
+header{background:var(--bg);border-bottom:4px solid #000}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:20px}
+.logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:#000;line-height:1}
+.logo .k{display:flex;align-items:center;font-family:'Anton',Impact,sans-serif;font-size:40px}
+.logo .k svg{width:36px;margin:0 2px}
+.logo .h{font-family:'Space Mono',monospace;font-weight:700;font-size:10px;letter-spacing:6px;margin-left:5px;margin-top:2px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+nav ul a{font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:4px 6px}
+nav ul a:hover,nav ul a.on{background:#000;color:var(--acc)}
+.hero{background:var(--bg);padding:64px 0 80px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.mm{display:inline-flex;flex-direction:column;align-items:flex-start}
+.mm .m1{background:#000;color:#fff;font-family:'Anton',Impact,sans-serif;font-size:clamp(44px,6vw,84px);line-height:.95;padding:6px 22px 2px;text-transform:uppercase;transform:rotate(-2deg);letter-spacing:1px}
+.mm .m2{font-family:'Anton',Impact,sans-serif;font-size:clamp(72px,10vw,140px);line-height:.9;color:var(--acc);-webkit-text-stroke:4px #000;paint-order:stroke fill;text-transform:uppercase;letter-spacing:2px;margin-top:-8px;margin-left:12px}
+.citytag{display:inline-block;margin:14px 0 0 14px;background:var(--acc);color:#000;border:3px solid #000;box-shadow:5px 5px 0 #000;font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(16px,2vw,24px);letter-spacing:5px;padding:10px 18px 8px;text-transform:uppercase;transform:rotate(-2deg)}
+.tagbox{background:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:18px 22px;font-family:'Anton',Impact,sans-serif;font-size:clamp(20px,2.4vw,28px);text-transform:uppercase;margin:28px 0 22px;max-width:560px;line-height:1.35}
+.tagbox mark{background:#000;color:var(--acc);padding:1px 10px 0}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.cover{position:relative;justify-self:center;width:min(100%,420px)}
+.cover img{border:3px solid #000;box-shadow:14px 14px 0 #000;transform:rotate(3deg)}
+.cover .sticker{position:absolute;left:-30px;bottom:40px;background:var(--acc);border:3px solid #000;box-shadow:6px 6px 0 #000;font-family:'Anton',Impact,sans-serif;font-size:22px;text-transform:uppercase;padding:10px 16px;transform:rotate(-8deg)}
+.fan{position:relative;justify-self:center;width:min(100%,520px);aspect-ratio:1/1.05}
+.fan img{position:absolute;width:52%;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
+.fan img:nth-child(1){left:0;top:12%;transform:rotate(-9deg);z-index:1}
+.fan img:nth-child(2){left:24%;top:0;transform:rotate(1deg);z-index:2}
+.fan img:nth-child(3){left:48%;top:14%;transform:rotate(8deg);z-index:3}
+section{padding:80px 0}
+.eyebrow{display:inline-block;margin-bottom:18px}
+h2.display{font-size:clamp(38px,5vw,64px);margin-bottom:24px}
+.about h2.display{font-size:clamp(30px,3.4vw,44px)}
+.lead{font-size:20px;font-weight:700;max-width:640px}
+.accent{background:var(--acc)}
+.tint{background:var(--bg)}
+.dark{background:#000;color:#fff}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.step{background:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:24px}
+.step .n{font-family:'Anton',Impact,sans-serif;font-size:72px;line-height:.9;color:var(--acc);-webkit-text-stroke:3px #000;paint-order:stroke fill}
+.step h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:24px;margin:10px 0 8px;line-height:1}
+.step p{margin:0;font-weight:700;font-size:15px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.map{position:relative}
+.map svg.sil{width:100%;height:auto;overflow:visible}
+.map .pin{position:absolute;overflow:visible}
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
+.stat{background:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:16px 20px;min-width:150px}
+.stat b{display:block;font-family:'Anton',Impact,sans-serif;font-size:44px;line-height:1}
+.stat span{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.case{background:var(--acc);color:#000;border:3px solid #000;box-shadow:10px 10px 0 var(--bg);padding:28px;display:flex;flex-direction:column;gap:14px;min-height:320px}
+.case .tag{align-self:flex-start}
+.case h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:32px;line-height:.95;margin:0}
+.case p{margin:0;font-weight:700;font-size:16px}
+.case .meta{margin-top:auto;font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px}
+.pages{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
+.pages img{border:3px solid #000;box-shadow:8px 8px 0 #000;transition:transform .15s}
+.pages figure{margin:0}
+.pages figcaption{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:14px}
+.pages img:hover{transform:rotate(-2deg) scale(1.03)}
+.twistimg img{border:3px solid #000;box-shadow:12px 12px 0 #000;transform:rotate(-2deg);max-width:420px;margin:0 auto}
+.buy{background:var(--bg);text-align:center}
+.buy .btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.buy small{display:block;margin-top:22px;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about .biglogo .k{font-size:110px}
+.about .biglogo .k svg{width:96px}
+.about .biglogo .h{font-size:22px;letter-spacing:14px;margin-left:12px}
+.books{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
+.book{--bg:#1F6BED;--acc:#F4FF1E;background:var(--bg);border:3px solid #000;box-shadow:10px 10px 0 #000;padding:28px;display:flex;flex-direction:column;gap:16px;text-decoration:none;color:#000;transition:transform .12s}
+.book:hover{transform:translate(-3px,-3px)}
+.book img{width:70%;margin:0 auto;border:3px solid #000;box-shadow:8px 8px 0 #000;transform:rotate(2deg)}
+.book h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:34px;line-height:.95;margin:14px 0 0}
+.book p{margin:0;font-weight:700;font-size:15px}
+.book .tag{align-self:flex-start}
+.book .meta{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.book .go{margin-top:auto;display:inline-flex;align-items:center;gap:10px;font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;background:#000;color:#fff;padding:12px 18px;align-self:flex-start}
+.book .go svg{width:20px;height:20px}
+.twists{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.twist{background:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:26px}
+.twist h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:26px;line-height:1;margin:12px 0 10px}
+.twist p{margin:0;font-weight:700;font-size:15px}
+.series{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.series a,.series span{border:3px solid #000;padding:10px 16px;font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;text-decoration:none}
+.series .soon{background:#000;color:#fff}
+.series a:hover{background:var(--acc)}
+footer{background:#000;color:#fff;padding:40px 0;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer a{color:#fff}
+@media(max-width:900px){.hero .wrap,.two,.about{grid-template-columns:1fr}.steps,.pages{grid-template-columns:1fr 1fr}.cases,.books,.twists{grid-template-columns:1fr}nav ul{display:none}.cover img{transform:none}.cover .sticker{left:8px}}
+@media(max-width:560px){.steps,.pages{grid-template-columns:1fr}section{padding:56px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav><a class="logo" href="/" aria-label="Kob House"><span class="k">K<svg viewBox="0 0 120 100" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="26" r="22"/><circle cx="86" cy="26" r="22"/><path d="M6 46 Q60 14 114 46 L114 66 Q114 96 60 96 Q6 96 6 66 Z"/></g><g fill="#fff"><circle cx="34" cy="26" r="11"/><circle cx="86" cy="26" r="11"/></g><g fill="currentColor"><circle cx="38" cy="28" r="6"/><circle cx="90" cy="28" r="6"/></g><path d="M28 70 Q60 92 92 70" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>B</span><span class="h">HOUSE</span></a><ul><li><a href="/#books">All books</a></li><li><a href="#how">How it works</a></li><li><a href="#city">Real Paris</a></li><li><a href="#cases">The cases</a></li><li><a href="#buy">Buy</a></li></ul></nav></div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div><br><span class="citytag">Paris</span>
+    <div class="tagbox">14,400 addresses. Three crime scenes.<br><mark>Cross out the city</mark> until one door is left.</div>
+    <div class="tags"><span class="tag">3 cases</span><span class="tag">Real streets</span><span class="tag">6 hours of play</span><span class="tag">One solution</span></div>
+    <a class="btn" data-amazon="auto" data-asin="B0HKYJG39P" data-q="Murder Map Paris Kob House" href="#buy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.5L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg> Buy on <span class="mk">Amazon</span></a>
+  </div>
+  <div class="cover"><img src="/assets/paris/cover.png" width="1000" height="1500" alt="Murder Map: Paris, paperback cover"><div class="sticker">Paperback · Out now</div></div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <span class="tag inv eyebrow">How it works</span>
+  <h2 class="display">How do you find one door among 14,400 addresses?</h2>
+  <p class="lead">Inspector Marchetti has done the legwork: doors knocked, statements taken, notebook filled. What she has not done is put it together. That part is yours. Four steps, one pen, no knowledge of Paris needed.</p>
+  <div class="steps"><div class="step"><div class="n">1</div><h3>Read the statement</h3><p>Every witness gives you one fact. None of them lies. Each fact rules out part of the city.</p></div><div class="step"><div class="n">2</div><h3>Strike out arrondissements</h3><p>Hatch the districts the clue eliminates on the printed map of Paris.</p></div><div class="step"><div class="n">3</div><h3>Strike out streets</h3><p>Six real streets per arrondissement. Cross the ones that no longer fit.</p></div><div class="step"><div class="n">4</div><h3>Cross out the numbers</h3><p>Numbers 1 to 120 on every street. Keep going until a single door survives, then check the verification code.</p></div></div>
+</div></section>
+
+<section id="city" class="tint"><div class="wrap two">
+  <div>
+    <span class="tag inv eyebrow">Real streets</span>
+    <h2 class="display">The real Paris, door by door.</h2>
+    <p class="lead">20 genuine arrondissements with their official boundaries. 120 famous streets, six per arrondissement. 14,400 house numbers to cross out. Every clue is printed on the page: rive gauche or rive droite, along the Seine or by the périphérique, a street named after a saint, a number divisible by seven.</p>
+    <div class="stats"><div class="stat"><b>20</b><span>arrondissements</span></div><div class="stat"><b>120</b><span>famous streets</span></div><div class="stat"><b>14,400</b><span>house numbers</span></div></div>
+  </div>
+  <div class="map"><svg class="sil" viewBox="-10 -10 500 274.8" aria-hidden="true"><path d="M84.8,198.2 L62.7,196.8 L54.8,185.8 L55.3,167.8 L47.9,167.4 L31.0,159.0 L2.4,158.2 L-0.4,137.0 L10.9,103.6 L26.1,91.7 L40.7,74.1 L57.2,79.8 L63.4,61.5 L106.0,67.9 L112.6,54.9 L129.6,37.9 L141.1,34.2 L157.8,17.9 L188.7,1.4 L250.5,-0.6 L297.3,2.4 L320.0,1.3 L327.1,3.8 L330.8,8.7 L337.7,45.8 L346.6,57.8 L355.9,62.9 L369.4,90.2 L370.6,141.5 L373.1,150.4 L367.7,193.9 L364.6,197.8 L364.9,200.4 L370.4,201.5 L384.9,195.5 L380.3,177.2 L381.7,172.2 L385.4,169.2 L391.3,177.5 L417.0,180.8 L419.5,169.4 L422.2,168.8 L422.9,164.9 L434.5,165.1 L435.7,168.2 L451.9,170.5 L467.5,176.1 L480.4,193.7 L479.0,201.2 L471.3,209.6 L469.9,218.9 L473.0,221.5 L470.5,234.6 L466.1,245.3 L458.6,252.3 L416.4,248.4 L415.3,244.2 L397.2,231.5 L364.4,228.8 L349.4,216.0 L344.9,214.9 L320.0,224.5 L301.1,239.3 L270.5,255.4 L257.6,254.4 L247.6,249.9 L238.0,254.5 L216.0,253.3 L210.2,248.2 L130.7,221.3 L101.1,203.1 L96.3,210.8 L96.9,214.3 L88.0,219.5 L82.4,219.3 L81.1,209.8 L86.8,201.2 L84.8,198.2 Z" fill="var(--acc)" stroke="#000" stroke-width="16" stroke-linejoin="round"/><path d="M84.8,198.2 L62.7,196.8 L54.8,185.8 L55.3,167.8 L47.9,167.4 L31.0,159.0 L2.4,158.2 L-0.4,137.0 L10.9,103.6 L26.1,91.7 L40.7,74.1 L57.2,79.8 L63.4,61.5 L106.0,67.9 L112.6,54.9 L129.6,37.9 L141.1,34.2 L157.8,17.9 L188.7,1.4 L250.5,-0.6 L297.3,2.4 L320.0,1.3 L327.1,3.8 L330.8,8.7 L337.7,45.8 L346.6,57.8 L355.9,62.9 L369.4,90.2 L370.6,141.5 L373.1,150.4 L367.7,193.9 L364.6,197.8 L364.9,200.4 L370.4,201.5 L384.9,195.5 L380.3,177.2 L381.7,172.2 L385.4,169.2 L391.3,177.5 L417.0,180.8 L419.5,169.4 L422.2,168.8 L422.9,164.9 L434.5,165.1 L435.7,168.2 L451.9,170.5 L467.5,176.1 L480.4,193.7 L479.0,201.2 L471.3,209.6 L469.9,218.9 L473.0,221.5 L470.5,234.6 L466.1,245.3 L458.6,252.3 L416.4,248.4 L415.3,244.2 L397.2,231.5 L364.4,228.8 L349.4,216.0 L344.9,214.9 L320.0,224.5 L301.1,239.3 L270.5,255.4 L257.6,254.4 L247.6,249.9 L238.0,254.5 L216.0,253.3 L210.2,248.2 L130.7,221.3 L101.1,203.1 L96.3,210.8 L96.9,214.3 L88.0,219.5 L82.4,219.3 L81.1,209.8 L86.8,201.2 L84.8,198.2 Z" fill="var(--acc)" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M84.8,198.2 L62.7,196.8 L54.8,185.8 L55.3,167.8 L47.9,167.4 L31.0,159.0 L2.4,158.2 L-0.4,137.0 L10.9,103.6 L26.1,91.7 L40.7,74.1 L57.2,79.8 L63.4,61.5 L106.0,67.9 L112.6,54.9 L129.6,37.9 L141.1,34.2 L157.8,17.9 L188.7,1.4 L250.5,-0.6 L297.3,2.4 L320.0,1.3 L327.1,3.8 L330.8,8.7 L337.7,45.8 L346.6,57.8 L355.9,62.9 L369.4,90.2 L370.6,141.5 L373.1,150.4 L367.7,193.9 L364.6,197.8 L364.9,200.4 L370.4,201.5 L384.9,195.5 L380.3,177.2 L381.7,172.2 L385.4,169.2 L391.3,177.5 L417.0,180.8 L419.5,169.4 L422.2,168.8 L422.9,164.9 L434.5,165.1 L435.7,168.2 L451.9,170.5 L467.5,176.1 L480.4,193.7 L479.0,201.2 L471.3,209.6 L469.9,218.9 L473.0,221.5 L470.5,234.6 L466.1,245.3 L458.6,252.3 L416.4,248.4 L415.3,244.2 L397.2,231.5 L364.4,228.8 L349.4,216.0 L344.9,214.9 L320.0,224.5 L301.1,239.3 L270.5,255.4 L257.6,254.4 L247.6,249.9 L238.0,254.5 L216.0,253.3 L210.2,248.2 L130.7,221.3 L101.1,203.1 L96.3,210.8 L96.9,214.3 L88.0,219.5 L82.4,219.3 L81.1,209.8 L86.8,201.2 L84.8,198.2 Z" fill="var(--acc)" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:46.2%;top:47.1%;width:5.6%;transform:translate(-50%,-100%) rotate(0deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:14.4%;top:42.0%;width:6.8%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:66.9%;top:54.6%;width:4.9%;transform:translate(-50%,-100%) rotate(3deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:60.6%;top:13.3%;width:4.9%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:46.5%;top:18.4%;width:6.0%;transform:translate(-50%,-100%) rotate(8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:34.4%;top:24.3%;width:4.5%;transform:translate(-50%,-100%) rotate(-8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:46.2%;top:86.3%;width:5.6%;transform:translate(-50%,-100%) rotate(8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:59.0%;top:79.3%;width:4.9%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:38.1%;top:50.2%;width:4.9%;transform:translate(-50%,-100%) rotate(-8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:37.3%;top:80.8%;width:5.2%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:74.8%;top:45.5%;width:4.9%;transform:translate(-50%,-100%) rotate(3deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:71.7%;top:71.0%;width:5.2%;transform:translate(-50%,-100%) rotate(-3deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:67.9%;top:32.6%;width:4.5%;transform:translate(-50%,-100%) rotate(3deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:59.0%;top:34.5%;width:6.0%;transform:translate(-50%,-100%) rotate(-8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:51.2%;top:77.3%;width:4.5%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:28.1%;top:49.1%;width:6.8%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:55.8%;top:55.3%;width:6.0%;transform:translate(-50%,-100%) rotate(8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:40.2%;top:34.9%;width:5.2%;transform:translate(-50%,-100%) rotate(0deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:42.1%;top:65.9%;width:4.5%;transform:translate(-50%,-100%) rotate(8deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:61.5%;top:60.4%;width:6.8%;transform:translate(-50%,-100%) rotate(3deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:93.5%;top:81.6%;width:4.5%;transform:translate(-50%,-100%) rotate(5deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg><svg class="pin" viewBox="0 0 48 60" style="left:31.5%;top:71.4%;width:4.5%;transform:translate(-50%,-100%) rotate(-3deg)"><path d="M24 58 C24 58 4 34 4 22 A20 20 0 0 1 44 22 C44 34 24 58 24 58 Z" fill="#fff" stroke="#000" stroke-width="4" stroke-linejoin="round"/><path d="M16 14 L32 30 M32 14 L16 30" stroke="#000" stroke-width="5" stroke-linecap="round"/></svg></div>
+</div></section>
+
+<section id="cases" class="dark"><div class="wrap">
+  <span class="tag eyebrow">Three cases</span>
+  <h2 class="display">Three crime scenes. Three arrondissements. One inspector.</h2>
+  <p class="lead">Each case comes with its own printed grid of Paris, so you can mark the book up freely. Sixteen statements per case, about two hours each, and exactly one answer, checked by an independent solver before printing.</p>
+  <div class="cases"><article class="case"><span class="tag inv">Case 1</span><h3>The Sourdough Martyr</h3><p>A baker with a six-month waiting list, found on a Sunday morning. The bread came out. He did not.</p><div class="meta">16 statements · about 2 hours</div></article><article class="case"><span class="tag inv">Case 2</span><h3>The Influencer Who Fell Off the Map</h3><p>2.3 million followers, one beige apartment, and a Monday with no post.</p><div class="meta">16 statements · about 2 hours</div></article><article class="case"><span class="tag inv">Case 3</span><h3>Last Round at the Wine Bar</h3><p>A founder, a natural wine bar, 140 guests and one missing host.</p><div class="meta">16 statements · about 2 hours</div></article></div>
+</div></section>
+
+<section id="inside"><div class="wrap">
+  <span class="tag inv eyebrow">Inside the book</span>
+  <h2 class="display">156 pages of black, white and ink.</h2>
+  <p class="lead">6 × 9 inch paperback, matte cover, white paper made to take a pen. The city is printed three times, once per case.</p>
+  <div class="pages"><figure><img src="/assets/paris/page-title.png" width="660" height="990" alt="Title page" loading="lazy"><figcaption>Title page</figcaption></figure><figure><img src="/assets/paris/page-rules.png" width="660" height="990" alt="How to play" loading="lazy"><figcaption>How to play</figcaption></figure><figure><img src="/assets/paris/page-case.png" width="660" height="990" alt="Case opener" loading="lazy"><figcaption>Case opener</figcaption></figure><figure><img src="/assets/paris/page-statements.png" width="660" height="990" alt="Witness statements" loading="lazy"><figcaption>Witness statements</figcaption></figure></div>
+</div></section>
+
+<section id="buy" class="buy"><div class="wrap">
+  <h2 class="display">Get Murder Map: Paris</h2>
+  <p class="lead" style="margin:0 auto">Paperback, printed on demand and shipped by Amazon. Pick your store.</p>
+  <div class="btns"><a class="btn light" data-amazon="amazon.com" data-asin="B0HKYJG39P" data-q="Murder Map Paris Kob House" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.5L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg> Amazon.com</a><a class="btn light" data-amazon="amazon.co.uk" data-asin="B0HKYJG39P" data-q="Murder Map Paris Kob House" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.5L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg> Amazon.co.uk</a><a class="btn light" data-amazon="amazon.fr" data-asin="B0HKYJG39P" data-q="Murder Map Paris Kob House" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.5L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg> Amazon.fr</a><a class="btn light" data-amazon="amazon.de" data-asin="B0HKYJG39P" data-q="Murder Map Paris Kob House" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.5L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg> Amazon.de</a></div>
+  <small>Also on Amazon.ca, .com.au, .it, .es, .nl and .co.jp</small>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div><div class="logo biglogo" style="pointer-events:none"><span class="k">K<svg viewBox="0 0 120 100" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="26" r="22"/><circle cx="86" cy="26" r="22"/><path d="M6 46 Q60 14 114 46 L114 66 Q114 96 60 96 Q6 96 6 66 Z"/></g><g fill="#fff"><circle cx="34" cy="26" r="11"/><circle cx="86" cy="26" r="11"/></g><g fill="currentColor"><circle cx="38" cy="28" r="6"/><circle cx="90" cy="28" r="6"/></g><path d="M28 70 Q60 92 92 70" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>B</span><span class="h">HOUSE</span></div></div>
+  <div>
+    <h2 class="display">Kob House makes puzzle books you solve with a pen, a map, and a suspicious mind.</h2>
+    <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
+    <p class="lead">Also in the Murder Map series:</p>
+    <div class="series"><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div>© 2026 Kob House · Pen-and-paper mysteries with exactly one solution.</div><div><a href="/legal.html">Legal notice</a> · <a href="mailto:contact@kobhouse.com">contact@kobhouse.com</a></div></div></footer>
+<script>
+// Amazon links: one ASIN per book, the marketplace follows the visitor's language.
+var MARKETS = {fr:"amazon.fr",de:"amazon.de",it:"amazon.it",es:"amazon.es",nl:"amazon.nl",ja:"amazon.co.jp"};
+function market(){
+  var l=(navigator.language||"en").toLowerCase();
+  if(l==="en-gb"||l==="en-ie")return "amazon.co.uk";
+  if(l==="en-ca"||l==="fr-ca")return "amazon.ca";
+  if(l==="en-au")return "amazon.com.au";
+  var k=l.split("-")[0]; return MARKETS[k]||"amazon.com";
+}
+function amazonUrl(asin,host,q){
+  host=host||market();
+  return asin?("https://www."+host+"/dp/"+asin):("https://www."+host+"/s?k="+encodeURIComponent(q));
+}
+document.querySelectorAll("[data-amazon]").forEach(function(a){
+  var h=a.getAttribute("data-amazon"), asin=a.getAttribute("data-asin")||"", q=a.getAttribute("data-q")||"Murder Map Kob House";
+  a.href=amazonUrl(asin,h==="auto"?null:h,q);
+  if(h==="auto"){var s=a.querySelector(".mk"); if(s)s.textContent=market().replace("amazon","Amazon");}
+});
+</script>
+</body>
+</html>
