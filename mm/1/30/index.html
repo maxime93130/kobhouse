@@ -60,6 +60,9 @@ button.ctl:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .btn.light{background:var(--acc);color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
 .btn small{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:none}
 .note{font-size:13px;color:#e8fff5;margin:4px 0 0}
+.withbook{background:var(--acc);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:10px 12px;margin:4px 0 14px;font-size:14px}
+.withbook b{display:block;font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:17px;letter-spacing:.02em;margin-bottom:2px}
+.withbook a{font-weight:700}
 nav.pn{display:flex;justify-content:space-between;margin:26px 0 10px;font-size:12px}
 nav.pn a{text-decoration:none}
 footer{border-top:3px solid var(--ink);background:var(--ink);color:#bbb;font-size:12px;padding:16px 0 26px;margin-top:26px}
@@ -76,6 +79,7 @@ footer a{color:#fff}
   <span class="tag mono"><span class="kings"><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg></span>Chief Inspector</span>
   <span class="tag inv mono">Mate in two · White to play</span>
 </div>
+<div class="withbook"><b>This board goes with the book</b>The story, the testimonies and your verdict box are on the two pages of case 30 in Murder Mate: India. You need them to name the killer. No book yet? <a href="/murder-mate/free-case/">Play a free case online, testimonies included &rarr;</a></div>
 <div id="mm" data-fen="b5nk/1R5p/PP1BQ2P/8/P1N5/8/8/4BK2 w - - 0 1" data-nums='{"e6": 1, "b7": 2, "d6": 3, "e1": 4, "c4": 5}'>
   <div class="boardbox"><div class="board" id="board"></div></div>
   <div class="coords mono"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div>
@@ -83,7 +87,7 @@ footer a{color:#fff}
   <div class="controls"><button class="ctl" id="undo" type="button">Undo</button><button class="ctl" id="reset" type="button">Reset</button></div>
   <div class="moves" id="moves"></div>
 </div>
-<p class="note">Try your theories here: you play both sides, Black's replies included. There is no engine and no hint on this page. The testimonies are in the book.</p>
+<p class="note">Try your theories here: you play both sides, Black's replies included. There is no engine and no hint on this page. The testimonies are in the book, on the right-hand page of case 30.</p>
 <div class="card">
   <h2>On the board</h2>
   <ul><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wQ"/></svg></span><span><b>1 · Maharani Leela</b><br><small>Queen, e6, Monsoon Courtyard</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wR"/></svg></span><span><b>2 · Colonel Barrington</b><br><small>Rook, b7, Library</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wB"/></svg></span><span><b>3 · Dr Edmund Hale</b><br><small>Bishop, d6, Monsoon Courtyard</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wB"/></svg></span><span><b>4 · Pandit Mohan</b><br><small>Bishop, e1, Elephant Stables</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wN"/></svg></span><span><b>5 · Kunwar Vikram</b><br><small>Knight, c4, Durbar Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg></span><span><b>The victim</b><br><small>Monsieur Lucien Brassac, couturier from Paris. King, h8, Mirror Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wK"/></svg></span><span><b>You, Inspector Rao</b><br><small>King, f1, Elephant Stables. Not a suspect.</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wP"/></svg></span><span><b>Palace guards</b><br><small>a4, a6, b6, h6. Never move, never kill.</small></span></li></ul>

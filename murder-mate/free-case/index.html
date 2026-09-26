@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Case 23 · Ninety-One Games · Murder Mate: India</title>
-<meta name="description" content="The board for case 23 of Murder Mate: India, set up and ready. No engine, no spoilers.">
-<meta name="robots" content="noindex">
+<title>Free case: The Free Sample · Murder Mate · Kob House</title>
+<meta name="description" content="A free Murder Mate case to play online: a chess murder mystery where the weapon is a checkmate. Find every mate, read the witnesses, name the killer.">
+<meta property="og:title" content="Murder Mate · Free case: The Free Sample">
+<meta property="og:description" content="A free Murder Mate case to play online: a chess murder mystery where the weapon is a checkmate. Find every mate, read the witnesses, name the killer.">
+<meta property="og:image" content="https://kobhouse.com/assets/murdermate/cover.png">
+<meta property="og:url" content="https://kobhouse.com/murder-mate/free-case/">
+<link rel="canonical" href="https://kobhouse.com/murder-mate/free-case/">
 <meta name="theme-color" content="#0F7B5F">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <style>
@@ -67,40 +71,100 @@ nav.pn{display:flex;justify-content:space-between;margin:26px 0 10px;font-size:1
 nav.pn a{text-decoration:none}
 footer{border-top:3px solid var(--ink);background:var(--ink);color:#bbb;font-size:12px;padding:16px 0 26px;margin-top:26px}
 footer a{color:#fff}
+
+.wrap{max-width:1080px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:34px;align-items:start}
+.lead{font-size:16px;margin:6px 0 4px}
+.black{font-size:13px;color:#e8fff5;font-style:italic;margin:6px 0 10px}
+.intro{background:var(--ink);color:#fff;border:3px solid var(--ink);padding:14px 16px;margin:14px 0 18px;box-shadow:6px 6px 0 var(--shade)}
+.intro b{color:var(--acc)}
+details.rules{background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);margin:0 0 22px}
+details.rules summary{cursor:pointer;padding:12px 14px;font:700 12px/1.2 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;list-style:none}
+details.rules summary::after{content:' +';color:var(--bg)}details.rules[open] summary::after{content:' \2212'}
+details.rules div{padding:0 14px 12px;font-size:14px}
+details.rules p{margin:0 0 8px}
+.tm{padding:8px 0;border-top:1.5px solid #eee}.tm:first-of-type{border-top:0}
+.tm .n{display:inline-flex;width:22px;height:22px;background:var(--ink);color:#fff;border-radius:50%;align-items:center;justify-content:center;font:700 11px/1 'Space Mono',monospace;margin-right:6px}
+.tm q{font-weight:700;quotes:'\201C' '\201D'}
+.tm small{display:block;color:#555;margin-top:2px}
+.verdict h3{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:18px;margin:12px 0 6px}
+.verdict h3:first-of-type{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:700 13px/1.1 'Nunito',sans-serif;background:#fff;color:var(--ink);border:2.5px solid var(--ink);padding:7px 10px;cursor:pointer}
+.chip.on{background:var(--ink);color:#fff}
+.chip.ok{background:#0F7B5F;color:#fff;border-color:#0F7B5F}
+.chip.ko{background:#fff;color:#b3261e;border-color:#b3261e;text-decoration:line-through}
+.vbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.fb{font-weight:700;margin-top:10px;min-height:20px}
+.hints p{background:var(--pale);border-left:4px solid var(--bg);padding:8px 10px;margin:8px 0 0;font-size:14px}
+.sol{display:none}.sol.show{display:block}
+.sol p{margin:0 0 8px;font-size:15px}
+.win{display:none;background:var(--acc);color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:16px;margin:22px 0}
+.win.show{display:block}
+.win h2{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:30px;line-height:1;margin:0 0 8px}
+.win .btn{margin-top:12px}
+.cta{background:var(--ink);color:#fff;border:3px solid var(--ink);padding:18px;margin:30px 0 0;display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center}
+.cta img{width:100%;height:auto;border:2px solid #fff}
+.cta h2{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:26px;line-height:1;margin:0 0 6px}
+.cta p{margin:0;font-size:14px}
+.cta .btn{margin:12px 0 0;box-shadow:5px 5px 0 var(--bg)}
+@media(max-width:860px){.cols{grid-template-columns:1fr;gap:0}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gw" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".62" stop-color="#f6f6f6"/><stop offset=".63" stop-color="#dcdcdc"/><stop offset="1" stop-color="#d2d2d2"/></linearGradient><linearGradient id="gb" x1="0" x2="1"><stop offset="0" stop-color="#6b6b6b"/><stop offset=".62" stop-color="#5a5a5a"/><stop offset=".63" stop-color="#3f3f3f"/><stop offset="1" stop-color="#383838"/></linearGradient><symbol id="wP" viewBox="0 0 100 100"><g fill="url(#gw)" stroke="#3a3a3a" stroke-width="3.6" stroke-linejoin="round"><circle cx="50" cy="29" r="13"/><rect x="36" y="42" width="28" height="9" rx="4"/><path d="M39 51 C39 61 34 69 28 76 L72 76 C66 69 61 61 61 51 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g></symbol><symbol id="wR" viewBox="0 0 100 100"><g fill="url(#gw)" stroke="#3a3a3a" stroke-width="3.6" stroke-linejoin="round"><path d="M27 16 H38 V24 H45 V16 H55 V24 H62 V16 H73 V36 H27 Z"/><path d="M34 36 H66 L63 64 H37 Z"/><rect x="29" y="62" width="42" height="10" rx="3"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><path d="M33 36 H67" fill="none" stroke="#3a3a3a" stroke-width="3.2" stroke-linecap="round"/></symbol><symbol id="wB" viewBox="0 0 100 100"><g fill="url(#gw)" stroke="#3a3a3a" stroke-width="3.6" stroke-linejoin="round"><circle cx="50" cy="13" r="6"/><path d="M50 19 C33 31 31 47 37 57 H63 C69 47 67 31 50 19 Z"/><rect x="33" y="55" width="34" height="9" rx="4"/><path d="M41 64 C41 70 35 73 29 76 H71 C65 73 59 70 59 64 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><path d="M55 30 L46 43" fill="none" stroke="#3a3a3a" stroke-width="3.2" stroke-linecap="round"/><path d="M50 7 V9" fill="none" stroke="#3a3a3a" stroke-width="3.2" stroke-linecap="round"/></symbol><symbol id="wN" viewBox="0 0 100 100"><g fill="url(#gw)" stroke="#3a3a3a" stroke-width="3.6" stroke-linejoin="round"><path d="M70 76 H31 C31 64 38 57 47 51 C42 49 36 50 31 54 C25 58 19 54 21 48 C23 41 34 35 38 29 C40 23 44 19 48 15 L51 7 L58 16 C71 20 78 33 78 48 C78 60 72 68 70 76 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><circle cx="46" cy="30" r="3.2" fill="#3a3a3a"/><path d="M58 18 C68 26 72 38 71 54" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".7"/></symbol><symbol id="wQ" viewBox="0 0 100 100"><g fill="url(#gw)" stroke="#3a3a3a" stroke-width="3.6" stroke-linejoin="round"><circle cx="18" cy="25" r="6"/><circle cx="34" cy="16" r="6"/><circle cx="50" cy="12" r="6"/><circle cx="66" cy="16" r="6"/><circle cx="82" cy="25" r="6"/><path d="M20 29 L30 60 H70 L80 29 L66 44 L65 21 L50 42 L35 21 L34 44 Z"/><rect x="27" y="58" width="46" height="9" rx="4"/><path d="M34 67 C34 71 30 74 26 76 H74 C70 74 66 71 66 67 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g></symbol><symbol id="wK" viewBox="0 0 100 100"><g fill="url(#gw)" stroke="#3a3a3a" stroke-width="3.6" stroke-linejoin="round"><rect x="45.5" y="4" width="9" height="24" rx="2"/><rect x="39" y="9" width="22" height="9" rx="2"/><path d="M26 38 C21 22 41 20 50 33 C59 20 79 22 74 38 L67 60 H33 Z"/><rect x="28" y="58" width="44" height="9" rx="4"/><path d="M34 67 C34 71 30 74 26 76 H74 C70 74 66 71 66 67 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><path d="M50 34 V56" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".7"/></symbol><symbol id="bP" viewBox="0 0 100 100"><g fill="url(#gb)" stroke="#1f1f1f" stroke-width="3.6" stroke-linejoin="round"><circle cx="50" cy="29" r="13"/><rect x="36" y="42" width="28" height="9" rx="4"/><path d="M39 51 C39 61 34 69 28 76 L72 76 C66 69 61 61 61 51 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g></symbol><symbol id="bR" viewBox="0 0 100 100"><g fill="url(#gb)" stroke="#1f1f1f" stroke-width="3.6" stroke-linejoin="round"><path d="M27 16 H38 V24 H45 V16 H55 V24 H62 V16 H73 V36 H27 Z"/><path d="M34 36 H66 L63 64 H37 Z"/><rect x="29" y="62" width="42" height="10" rx="3"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><path d="M33 36 H67" fill="none" stroke="#1f1f1f" stroke-width="3.2" stroke-linecap="round"/></symbol><symbol id="bB" viewBox="0 0 100 100"><g fill="url(#gb)" stroke="#1f1f1f" stroke-width="3.6" stroke-linejoin="round"><circle cx="50" cy="13" r="6"/><path d="M50 19 C33 31 31 47 37 57 H63 C69 47 67 31 50 19 Z"/><rect x="33" y="55" width="34" height="9" rx="4"/><path d="M41 64 C41 70 35 73 29 76 H71 C65 73 59 70 59 64 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><path d="M55 30 L46 43" fill="none" stroke="#1f1f1f" stroke-width="3.2" stroke-linecap="round"/><path d="M50 7 V9" fill="none" stroke="#1f1f1f" stroke-width="3.2" stroke-linecap="round"/></symbol><symbol id="bN" viewBox="0 0 100 100"><g fill="url(#gb)" stroke="#1f1f1f" stroke-width="3.6" stroke-linejoin="round"><path d="M70 76 H31 C31 64 38 57 47 51 C42 49 36 50 31 54 C25 58 19 54 21 48 C23 41 34 35 38 29 C40 23 44 19 48 15 L51 7 L58 16 C71 20 78 33 78 48 C78 60 72 68 70 76 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><circle cx="46" cy="30" r="3.2" fill="#1f1f1f"/><path d="M58 18 C68 26 72 38 71 54" fill="none" stroke="#8c8c8c" stroke-width="3" stroke-linecap="round" opacity=".7"/></symbol><symbol id="bQ" viewBox="0 0 100 100"><g fill="url(#gb)" stroke="#1f1f1f" stroke-width="3.6" stroke-linejoin="round"><circle cx="18" cy="25" r="6"/><circle cx="34" cy="16" r="6"/><circle cx="50" cy="12" r="6"/><circle cx="66" cy="16" r="6"/><circle cx="82" cy="25" r="6"/><path d="M20 29 L30 60 H70 L80 29 L66 44 L65 21 L50 42 L35 21 L34 44 Z"/><rect x="27" y="58" width="46" height="9" rx="4"/><path d="M34 67 C34 71 30 74 26 76 H74 C70 74 66 71 66 67 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g></symbol><symbol id="bK" viewBox="0 0 100 100"><g fill="url(#gb)" stroke="#1f1f1f" stroke-width="3.6" stroke-linejoin="round"><rect x="45.5" y="4" width="9" height="24" rx="2"/><rect x="39" y="9" width="22" height="9" rx="2"/><path d="M26 38 C21 22 41 20 50 33 C59 20 79 22 74 38 L67 60 H33 Z"/><rect x="28" y="58" width="44" height="9" rx="4"/><path d="M34 67 C34 71 30 74 26 76 H74 C70 74 66 71 66 67 Z"/><rect x="21" y="75" width="58" height="14" rx="6"/></g><path d="M50 34 V56" fill="none" stroke="#8c8c8c" stroke-width="3" stroke-linecap="round" opacity=".7"/></symbol></defs></svg>
 <div class="wrap">
-<header><a class="brand" href="/">KOB HOUSE</a><span class="series mono">Murder Mate: India</span></header>
-<div class="mono" style="font-size:11px;color:var(--acc)">Case file</div>
-<h1><span class="num">23</span> NINETY-ONE GAMES</h1>
+<header><a class="brand" href="/">KOB HOUSE</a><a class="series mono" href="/murder-mate/" style="text-decoration:none">Murder Mate · Free case</a></header>
+<div class="intro">A free case, written for the website and not in the book. <b>Everything you need is on this page.</b> Five to ten minutes if you know how the pieces move.</div>
+<details class="rules"><summary>The rules in one minute</summary><div>
+<p><b>The board is the palace.</b> Every square belongs to a room. The black king is the victim. The white pieces are the suspects, except the white king (you, Inspector Rao) and the white pawns (guards, none tonight).</p>
+<p><b>The killer acts alone.</b> Exactly one white piece moves and gives mate in the number of moves stated. Several suspects can usually manage it. That is the point.</p>
+<p><b>The witnesses.</b> “X never left the Library”: every square X passed through or landed on is in the Library. “Nobody set foot in the Stepwell”: no suspect passed through or landed on it. “Somebody went through the Kitchens”: the killer crossed it or landed there. The square a suspect stood on before the murder never counts, and knights only count their landing square.</p>
+<p><b>Your verdict.</b> Who gave mate, the room where the mating move landed, and how: back-rank mate, smothered mate, queen's kiss (the queen mates from a square touching the king), or a mate named after the piece.</p>
+</div></details>
+<div class="cols">
+<div>
+<div class="mono" style="font-size:11px;color:var(--acc)">Case file · Online only</div>
+<h1><span class="num">00</span> The Free Sample</h1>
 <div class="meta">
-  <span class="tag mono"><span class="kings"><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg></span>Chief Inspector</span>
-  <span class="tag inv mono">Mate in two · White to play</span>
+  <span class="tag mono"><span class="kings"><svg class="ki" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg></span>Rookie</span>
+  <span class="tag inv mono">Mate in one · White to play</span>
 </div>
-<div class="withbook"><b>This board goes with the book</b>The story, the testimonies and your verdict box are on the two pages of case 23 in Murder Mate: India. You need them to name the killer. No book yet? <a href="/murder-mate/free-case/">Play a free case online, testimonies included &rarr;</a></div>
-<div id="mm" data-fen="1K5k/5Bpp/B4P1P/4P3/5P2/7N/6R1/1Q3n2 w - - 0 1" data-nums='{"b1": 1, "g2": 2, "a6": 3, "f7": 4, "h3": 5}'>
+<p class="lead"><b>The victim: Mr Horace Tibbs, gramophone salesman from Birmingham.</b> Mr Tibbs arrived with the rain and three crates of records. At dinner he gave every guest a free sample, one song each, and promised the rest of the collection to anyone who signed on the dotted line. Nobody signed. By ten he was playing the same waltz for the fourth time. By eleven he was dead in the Durbar Hall, one hand still on the crank.</p>
+<p class="black">Black: Mr Tibbs (king), his assistant (bishop), and three crates of records nobody ordered (pawns).</p>
+<div id="mm" data-fen="2KB2b1/8/R7/8/p1QN4/k7/pp6/8 w - - 0 1" data-nums='{"c4": 1, "a6": 2, "d8": 3, "d4": 4}'>
   <div class="boardbox"><div class="board" id="board"></div></div>
   <div class="coords mono"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div>
   <div class="status" id="status">White to play.</div>
   <div class="controls"><button class="ctl" id="undo" type="button">Undo</button><button class="ctl" id="reset" type="button">Reset</button></div>
   <div class="moves" id="moves"></div>
 </div>
-<p class="note">Try your theories here: you play both sides, Black's replies included. There is no engine and no hint on this page. The testimonies are in the book, on the right-hand page of case 23.</p>
-<div class="card">
-  <h2>On the board</h2>
-  <ul><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wQ"/></svg></span><span><b>1 · Lady Devika</b><br><small>Queen, b1, Kitchens</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wR"/></svg></span><span><b>2 · Colonel Barrington</b><br><small>Rook, g2, Elephant Stables</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wB"/></svg></span><span><b>3 · Pandit Mohan</b><br><small>Bishop, a6, Monsoon Courtyard</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wB"/></svg></span><span><b>4 · Dr Edmund Hale</b><br><small>Bishop, f7, Mirror Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wN"/></svg></span><span><b>5 · Kunwar Vikram</b><br><small>Knight, h3, Stepwell</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg></span><span><b>The victim</b><br><small>Herr Otto Brandt, chess master from Leipzig. King, h8, Mirror Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wK"/></svg></span><span><b>You, Inspector Rao</b><br><small>King, b8, Library. Not a suspect.</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wP"/></svg></span><span><b>Palace guards</b><br><small>f4, e5, f6, h6. Never move, never kill.</small></span></li></ul>
+<p class="note">Try your theories on the board: tap a piece, then a square. You play both sides. There is no engine.</p>
+<div class="card"><h2>The palace</h2><div class="rooms"><span><b>L</b>Library</span><span><b>M</b>Mirror Hall</span><span><b>C</b>Monsoon Courtyard</span><span><b>D</b>Durbar Hall</span><span><b>S</b>Stepwell</span><span><b>K</b>Kitchens</span><span><b>E</b>Elephant Stables</span></div></div>
 </div>
-<div class="card">
-  <h2>The palace</h2>
-  <div class="rooms"><span><b>L</b>Library</span><span><b>M</b>Mirror Hall</span><span><b>C</b>Monsoon Courtyard</span><span><b>D</b>Durbar Hall</span><span><b>S</b>Stepwell</span><span><b>K</b>Kitchens</span><span><b>E</b>Elephant Stables</span></div>
+<div>
+<div class="card"><h2>The suspects</h2><ul><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wQ"/></svg></span><span><b>1 · Lady Devika</b>, the Raja&#x27;s sister<br><small>Queen, c4, Durbar Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wR"/></svg></span><span><b>2 · Captain Arjun</b>, head of the palace guard<br><small>Rook, a6, Monsoon Courtyard</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wB"/></svg></span><span><b>3 · Dr Edmund Hale</b>, the British physician<br><small>Bishop, d8, Mirror Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wN"/></svg></span><span><b>4 · Mr Rustom Irani</b>, a horse dealer from Bombay<br><small>Knight, d4, Durbar Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#bK"/></svg></span><span><b>The victim</b><br><small>Mr Horace Tibbs, gramophone salesman from Birmingham. King, a3, Durbar Hall</small></span></li><li><span class="g"><svg class="gi" viewBox="0 0 100 100" aria-hidden="true"><use href="#wK"/></svg></span><span><b>You, Inspector Rao</b><br><small>King, c8, Library. Not a suspect, never moves.</small></span></li></ul></div>
+<div class="card"><h2>The testimonies</h2><div class="tm"><span class="n">1</span><b>The chandelier boy.</b> <q>Nobody set foot in the Durbar Hall.</q><small>I was up the ladder all evening polishing crystals. From up there, you notice feet.</small></div><div class="tm"><span class="n">2</span><b>The head gardener.</b> <q>Somebody went through the Monsoon Courtyard.</q><small>There are fresh footprints in the gravel, and for once they are not the Inspector&#x27;s.</small></div><div class="tm"><span class="n">3</span><b>The Raja&#x27;s secretary.</b> <q>Mr Irani never left the Durbar Hall.</q><small>He spent the whole evening haggling with Mr Tibbs over a crate of records. He was losing.</small></div><p style="margin:10px 0 0;font-size:13px;color:#555;font-style:italic">Rao&#x27;s notebook: the gramophone is still going. Nobody has the heart to stop it. Or the courage.</p></div>
+<div class="card verdict" id="verdict" data-answer='{"who": "c4", "where": "C", "how": "named"}'>
+  <h2>Your verdict</h2>
+  <h3>Who gave mate?</h3><div class="chips" data-k="who"><button class="chip" type="button" data-v="c4">1 · Lady Devika</button><button class="chip" type="button" data-v="a6">2 · Captain Arjun</button><button class="chip" type="button" data-v="d8">3 · Dr Edmund Hale</button><button class="chip" type="button" data-v="d4">4 · Mr Rustom Irani</button></div>
+  <h3>Where did the mating move land?</h3><div class="chips" data-k="where"><button class="chip" type="button" data-v="L">L · Library</button><button class="chip" type="button" data-v="M">M · Mirror Hall</button><button class="chip" type="button" data-v="C">C · Monsoon Courtyard</button><button class="chip" type="button" data-v="D">D · Durbar Hall</button><button class="chip" type="button" data-v="S">S · Stepwell</button><button class="chip" type="button" data-v="K">K · Kitchens</button><button class="chip" type="button" data-v="E">E · Elephant Stables</button></div>
+  <h3>How?</h3><div class="chips" data-k="how"><button class="chip" type="button" data-v="backrank">Back-rank mate</button><button class="chip" type="button" data-v="smothered">Smothered mate</button><button class="chip" type="button" data-v="kiss">Queen's kiss</button><button class="chip" type="button" data-v="named">Named after the piece</button></div>
+  <div class="vbtns"><button class="ctl" id="check" type="button" style="background:var(--ink);color:#fff">Check my verdict</button><button class="ctl" id="hintbtn" type="button">A hint, please</button><button class="ctl" id="revealbtn" type="button" hidden>Show the solution</button></div>
+  <div class="fb" id="fb"></div>
+  <div class="hints" id="hints" data-h='[&quot;Start with the board, not the witnesses. Find every white piece that can mate in one move. There are four.&quot;, &quot;Each testimony clears exactly one suspect. Take them one at a time.&quot;, &quot;Careful with Lady Devika: she has two different mates, in two different rooms. Only one of them fits.&quot;]'></div>
 </div>
-<a class="btn light" href="https://lichess.org/editor/1K5k/5Bpp/B4P1P/4P3/5P2/7N/6R1/1Q3n2_w_-_-_0_1" target="_blank" rel="noopener">Open on Lichess <small>engine off</small></a>
-<a class="btn" href="https://www.chess.com/analysis?fen=1K5k/5Bpp/B4P1P/4P3/5P2/7N/6R1/1Q3n2%20w%20-%20-%200%201" target="_blank" rel="noopener">Open on chess.com <small>switch the engine off first</small></a>
-<nav class="pn mono"><a href="/mm/1/22/">&larr; Case 22</a><a href="/mm/1/24/">Case 24 &rarr;</a></nav>
+<div class="win" id="win"><h2>Case closed.</h2><p style="margin:0;font-weight:700">Lady Devika, in the Monsoon Courtyard, with a queen's mate. That was the easiest case in the house. The book has forty more, up to mate in three with a lying witness.</p><a class="btn" href="/murder-mate/">See Murder Mate: India <small>October 2026</small></a></div>
+<div class="card sol" id="sol"><h2>The solution</h2><p>Four guests can give mate in one. The testimonies clear them one at a time.</p><p><b>Captain Arjun</b> has only Rxa4#, and a4 is in the Durbar Hall, where nobody set foot.</p><p><b>Dr Hale</b> has only Be7#, which never leaves the Mirror Hall. Then nobody would have gone through the Courtyard.</p><p><b>Mr Irani</b> could play Nb5# or Nc2#, but both take him out of the Durbar Hall, and he never left it.</p><p>That leaves <b>Lady Devika</b>, who had two ways to do it. Qxa4# crosses the Durbar Hall, so it is ruled out. <b>Qc5#</b> lands in the <b>Monsoon Courtyard</b>. The queen does not touch the king from c5, so it is not a kiss: it is a plain <b>Queen's mate</b>.</p></div>
 </div>
-<footer><div class="wrap">Murder Mate: India is a puzzle book by <a href="/">Kob House</a>. Solutions are at the back of the book, and nowhere else.</div></footer>
+</div>
+<div class="cta"><img src="/assets/murdermate/covers/india-sm.png" width="400" height="600" alt="Murder Mate: India cover" loading="lazy"><div>
+  <h2>40 more cases in Murder Mate: India</h2>
+  <p>Udaipur, 1932. Four levels, from your first mate to mate in three with a lying witness. A QR code on every case sets the board up on your phone. Paperback, October 2026.</p>
+  <a class="btn light" href="/murder-mate/">Discover the book <small>&rarr;</small></a>
+</div></div>
+</div>
+<footer><div class="wrap">Murder Mate is a puzzle book collection by <a href="/">Kob House</a>. This case is a free sample and does not appear in the book.</div></footer>
 <script type="module">
 import { Chess } from '/assets/mm/chess.js';
 const START = document.getElementById('mm').dataset.fen;
@@ -176,6 +240,43 @@ function click(sq){
 document.getElementById('undo').onclick = () => { if (game.undo()) origin = stack.pop() || origin; last = null; sel = null; render(); };
 document.getElementById('reset').onclick = () => { game = new Chess(START); stack.length = 0; resetOrigin(); last = null; sel = null; render(); };
 resetOrigin(); build(); render();
+</script>
+<script>
+const ANSWER = JSON.parse(document.getElementById('verdict').dataset.answer);
+const pick = {who:null, where:null, how:null};
+let tries = 0, hintN = 0;
+document.querySelectorAll('.chips').forEach(g => g.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  g.querySelectorAll('.chip').forEach(c => c.classList.remove('on','ok','ko'));
+  b.classList.add('on'); pick[g.dataset.k] = b.dataset.v;
+}));
+const fb = document.getElementById('fb');
+function reveal(){ document.getElementById('sol').classList.add('show'); document.getElementById('revealbtn').hidden = true; }
+document.getElementById('check').onclick = () => {
+  if (!pick.who || !pick.where || !pick.how) { fb.textContent = 'Pick a suspect, a room and a kind of mate first.'; return; }
+  tries++;
+  let good = 0;
+  for (const k of ['who','where','how']) {
+    const on = document.querySelector(`.chips[data-k="${k}"] .chip[data-v="${pick[k]}"]`);
+    const ok = pick[k] === ANSWER[k]; if (ok) good++;
+    on.classList.remove('on','ok','ko'); on.classList.add(ok ? 'ok' : 'ko');
+  }
+  if (good === 3) {
+    fb.textContent = tries === 1 ? 'Case closed, first time. The Raja is impressed, which is rare.' : 'Case closed.';
+    document.getElementById('win').classList.add('show'); reveal();
+    document.getElementById('win').scrollIntoView({behavior:'smooth', block:'center'});
+  } else {
+    fb.textContent = good + ' out of 3. The crossed-out answers are wrong, the green ones are right. Look again.';
+    if (tries >= 2) document.getElementById('revealbtn').hidden = false;
+  }
+};
+const HINTS = JSON.parse(document.getElementById('hints').dataset.h);
+document.getElementById('hintbtn').onclick = () => {
+  if (hintN >= HINTS.length) return;
+  const p = document.createElement('p'); p.textContent = HINTS[hintN++]; document.getElementById('hints').appendChild(p);
+  if (hintN >= HINTS.length) { document.getElementById('hintbtn').hidden = true; document.getElementById('revealbtn').hidden = false; }
+};
+document.getElementById('revealbtn').onclick = reveal;
 </script>
 </body>
 </html>

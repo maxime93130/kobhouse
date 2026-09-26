@@ -348,7 +348,7 @@ WHY_HTML = '''
 </div></section>
 '''
 
-HUB_NAV = [('/#murder-mate', 'Murder Mate', False), ('/mm/1/01/', 'Try a case', False), ('/#murder-map', 'Murder Map', False), ('/#about', 'Kob House', False)]
+HUB_NAV = [('/#murder-mate', 'Murder Mate', False), ('/murder-mate/free-case/', 'Free case', False), ('/#murder-map', 'Murder Map', False), ('/#about', 'Kob House', False)]
 
 def book_nav(b):
     items = [('/#books', 'All books', False), ('#how', 'How it works', False)]
@@ -489,7 +489,7 @@ MURDER_MATE_HUB = """
     <div class="pg"><img src="/assets/murdermate/page-case-left.png" width="800" height="1200" alt="Case 01, left page: story and board" loading="lazy"></div>
     <div class="pg"><img src="/assets/murdermate/page-case-right.png" width="800" height="1200" alt="Case 01, right page: suspects, testimonies and verdict" loading="lazy"></div>
   </div>
-  <div class="mmcta"><a class="btn" href="/murder-mate/">%s Inside a case</a><a class="btn ghost" href="/mm/1/01/">Play the board of case 01</a></div>
+  <div class="mmcta"><a class="btn" href="/murder-mate/">%s Inside a case</a><a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
 </div></section>
 
 <section id="mate-levels"><div class="wrap">
@@ -497,6 +497,7 @@ MURDER_MATE_HUB = """
   <h2 class="display">Start with your first mate. End at 1800.</h2>
   <p class="lead">You only need to know how the pieces move. Forty cases, from Rookie to Commissioner, and a QR code on every case opens the position on your phone.</p>
   <div class="tags"><span class="tag">Rookie · mate in 1</span><span class="tag">Detective · mate in 2</span><span class="tag">Chief Inspector · one liar</span><span class="tag">Commissioner · mate in 3</span></div>
+  <div class="mmcta"><a class="btn" href="/murder-mate/free-case/">%s Try a free case now</a></div>
 </div></section>
 
 <section id="mate-series" class="tint" style="--bg:#0F7B5F;color:#fff"><div class="wrap">
@@ -505,7 +506,7 @@ MURDER_MATE_HUB = """
   <p class="lead">A new palace and new suspects every time, and one chess rule that turns into a plot: promotion hides an impostor, a discovered check needs an accomplice, castling makes the perfect alibi.</p>
   <div class="mmseries">%s</div>
 </div></section>
-""" % (MM_STEPS, ARROW, MM_SERIES_HTML)
+""" % (MM_STEPS, ARROW, ARROW, MM_SERIES_HTML)
 
 MM_CSS = """
 .spread{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
@@ -588,7 +589,7 @@ def murder_mate_page():
     <h1 class="display" style="color:#fff;font-size:clamp(48px,8vw,96px);margin:18px 0 10px">Murder Mate: <span style="color:#CDB8F5">India</span></h1>
     <p class="lead" style="color:#fff">Udaipur, 1932. The monsoon has cut the palace off from the world, the telephone line is down, and guests keep dying at a rate of roughly one per evening. Inspector Rao of the Bombay police was only supposed to stay for the weekend.</p>
     <div class="tags"><span class="tag">40 cases</span><span class="tag">From your first mate to 1800+</span><span class="tag">Full solutions</span><span class="tag">Any board or app</span></div>
-    <div class="mmcta"><a class="btn ghost" href="/mm/1/01/">Play the board of case 01</a></div>
+    <div class="mmcta"><a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
   </div>
 </div></section>
 
@@ -656,7 +657,7 @@ def murder_mate_page():
   <div class="mmseries">%s</div>
 </div></section>
 """ % (MM_STEPS, lv, se)
-    nav = [('/', 'Kob House', False), ('#how', 'How it works', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/mm/1/01/', 'Try a board', False)]
+    nav = [('/', 'Kob House', False), ('#how', 'How it works', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/murder-mate/free-case/', 'Free case', False)]
     return page('Murder Mate: India · Chess murder mysteries · Kob House',
                 'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Coming soon from Kob House.',
                 body, MM_BG, MM_ACC, '/murder-mate/', '/assets/murdermate/cover.png', nav)
@@ -751,6 +752,6 @@ open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
 open(H + '/.nojekyll', 'w').write('')
 open(H + '/robots.txt', 'w').write('User-agent: *\nAllow: /\nSitemap: https://kobhouse.com/sitemap.xml\n')
-urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/legal.html']
+urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
 open(H + '/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % ''.join('<url><loc>%s</loc></url>' % u for u in urls))
 print('ok')
