@@ -348,7 +348,7 @@ WHY_HTML = '''
 </div></section>
 '''
 
-HUB_NAV = [('/#murder-map', 'Murder Map', False), ('/#how', 'How it works', False), ('/#murder-mate', 'Murder Mate', False), ('/#about', 'Kob House', False)]
+HUB_NAV = [('/#murder-mate', 'Murder Mate', False), ('/mm/1/01/', 'Try a case', False), ('/#murder-map', 'Murder Map', False), ('/#about', 'Kob House', False)]
 
 def book_nav(b):
     items = [('/#books', 'All books', False), ('#how', 'How it works', False)]
@@ -457,18 +457,55 @@ def book_page(b):
 # ------------------------------------------------------------------ hub
 # ------------------------------------------------------------------ Murder Mate (next collection, coming soon)
 MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
+MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'October 2026'),
+             ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Early 2027'),
+             ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', '2027'),
+             ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
+             ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
+             ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
+             ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
+             ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
+MM_SERIES_HTML = ''.join('<figure class="mmvol"><img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy"><figcaption><b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span></figcaption></figure>' % (k, n, n, c, t, w) for k, n, c, t, w in MM_SERIES)
+MM_STEPS = '''  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Set up the board</h3><p>On a real chessboard, or scan the QR code on the case: the position opens on your phone, ready to play, with no engine.</p></div>
+    <div class="step"><div class="n">2</div><h3>Find every mate</h3><p>Only one white piece moves, whatever Black tries. Several suspects can still pull it off. List them all.</p></div>
+    <div class="step"><div class="n">3</div><h3>Read the witnesses</h3><p>The cook, the butler and the palace clockmaker saw who went where. From Chief Inspector on, one of them is lying.</p></div>
+    <div class="step"><div class="n">4</div><h3>Name the killer</h3><p>Who gave mate, in which room, and how. Exactly one answer per case, checked by an independent solver before printing.</p></div>
+  </div>'''
+
 MURDER_MATE_HUB = """
-<section id="murder-mate" style="background:#0F7B5F;border-top:4px solid #000;border-bottom:4px solid #000;color:#fff"><div class="wrap mmhub">
-  <div class="mmcov"><a href="/murder-mate/"><img src="/assets/murdermate/cover-sm.png" width="400" height="600" alt="Murder Mate: India cover" loading="lazy"></a></div>
-  <div>
-    <span class="tag eyebrow">Murder Mate: India · October 2026</span>
-    <h2 class="display" style="color:#fff">Murder Mate. <span style="color:#CDB8F5">The weapon is a checkmate.</span></h2>
-    <p class="lead" style="color:#fff">Chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. Several of them could have delivered mate. The witnesses say only one did.</p>
-    <div class="tags"><span class="tag">40 cases</span><span class="tag">Mate in 1 to 3</span><span class="tag">4 levels</span><span class="tag">A QR board on every case</span></div>
-    <div class="mmcta"><a class="btn" href="/murder-mate/">%s Discover Murder Mate</a><a class="btn ghost" href="/mm/1/01/">Play the board of case 01</a></div>
+<div id="murder-mate" class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
+  <span class="mono">New collection · Book 1 in October 2026</span>
+  <div class="mmate"><span class="w">Murder</span> <span class="l">Mate</span></div>
+  <p>Chess murder mysteries. <b>The board is the crime scene.</b></p>
+</div></div>
+
+<section id="mate-how" class="paper" style="--acc:#0F7B5F"><div class="wrap">
+  <span class="tag inv eyebrow">Murder Mate · How it works</span>
+  <h2 class="display">The board is the palace. The black king is the victim.</h2>
+  <p class="lead">Every case is a real chess position, and every square belongs to a room. The white pieces are the guests, several of them could have delivered mate, and the witnesses say only one did.</p>
+  %s
+  <div class="spread" style="max-width:860px">
+    <div class="pg"><img src="/assets/murdermate/page-case-left.png" width="800" height="1200" alt="Case 01, left page: story and board" loading="lazy"></div>
+    <div class="pg"><img src="/assets/murdermate/page-case-right.png" width="800" height="1200" alt="Case 01, right page: suspects, testimonies and verdict" loading="lazy"></div>
   </div>
+  <div class="mmcta"><a class="btn" href="/murder-mate/">%s Inside a case</a><a class="btn ghost" href="/mm/1/01/">Play the board of case 01</a></div>
 </div></section>
-""" % ARROW
+
+<section id="mate-levels"><div class="wrap">
+  <span class="tag inv eyebrow">Murder Mate · Four levels, one book</span>
+  <h2 class="display">Start with your first mate. End at 1800.</h2>
+  <p class="lead">You only need to know how the pieces move. Forty cases, from Rookie to Commissioner, and a QR code on every case opens the position on your phone.</p>
+  <div class="tags"><span class="tag">Rookie · mate in 1</span><span class="tag">Detective · mate in 2</span><span class="tag">Chief Inspector · one liar</span><span class="tag">Commissioner · mate in 3</span></div>
+</div></section>
+
+<section id="mate-series" class="tint" style="--bg:#0F7B5F;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">Murder Mate · The series</span>
+  <h2 class="display">One chess country per book. One chess rule per crime.</h2>
+  <p class="lead">A new palace and new suspects every time, and one chess rule that turns into a plot: promotion hides an impostor, a discovered check needs an accomplice, castling makes the perfect alibi.</p>
+  <div class="mmseries">%s</div>
+</div></section>
+""" % (MM_STEPS, ARROW, MM_SERIES_HTML)
 
 MM_CSS = """
 .spread{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
@@ -491,6 +528,11 @@ MM_CSS = """
 @media(max-width:520px){.anat,.rules3{grid-template-columns:1fr}}
 
 .khtitle{font-size:clamp(46px,6.4vw,92px);margin:4px 0 18px;color:#000}
+.alsocoll{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:34px;background:#1F6BED;color:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:12px 16px;text-decoration:none;font-weight:700;font-size:15px}
+.alsocoll .mono{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F4FF1E}
+.alsocoll b{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;font-weight:400;line-height:1}
+.alsocoll svg{width:18px;height:18px}
+.alsocoll:hover{transform:translate(-2px,-2px)}
 .collections{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
 .coll{display:flex;flex-direction:column;gap:8px;background:var(--c);color:#fff;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:18px;text-decoration:none;transition:transform .12s}
 .coll:hover{transform:translate(-2px,-2px)}
@@ -536,15 +578,7 @@ def murder_mate_page():
               (3, 'Chief Inspector', 'Five suspects on a busy board, and one witness is lying.', 'Cases 21-33 · 30-40 min'),
               (4, 'Commissioner', 'Mate in three. One liar. Trust nobody, least of all the Maharani.', 'Cases 34-40 · 30-45 min')]
     lv = ''.join('<div class="mmlevel"><div class="k">%s</div><h3>%s</h3><p>%s</p><span class="mono">%s</span></div>' % ('&#x265A;&#xFE0E;' * n, t, d, m) for n, t, d, m in levels)
-    series = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'October 2026'),
-              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Early 2027'),
-              ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', '2027'),
-              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
-              ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
-              ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
-              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
-              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
-    se = ''.join('<figure class="mmvol"><img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy"><figcaption><b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span></figcaption></figure>' % (k, n, n, c, t, w) for k, n, c, t, w in series)
+    se = MM_SERIES_HTML
     body = """
 <section class="hero" style="background:#0F7B5F;color:#fff"><div class="wrap mmhub">
   <div class="mmcov"><img src="/assets/murdermate/cover.png" width="1000" height="1500" alt="Murder Mate: India cover"></div>
@@ -561,12 +595,7 @@ def murder_mate_page():
   <span class="tag inv eyebrow">How it works</span>
   <h2 class="display">The board is the palace. The black king is the victim.</h2>
   <p class="lead">Every case is a real chess position, and every square belongs to a room of the palace. The white pieces are the guests, and all of them had a reason.</p>
-  <div class="steps">
-    <div class="step"><div class="n">1</div><h3>Set up the board</h3><p>On a real chessboard, or scan the QR code on the case: the position opens on your phone, ready to play, with no engine.</p></div>
-    <div class="step"><div class="n">2</div><h3>Find every mate</h3><p>Only one white piece moves, whatever Black tries. Several suspects can still pull it off. List them all.</p></div>
-    <div class="step"><div class="n">3</div><h3>Read the witnesses</h3><p>The cook, the butler and the palace clockmaker saw who went where. From Chief Inspector on, one of them is lying.</p></div>
-    <div class="step"><div class="n">4</div><h3>Name the killer</h3><p>Who gave mate, in which room, and how. Exactly one answer per case, checked by an independent solver before printing.</p></div>
-  </div>
+%s
 </div></section>
 
 
@@ -625,7 +654,7 @@ def murder_mate_page():
   <p class="lead">Same rules everywhere, a new palace, new suspects, and one chess rule that turns into a plot: promotion hides an impostor, a discovered check needs an accomplice, castling makes the perfect alibi. Each book stands alone.</p>
   <div class="mmseries">%s</div>
 </div></section>
-""" % (lv, se)
+""" % (MM_STEPS, lv, se)
     nav = [('/', 'Kob House', False), ('#how', 'How it works', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/mm/1/01/', 'Try a board', False)]
     return page('Murder Mate: India · Chess murder mysteries · Kob House',
                 'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Coming soon from Kob House.',
@@ -642,25 +671,24 @@ def hub():
 <div class="twist"><span class="tag inv">Paris</span><h3>The original</h3><p>Rive gauche or rive droite, along the Seine or by the périphérique: twenty arrondissements and the clues to cut them down, one statement at a time.</p></div>
 <div class="twist"><span class="tag inv">Tokyo</span><h3>The train is a witness</h3><p>The Yamanote loop circles the city with 30 stations. Witnesses tell you how far someone rode, clockwise or against the clock, and the loop closes in on the killer.</p></div>
 <div class="twist"><span class="tag inv">New York</span><h3>Count the blocks</h3><p>Manhattan on a lettered grid, avenues straight up the page. Witnesses tell you how far they walked, up, down or across, never diagonally.</p></div>"""
-    fan = ''.join('<img src="/assets/%s/cover-sm.png" width="400" height="600" alt="%s cover">' % (k, t) for k, t in
-                  [('paris', 'Murder Map: Paris'), ('newyork', 'Murder Map: New York'), ('murdermate', 'Murder Mate: India')])
+    fan = ''.join('<img src="/assets/murdermate/%s-sm.png" width="400" height="600" alt="%s cover">' % (k, t) for k, t in
+                  [('covers/uzbekistan', 'Murder Mate: Uzbekistan'), ('covers/persia', 'Murder Mate: Persia'), ('covers/india', 'Murder Mate: India')])
     why = WHY_HTML.replace('<span class="tag inv eyebrow">Why it works</span>', '<span class="tag inv eyebrow">Murder Map · Why it works</span>')
     body = """
-<section class="hero"><div class="wrap">
+<section class="hero" style="background:#0F7B5F;color:#fff;--acc:#CDB8F5"><div class="wrap">
   <div>
-    <div class="stamp">Kob House · Puzzle books</div>
-    <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
-    <p class="lead">Two collections of paper murder cases. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
-    <div class="collections">
-      <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">Collection 01 · 3 books</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now</span></a>
-      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">Collection 02 · New</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag inv">Coming soon</span></a>
-    </div>
+    <div class="stamp">Kob House · New collection</div>
+    <h1 class="display khtitle" style="color:#fff">Murder Mate. <span style="color:#CDB8F5">The weapon is a checkmate.</span></h1>
+    <p class="lead" style="color:#fff">Chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. Several of them could have delivered mate. The witnesses say only one did.</p>
+    <div class="tags"><span class="tag">Book 1: India · October 2026</span><span class="tag">40 cases</span><span class="tag">Mate in 1 to 3</span></div>
+    <div class="mmcta"><a class="btn light" href="/murder-mate/">%s Discover Murder Mate</a><a class="btn ghost" href="/mm/1/01/">Play case 01</a></div>
+    <a class="alsocoll" href="#murder-map"><span class="mono">Also from Kob House</span> <b>Murder Map</b> <span>Deduction in real cities · 3 books</span> %s</a>
   </div>
   <div class="fan">%s</div>
 </div></section>
-
+%s
 <div id="murder-map" class="colband" style="--c:#1F6BED;--a:#F4FF1E"><div class="wrap">
-  <span class="mono">Collection 01</span>
+  <span class="mono">Also from Kob House · Out now</span>
   <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
   <p>A real city, three crime scenes. <b>Cross out the city</b> until one door is left.</p>
 </div></div>
@@ -672,7 +700,7 @@ def hub():
   <div class="books">%s</div>
 </div></section>
 
-<section id="how" class="paper"><div class="wrap">
+<section id="map-how" class="paper"><div class="wrap">
   <span class="tag inv eyebrow">Murder Map · How it works</span>
   <h2 class="display">Every witness tells the truth. None of them knows the address.</h2>
   <p class="lead">Read the statements in order. Each one is true, and each one lets you cross out part of the city. Four steps, one pen, no knowledge of the city needed.</p>
@@ -692,12 +720,6 @@ def hub():
   <div class="twists">%s</div>
 </div></section>
 
-<div class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
-  <span class="mono">Collection 02 · Coming soon</span>
-  <div class="mmate"><span class="w">Murder</span> <span class="l">Mate</span></div>
-  <p>Chess murder mysteries. <b>The board is the crime scene.</b></p>
-</div></div>
-%s
 
 <section id="about" class="tint"><div class="wrap about">
   <div><div class="logo biglogo" style="pointer-events:none"><span class="k">K%sB</span><span class="h">HOUSE</span></div></div>
@@ -705,12 +727,12 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a href="/paris/">Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a><a class="soon" href="/murder-mate/">Murder Mate · soon</a></div>
+    <div class="series"><a class="soon" href="/murder-mate/">Murder Mate · India · soon</a><a href="/paris/">Murder Map · Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
   </div>
 </div></section>
-""" % (fan, cards, why, twists, MURDER_MATE_HUB, FROG)
-    return page('Kob House · Murder Map and Murder Mate puzzle books', 'Kob House makes pen-and-paper mystery books with exactly one solution. Murder Map: deduction in real cities (Paris, Tokyo, New York). Murder Mate: chess murder mysteries, coming soon.',
-                body, BRAND_BG, BRAND_ACC, '/', '/assets/paris/cover.png', HUB_NAV)
+""" % (ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
+    return page('Kob House · Murder Mate chess murder mysteries and Murder Map puzzle books', 'Murder Mate: chess murder mysteries where the weapon is a checkmate. 40 cases, from your first mate to 1800+. Also from Kob House, Murder Map: deduction in real cities. Pen-and-paper mysteries with exactly one solution.',
+                body, BRAND_BG, BRAND_ACC, '/', '/assets/murdermate/cover.png', HUB_NAV)
 
 # ------------------------------------------------------------------ legal + files
 exec(open(D + '/_legal.txt').read())
