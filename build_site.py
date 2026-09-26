@@ -529,6 +529,8 @@ MM_CSS = """
 @media(max-width:520px){.anat,.rules3{grid-template-columns:1fr}}
 
 .khtitle{font-size:clamp(46px,6.4vw,92px);margin:4px 0 18px;color:#000}
+.freecase{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
+.freecase span{font-weight:700;font-size:15px;max-width:300px}
 .alsocoll{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:34px;background:#1F6BED;color:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:12px 16px;text-decoration:none;font-weight:700;font-size:15px}
 .alsocoll .mono{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F4FF1E}
 .alsocoll b{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;font-weight:400;line-height:1}
@@ -686,6 +688,7 @@ def hub():
       <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">New collection · October 2026</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Coming soon %s</span></a>
       <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">3 books · Paris, Tokyo, New York</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now %s</span></a>
     </div>
+    <div class="freecase"><a class="btn" href="/murder-mate/free-case/" style="--acc:#0F7B5F">%s Play a free case</a><span>A Murder Mate mystery you can solve right here, in your browser. Five minutes, no book needed.</span></div>
   </div>
   <div class="fan">%s</div>
 </div></section>
@@ -733,7 +736,7 @@ def hub():
     <div class="series"><a class="soon" href="/murder-mate/">Murder Mate · India · soon</a><a href="/paris/">Murder Map · Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
   </div>
 </div></section>
-""" % (ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
+""" % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
     return page('Kob House · Murder Mate chess murder mysteries and Murder Map puzzle books', 'Murder Mate: chess murder mysteries where the weapon is a checkmate. 40 cases, from your first mate to 1800+. Also from Kob House, Murder Map: deduction in real cities. Pen-and-paper mysteries with exactly one solution.',
                 body, BRAND_BG, BRAND_ACC, '/', '/assets/murdermate/cover.png', HUB_NAV)
 
