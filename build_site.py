@@ -517,7 +517,13 @@ MM_CSS = """
 .mmlevel h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:26px;margin:8px 0 6px;line-height:1}
 .mmlevel p{margin:0;font-weight:700;font-size:14px}
 .mmlevel .mono{font-size:11px;margin-top:10px;display:block}
-.mmseries{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.mmseries{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 22px;margin-top:36px}
+.mmvol{margin:0}.mmvol img{width:100%;height:auto;border:3px solid #000;box-shadow:8px 8px 0 #000;display:block}
+.mmvol figcaption{margin-top:14px;display:flex;flex-direction:column;gap:3px}
+.mmvol b{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;line-height:1;font-weight:400}
+.mmvol span{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.mmvol em{font-style:normal;font-weight:700;font-size:15px}
+.mmvol .when{color:#CDB8F5}
 .mmc{border:3px solid #000;padding:14px 16px;color:#fff;box-shadow:6px 6px 0 #000}
 .mmc b{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;display:block;line-height:1}
 .mmc span{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
@@ -530,9 +536,15 @@ def murder_mate_page():
               (3, 'Chief Inspector', 'Five suspects on a busy board, and one witness is lying.', 'Cases 21-33 · 30-40 min'),
               (4, 'Commissioner', 'Mate in three. One liar. Trust nobody, least of all the Maharani.', 'Cases 34-40 · 30-45 min')]
     lv = ''.join('<div class="mmlevel"><div class="k">%s</div><h3>%s</h3><p>%s</p><span class="mono">%s</span></div>' % ('&#x265A;&#xFE0E;' * n, t, d, m) for n, t, d, m in levels)
-    series = [('India', 'Udaipur · 1932', '#0F7B5F', 'October 2026'), ('Uzbekistan', 'Samarkand · 1403', '#0E6E8C', 'Early 2027'),
-              ('Persia', 'Isfahan · 1611', '#243A8C', '2027'), ('And more', 'Chess countries', '#141414', 'To be announced')]
-    se = ''.join('<div class="mmc" style="background:%s"><b>%s</b><span>%s</span><br><span style="color:#CDB8F5">%s</span></div>' % (bg, n, c, w) for n, c, bg, w in series)
+    series = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'October 2026'),
+              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Early 2027'),
+              ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', '2027'),
+              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
+              ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
+              ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
+              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
+              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
+    se = ''.join('<figure class="mmvol"><img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy"><figcaption><b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span></figcaption></figure>' % (k, n, n, c, t, w) for k, n, c, t, w in series)
     body = """
 <section class="hero" style="background:#0F7B5F;color:#fff"><div class="wrap mmhub">
   <div class="mmcov"><img src="/assets/murdermate/cover.png" width="1000" height="1500" alt="Murder Mate: India cover"></div>
@@ -609,8 +621,8 @@ def murder_mate_page():
 
 <section id="series" class="tint"><div class="wrap">
   <span class="tag inv eyebrow">The series</span>
-  <h2 class="display">One chess country per book.</h2>
-  <p class="lead">Same rules everywhere, a new palace, new suspects, and one chess rule that turns into a plot: promotion hides an impostor, a discovered check needs an accomplice. Each book stands alone.</p>
+  <h2 class="display">One chess country per book. One chess rule per crime.</h2>
+  <p class="lead">Same rules everywhere, a new palace, new suspects, and one chess rule that turns into a plot: promotion hides an impostor, a discovered check needs an accomplice, castling makes the perfect alibi. Each book stands alone.</p>
   <div class="mmseries">%s</div>
 </div></section>
 """ % (lv, se)
