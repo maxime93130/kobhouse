@@ -539,7 +539,8 @@ MM_CSS = """
 .coll .mono{font-size:11px;color:var(--a)}
 .coll b{font-family:'Anton',Impact,sans-serif;font-size:32px;text-transform:uppercase;line-height:1;font-weight:400}
 .coll>span:not(.mono):not(.tag){font-weight:700;font-size:15px}
-.coll .tag{align-self:flex-start;margin-top:4px}
+.coll .tag{align-self:flex-start;margin-top:4px;display:inline-flex;align-items:center;gap:8px}
+.coll .tag svg{width:14px;height:14px}
 .colband{background:var(--c);color:#fff;border-top:4px solid #000;border-bottom:4px solid #000;padding:34px 0 30px}
 .colband .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 .colband .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--a);flex-basis:100%;margin-bottom:-12px}
@@ -672,23 +673,24 @@ def hub():
 <div class="twist"><span class="tag inv">Tokyo</span><h3>The train is a witness</h3><p>The Yamanote loop circles the city with 30 stations. Witnesses tell you how far someone rode, clockwise or against the clock, and the loop closes in on the killer.</p></div>
 <div class="twist"><span class="tag inv">New York</span><h3>Count the blocks</h3><p>Manhattan on a lettered grid, avenues straight up the page. Witnesses tell you how far they walked, up, down or across, never diagonally.</p></div>"""
     fan = ''.join('<img src="/assets/murdermate/%s-sm.png" width="400" height="600" alt="%s cover">' % (k, t) for k, t in
-                  [('covers/uzbekistan', 'Murder Mate: Uzbekistan'), ('covers/persia', 'Murder Mate: Persia'), ('covers/india', 'Murder Mate: India')])
+                  [('../paris/cover', 'Murder Map: Paris'), ('../newyork/cover', 'Murder Map: New York'), ('covers/india', 'Murder Mate: India')]).replace('/assets/murdermate/../', '/assets/')
     why = WHY_HTML.replace('<span class="tag inv eyebrow">Why it works</span>', '<span class="tag inv eyebrow">Murder Map · Why it works</span>')
     body = """
-<section class="hero" style="background:#0F7B5F;color:#fff;--acc:#CDB8F5"><div class="wrap">
+<section class="hero"><div class="wrap">
   <div>
-    <div class="stamp">Kob House · New collection</div>
-    <h1 class="display khtitle" style="color:#fff">Murder Mate. <span style="color:#CDB8F5">The weapon is a checkmate.</span></h1>
-    <p class="lead" style="color:#fff">Chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. Several of them could have delivered mate. The witnesses say only one did.</p>
-    <div class="tags"><span class="tag">Book 1: India · October 2026</span><span class="tag">40 cases</span><span class="tag">Mate in 1 to 3</span></div>
-    <div class="mmcta"><a class="btn light" href="/murder-mate/">%s Discover Murder Mate</a><a class="btn ghost" href="/mm/1/01/">Play case 01</a></div>
-    <a class="alsocoll" href="#murder-map"><span class="mono">Also from Kob House</span> <b>Murder Map</b> <span>Deduction in real cities · 3 books</span> %s</a>
+    <div class="stamp">Kob House · Puzzle books</div>
+    <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
+    <p class="lead">Two collections of paper murder cases: one on a chessboard, one in real cities. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
+    <div class="collections">
+      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">New collection · October 2026</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Coming soon %s</span></a>
+      <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">3 books · Paris, Tokyo, New York</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now %s</span></a>
+    </div>
   </div>
   <div class="fan">%s</div>
 </div></section>
 %s
 <div id="murder-map" class="colband" style="--c:#1F6BED;--a:#F4FF1E"><div class="wrap">
-  <span class="mono">Also from Kob House · Out now</span>
+  <span class="mono">Out now · 3 cities</span>
   <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
   <p>A real city, three crime scenes. <b>Cross out the city</b> until one door is left.</p>
 </div></div>

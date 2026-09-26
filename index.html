@@ -200,7 +200,8 @@ footer a{color:#fff}
 .coll .mono{font-size:11px;color:var(--a)}
 .coll b{font-family:'Anton',Impact,sans-serif;font-size:32px;text-transform:uppercase;line-height:1;font-weight:400}
 .coll>span:not(.mono):not(.tag){font-weight:700;font-size:15px}
-.coll .tag{align-self:flex-start;margin-top:4px}
+.coll .tag{align-self:flex-start;margin-top:4px;display:inline-flex;align-items:center;gap:8px}
+.coll .tag svg{width:14px;height:14px}
 .colband{background:var(--c);color:#fff;border-top:4px solid #000;border-bottom:4px solid #000;padding:34px 0 30px}
 .colband .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 .colband .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--a);flex-basis:100%;margin-bottom:-12px}
@@ -236,16 +237,17 @@ footer a{color:#fff}
 <body>
 <header><div class="wrap"><nav><a class="logo" href="/" aria-label="Kob House"><span class="k">K<svg viewBox="0 0 120 100" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="26" r="22"/><circle cx="86" cy="26" r="22"/><path d="M6 46 Q60 14 114 46 L114 66 Q114 96 60 96 Q6 96 6 66 Z"/></g><g fill="#fff"><circle cx="34" cy="26" r="11"/><circle cx="86" cy="26" r="11"/></g><g fill="currentColor"><circle cx="38" cy="28" r="6"/><circle cx="90" cy="28" r="6"/></g><path d="M28 70 Q60 92 92 70" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></svg>B</span><span class="h">HOUSE</span></a><ul><li><a href="/#murder-mate">Murder Mate</a></li><li><a href="/mm/1/01/">Try a case</a></li><li><a href="/#murder-map">Murder Map</a></li><li><a href="/#about">Kob House</a></li></ul></nav></div></header>
 
-<section class="hero" style="background:#0F7B5F;color:#fff;--acc:#CDB8F5"><div class="wrap">
+<section class="hero"><div class="wrap">
   <div>
-    <div class="stamp">Kob House · New collection</div>
-    <h1 class="display khtitle" style="color:#fff">Murder Mate. <span style="color:#CDB8F5">The weapon is a checkmate.</span></h1>
-    <p class="lead" style="color:#fff">Chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. Several of them could have delivered mate. The witnesses say only one did.</p>
-    <div class="tags"><span class="tag">Book 1: India · October 2026</span><span class="tag">40 cases</span><span class="tag">Mate in 1 to 3</span></div>
-    <div class="mmcta"><a class="btn light" href="/murder-mate/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg> Discover Murder Mate</a><a class="btn ghost" href="/mm/1/01/">Play case 01</a></div>
-    <a class="alsocoll" href="#murder-map"><span class="mono">Also from Kob House</span> <b>Murder Map</b> <span>Deduction in real cities · 3 books</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></a>
+    <div class="stamp">Kob House · Puzzle books</div>
+    <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
+    <p class="lead">Two collections of paper murder cases: one on a chessboard, one in real cities. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
+    <div class="collections">
+      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">New collection · October 2026</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Coming soon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span></a>
+      <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">3 books · Paris, Tokyo, New York</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></span></a>
+    </div>
   </div>
-  <div class="fan"><img src="/assets/murdermate/covers/uzbekistan-sm.png" width="400" height="600" alt="Murder Mate: Uzbekistan cover"><img src="/assets/murdermate/covers/persia-sm.png" width="400" height="600" alt="Murder Mate: Persia cover"><img src="/assets/murdermate/covers/india-sm.png" width="400" height="600" alt="Murder Mate: India cover"></div>
+  <div class="fan"><img src="/assets/paris/cover-sm.png" width="400" height="600" alt="Murder Map: Paris cover"><img src="/assets/newyork/cover-sm.png" width="400" height="600" alt="Murder Map: New York cover"><img src="/assets/murdermate/covers/india-sm.png" width="400" height="600" alt="Murder Mate: India cover"></div>
 </div></section>
 
 <div id="murder-mate" class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
@@ -286,7 +288,7 @@ footer a{color:#fff}
 </div></section>
 
 <div id="murder-map" class="colband" style="--c:#1F6BED;--a:#F4FF1E"><div class="wrap">
-  <span class="mono">Also from Kob House · Out now</span>
+  <span class="mono">Out now · 3 cities</span>
   <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
   <p>A real city, three crime scenes. <b>Cross out the city</b> until one door is left.</p>
 </div></div>
