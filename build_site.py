@@ -764,4 +764,42 @@ open(H + '/.nojekyll', 'w').write('')
 open(H + '/robots.txt', 'w').write('User-agent: *\nAllow: /\nSitemap: https://kobhouse.com/sitemap.xml\n')
 urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
 open(H + '/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % ''.join('<url><loc>%s</loc></url>' % u for u in urls))
+# ------------------------------------------------------------------ review page (kobhouse.com/review, printed in the books)
+REVIEW_JS = """
+function reviewUrl(asin,host){return "https://www."+(host||market())+"/review/create-review?asin="+asin;}
+document.querySelectorAll("[data-review]").forEach(function(a){
+  var h=a.getAttribute("data-review"), asin=a.getAttribute("data-asin");
+  a.href=reviewUrl(asin,h==="auto"?null:h); a.target="_blank"; a.rel="noopener";
+  if(h==="auto"){var s=a.querySelector(".mk"); if(s)s.textContent=market().replace("amazon","Amazon");}
+});
+"""
+REVIEW_CARD = '<div class="rev-card"><img src="%s" alt="%s cover" loading="lazy"><div><h3>%s</h3><a class="btn light" data-review="auto" data-asin="%s" href="#">Review on <span class="mk">Amazon</span></a><p class="mono rev-stores">Other stores: %s</p></div></div>'
+def review_page():
+    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png')] + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
+    cards = ''
+    for name, asin, img in books:
+        others = ' · '.join('<a data-review="%s" data-asin="%s" href="#">%s</a>' % (h, asin, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
+        cards += REVIEW_CARD % (img, name, name, asin, others)
+    body = """
+<section class="review"><div class="wrap">
+  <span class="tag inv eyebrow">Case closed</span>
+  <h1 class="display">Enjoyed the case?</h1>
+  <p class="lead">Kob House is a small independent puzzle studio. A short, honest review on Amazon is the best way to help other detectives find our books. Pick yours below: the link opens Amazon's review form directly. Good, bad or grumpy, we read every single one.</p>
+  <div class="rev-grid">%s</div>
+  <p class="mono rev-foot">No spoilers needed · Something wrong with your copy? Write to contact@kobhouse.com</p>
+</div></section>
+""" % cards
+    return page('Leave a review · Kob House', 'Leave an honest review of your Kob House puzzle book on Amazon.', body, BRAND_BG, BRAND_ACC, '/review/', '/assets/murdermate/cover.png', HUB_NAV, REVIEW_JS)
+REVIEW_CSS = """
+.review{padding:64px 0 88px}.review .lead{max-width:62ch}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:36px}
+.rev-card{display:flex;gap:16px;align-items:flex-start;background:#fff;border:3px solid #111;box-shadow:6px 6px 0 #111;padding:16px}
+.rev-card img{width:84px;height:auto;border:2px solid #111;flex:none}
+.rev-card h3{margin:0 0 10px;font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:20px;line-height:1.1}
+.rev-stores{font-size:11px;margin-top:10px;opacity:.8}.rev-stores a{color:inherit}
+.rev-foot{margin-top:32px;font-size:12px}
+"""
+os.makedirs(os.path.join(H, 'review'), exist_ok=True)
+open(os.path.join(H, 'review', 'index.html'), 'w').write(review_page().replace('</style>', REVIEW_CSS + '</style>', 1))
+
 print('ok')
