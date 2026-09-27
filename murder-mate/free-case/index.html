@@ -154,14 +154,14 @@ details.rules p{margin:0 0 8px}
   <div class="fb" id="fb"></div>
   <div class="hints" id="hints" data-h='[&quot;Start with the board, not the witnesses. Find every white piece that can mate in one move. There are four.&quot;, &quot;Each testimony clears exactly one suspect. Take them one at a time.&quot;, &quot;Careful with Lady Devika: she has two different mates, in two different rooms. Only one of them fits.&quot;]'></div>
 </div>
-<div class="win" id="win"><h2>Case closed.</h2><p style="margin:0;font-weight:700">Lady Devika, in the Monsoon Courtyard, with a queen's mate. That was the easiest case in the house. The book has forty more, up to mate in three with a lying witness.</p><a class="btn" href="/murder-mate/">See Murder Mate: India <small>October 2026</small></a></div>
+<div class="win" id="win"><h2>Case closed.</h2><p style="margin:0;font-weight:700">Lady Devika, in the Monsoon Courtyard, with a queen's mate. That was the easiest case in the house. The book has forty more, up to mate in three with a lying witness.</p><a class="btn" data-amz href="https://www.amazon.com/dp/B0HL6LYHMQ">Get Murder Mate: India <small>on Amazon</small></a></div>
 <div class="card sol" id="sol"><h2>The solution</h2><p>Four guests can give mate in one. The testimonies clear them one at a time.</p><p><b>Captain Arjun</b> has only Rxa4#, and a4 is in the Durbar Hall, where nobody set foot.</p><p><b>Dr Hale</b> has only Be7#, which never leaves the Mirror Hall. Then nobody would have gone through the Courtyard.</p><p><b>Mr Irani</b> could play Nb5# or Nc2#, but both take him out of the Durbar Hall, and he never left it.</p><p>That leaves <b>Lady Devika</b>, who had two ways to do it. Qxa4# crosses the Durbar Hall, so it is ruled out. <b>Qc5#</b> lands in the <b>Monsoon Courtyard</b>. The queen does not touch the king from c5, so it is not a kiss: it is a plain <b>Queen's mate</b>.</p></div>
 </div>
 </div>
 <div class="cta"><img src="/assets/murdermate/covers/india-sm.png" width="400" height="600" alt="Murder Mate: India cover" loading="lazy"><div>
   <h2>40 more cases in Murder Mate: India</h2>
-  <p>Udaipur, 1932. Four levels, from your first mate to mate in three with a lying witness. A QR code on every case sets the board up on your phone. Paperback, October 2026.</p>
-  <a class="btn light" href="/murder-mate/">Discover the book <small>&rarr;</small></a>
+  <p>Udaipur, 1932. Four levels, from your first mate to mate in three with a lying witness. A QR code on every case sets the board up on your phone. Paperback, out now on Amazon.</p>
+  <a class="btn light" data-amz href="https://www.amazon.com/dp/B0HL6LYHMQ">Buy on Amazon <small>&rarr;</small></a><a class="btn" href="/murder-mate/" style="box-shadow:none;border-color:#fff">Discover the book <small>&rarr;</small></a>
 </div></div>
 </div>
 <footer><div class="wrap">Murder Mate is a puzzle book collection by <a href="/">Kob House</a>. This case is a free sample and does not appear in the book.</div></footer>
@@ -277,6 +277,7 @@ document.getElementById('hintbtn').onclick = () => {
   if (hintN >= HINTS.length) { document.getElementById('hintbtn').hidden = true; document.getElementById('revealbtn').hidden = false; }
 };
 document.getElementById('revealbtn').onclick = reveal;
-</script>
+
+(function(){var l=(navigator.language||"en").toLowerCase(),m={fr:"amazon.fr",de:"amazon.de",es:"amazon.es",it:"amazon.it",nl:"amazon.nl",ja:"amazon.co.jp"},h=(l==="en-gb"||l==="en-ie")?"amazon.co.uk":(l==="en-ca"?"amazon.ca":(l==="en-au"?"amazon.com.au":(m[l.split("-")[0]]||"amazon.com")));document.querySelectorAll("[data-amz]").forEach(function(a){a.href="https://www."+h+"/dp/B0HL6LYHMQ"})})();</script>
 </body>
 </html>

@@ -57,7 +57,7 @@ BOOKS = [
       pages_list=[('page-case', 'Case opener'), ('page-map', 'The map'), ('page-twist', 'The loop'), ('page-statements', 'Witness statements')],
       card_blurb='Three case files in an unclaimed umbrella. Twenty-three wards, one loop line, and a station that is not on the map.'),
  dict(key='newyork', slug='new-york', city='New York', bg='#FBBA16', acc='#F7F1E1', dark_on_acc=True,
-      asin=None, status='soon', pages=185, addresses='17,280', statements='49',
+      asin='B0HL6TNCSW', status='out', pages=185, addresses='17,280', statements='49',
       subtitle='A Deduction Puzzle Book for Adults: 3 Murder Cases, 17,280 Manhattan Addresses, One Grid to Walk',
       unit='neighborhoods', unit_n='24', street_n='144', num_word='house numbers',
       hero_tags=['3 cases', '24 real neighborhoods', 'The grid twist', 'One solution'],
@@ -457,7 +457,9 @@ def book_page(b):
 # ------------------------------------------------------------------ hub
 # ------------------------------------------------------------------ Murder Mate (next collection, coming soon)
 MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
-MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'October 2026'),
+MM_ASIN = 'B0HL6LYHMQ'
+MM_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate India Kob House" href="#">%%s Buy on <span class="mk">Amazon</span></a>' % MM_ASIN
+MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Out now'),
              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Early 2027'),
              ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', '2027'),
              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
@@ -475,7 +477,7 @@ MM_STEPS = '''  <div class="steps">
 
 MURDER_MATE_HUB = """
 <div id="murder-mate" class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
-  <span class="mono">New collection · Book 1 in October 2026</span>
+  <span class="mono">New collection · Book 1 out now</span>
   <div class="mmate"><span class="w">Murder</span> <span class="l">Mate</span></div>
   <p>Chess murder mysteries. <b>The board is the crime scene.</b></p>
 </div></div>
@@ -489,7 +491,7 @@ MURDER_MATE_HUB = """
     <div class="pg"><img src="/assets/murdermate/page-case-left.png" width="800" height="1200" alt="Case 01, left page: story and board" loading="lazy"></div>
     <div class="pg"><img src="/assets/murdermate/page-case-right.png" width="800" height="1200" alt="Case 01, right page: suspects, testimonies and verdict" loading="lazy"></div>
   </div>
-  <div class="mmcta"><a class="btn" href="/murder-mate/">%s Inside a case</a><a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
+  <div class="mmcta">@@MMBUY@@<a class="btn" href="/murder-mate/">%s Inside a case</a><a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
 </div></section>
 
 <section id="mate-levels"><div class="wrap">
@@ -557,6 +559,7 @@ MM_CSS = """
 .mmhub{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:center}
 .mmcov img{border:3px solid #000;box-shadow:12px 12px 0 #000;transform:rotate(-2deg)}
 .mmcta{display:flex;flex-wrap:wrap;gap:16px;margin-top:28px}
+.mmstores{margin-top:16px;font-weight:700;font-size:14px}.mmstores a{color:inherit;margin-right:10px}
 .mmlevels{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
 .mmlevel{background:#CDB8F5;color:#000;border:3px solid #000;box-shadow:8px 8px 0 #000;padding:20px}
 .mmlevel .k{font-size:26px;letter-spacing:2px;font-family:'DejaVu Sans','Segoe UI Symbol',sans-serif}
@@ -587,11 +590,12 @@ def murder_mate_page():
 <section class="hero" style="background:#0F7B5F;color:#fff"><div class="wrap mmhub">
   <div class="mmcov"><img src="/assets/murdermate/cover.png" width="1000" height="1500" alt="Murder Mate: India cover"></div>
   <div>
-    <span class="tag">Coming soon · October 2026</span>
+    <span class="tag">Out now · Paperback on Amazon</span>
     <h1 class="display" style="color:#fff;font-size:clamp(48px,8vw,96px);margin:18px 0 10px">Murder Mate: <span style="color:#CDB8F5">India</span></h1>
     <p class="lead" style="color:#fff">Udaipur, 1932. The monsoon has cut the palace off from the world, the telephone line is down, and guests keep dying at a rate of roughly one per evening. Inspector Rao of the Bombay police was only supposed to stay for the weekend.</p>
     <div class="tags"><span class="tag">40 cases</span><span class="tag">From your first mate to 1800+</span><span class="tag">Full solutions</span><span class="tag">Any board or app</span></div>
-    <div class="mmcta"><a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
+    <div class="mmcta">@@MMBUY@@<a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
+    <div class="mmstores">Also on @@MMSTORES@@</div>
   </div>
 </div></section>
 
@@ -661,7 +665,7 @@ def murder_mate_page():
 """ % (MM_STEPS, lv, se)
     nav = [('/', 'Kob House', False), ('#how', 'How it works', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('#series', 'The series', False), ('/murder-mate/free-case/', 'Free case', False)]
     return page('Murder Mate: India · Chess murder mysteries · Kob House',
-                'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Coming soon from Kob House.',
+                'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Out now on Amazon.',
                 body, MM_BG, MM_ACC, '/murder-mate/', '/assets/murdermate/cover.png', nav)
 
 def hub():
@@ -685,7 +689,7 @@ def hub():
     <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
     <p class="lead">Two collections of paper murder cases: one on a chessboard, one in real cities. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
     <div class="collections">
-      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">New collection · October 2026</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Coming soon %s</span></a>
+      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">New collection · Out now</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Out now %s</span></a>
       <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">3 books · Paris, Tokyo, New York</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now %s</span></a>
     </div>
     <div class="freecase"><a class="btn" href="/murder-mate/free-case/" style="--acc:#0F7B5F">%s Play a free case</a><span>A Murder Mate mystery you can solve right here, in your browser. Five minutes, no book needed.</span></div>
@@ -694,7 +698,7 @@ def hub():
 </div></section>
 %s
 <div id="murder-map" class="colband" style="--c:#1F6BED;--a:#F4FF1E"><div class="wrap">
-  <span class="mono">Out now · 3 cities</span>
+  <span class="mono">Out now · Paris and New York · Tokyo soon</span>
   <div class="mm"><span class="m1">Murder</span><span class="m2">Map</span></div>
   <p>A real city, three crime scenes. <b>Cross out the city</b> until one door is left.</p>
 </div></div>
@@ -733,7 +737,7 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a class="soon" href="/murder-mate/">Murder Mate · India · soon</a><a href="/paris/">Murder Map · Paris</a><a class="soon" href="/tokyo/">Tokyo · soon</a><a class="soon" href="/new-york/">New York · soon</a></div>
+    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
   </div>
 </div></section>
 """ % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
@@ -744,12 +748,15 @@ def hub():
 exec(open(D + '/_legal.txt').read())
 exec(open(D + '/_favicon.txt').read())
 
-open(H + '/index.html', 'w').write(hub())
+def _mm(html):
+    stores = ' · '.join('<a data-amazon="%s" data-asin="%s" href="#">%s</a>' % (h, MM_ASIN, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
+    return html.replace('@@MMBUY@@', MM_BUY % CART).replace('@@MMSTORES@@', stores)
+open(H + '/index.html', 'w').write(_mm(hub()))
 for b in BOOKS:
     os.makedirs(os.path.join(H, b['slug']), exist_ok=True)
     open(os.path.join(H, b['slug'], 'index.html'), 'w').write(book_page(b))
 os.makedirs(os.path.join(H, 'murder-mate'), exist_ok=True)
-open(os.path.join(H, 'murder-mate', 'index.html'), 'w').write(murder_mate_page())
+open(os.path.join(H, 'murder-mate', 'index.html'), 'w').write(_mm(murder_mate_page()))
 open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, BRAND_BG, BRAND_ACC, '/legal.html', '/assets/paris/cover.png', HUB_NAV))
 open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
