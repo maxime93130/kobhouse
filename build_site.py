@@ -802,4 +802,57 @@ REVIEW_CSS = """
 os.makedirs(os.path.join(H, 'review'), exist_ok=True)
 open(os.path.join(H, 'review', 'index.html'), 'w').write(review_page().replace('</style>', REVIEW_CSS + '</style>', 1))
 
+# ------------------------------------------------------------------ newsletter (Kit form 9972588)
+KIT_FORM = 'https://app.kit.com/forms/9972588/subscriptions'
+SIGNUP_HTML = '''<section class="kh-sign" id="newsletter"><div class="kh-sign-in">
+<div class="kh-sign-txt"><span class="kh-sign-k">The Casebook</span><h2>One free case a month.</h2><p>A new online mystery every month, plus first word on every new Kob House book. No spam, exactly one solution.</p></div>
+<form class="kh-sign-f" action="''' + KIT_FORM + '''" method="post" data-sv-form="9972588"><label class="kh-sr" for="kh-email">Email address</label><input id="kh-email" type="email" name="email_address" placeholder="your@email.com" required autocomplete="email"><button type="submit">Join the casebook</button><small>Unsubscribe in one click. We never share your address.</small></form>
+</div></section>'''
+SIGNUP_CSS = '''<style>
+.kh-sign{background:#EFE8D6;border-top:3px solid #000;border-bottom:3px solid #000;padding:56px 20px;font-family:'Nunito',system-ui,sans-serif;color:#000}
+.kh-sign-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+.kh-sign-k{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;background:#000;color:#EFE8D6;padding:5px 9px}
+.kh-sign h2{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5vw,56px);line-height:1;margin:14px 0 10px}
+.kh-sign p{margin:0;font-size:18px;max-width:46ch}
+.kh-sign-f{display:grid;grid-template-columns:1fr auto;gap:12px}
+.kh-sign-f input{font:inherit;font-size:18px;padding:16px;border:3px solid #000;background:#fff;min-width:0}
+.kh-sign-f input:focus{outline:3px solid #D8261C;outline-offset:2px}
+.kh-sign-f button{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:1px;background:#D8261C;color:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:14px 22px;cursor:pointer}
+.kh-sign-f button:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #000}
+.kh-sign-f small{grid-column:1/-1;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;opacity:.75}
+.kh-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:760px){.kh-sign-in{grid-template-columns:1fr}.kh-sign-f{grid-template-columns:1fr}}
+</style>'''
+SIGNUP = SIGNUP_CSS + SIGNUP_HTML
+
+def simple_page(slug, title, eyebrow, h1, body_html):
+    body = """
+<section class="review"><div class="wrap">
+  <span class="tag inv eyebrow">%s</span>
+  <h1 class="display">%s</h1>
+  %s
+</div></section>
+""" % (eyebrow, h1, body_html)
+    os.makedirs(os.path.join(H, slug), exist_ok=True)
+    html = page(title, title, body, BRAND_BG, BRAND_ACC, '/%s/' % slug, '/assets/murdermate/cover.png', HUB_NAV)
+    html = html.replace('</style>', REVIEW_CSS + '</style>', 1).replace('<head>', '<head>\n<meta name="robots" content="noindex">', 1)
+    open(os.path.join(H, slug, 'index.html'), 'w').write(html)
+
+simple_page('subscribed', 'Check your inbox · Kob House', 'One more step', 'Check your inbox.',
+ '<p class="lead">We just sent you an email. Click the button inside to confirm, and the casebook is yours. Nothing there? Look in your spam or promotions folder.</p><div class="mmcta" style="margin-top:28px"><a class="btn" href="/murder-mate/free-case/">Play the free case while you wait</a></div>')
+simple_page('welcome', 'Welcome to the casebook · Kob House', 'Case accepted', 'Welcome, detective.',
+ '<p class="lead">You are in. A new free case lands in your inbox every month, and you will hear about new Kob House books before anyone else.</p><div class="mmcta" style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap"><a class="btn" href="/murder-mate/free-case/">Play the free case now</a><a class="btn light" href="/review/">Already solved one of our books? Leave a review</a></div>')
+
+# add the signup block to every public page except utility pages
+import glob
+for f in glob.glob(H + '/**/index.html', recursive=True):
+    rel = os.path.relpath(f, H)
+    if rel.split(os.sep)[0] in ('subscribed', 'welcome', 'review', 'mm', '_preview', '_to_delete_v2'):
+        continue
+    s = open(f).read()
+    if 'kh-sign' in s or '<footer' not in s:
+        continue
+    s = s.replace('<footer', SIGNUP + '\n<footer', 1)
+    open(f, 'w').write(s)
+
 print('ok')
