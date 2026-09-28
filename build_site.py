@@ -312,6 +312,7 @@ def page(title, desc, body, bg, acc, url, image, nav_items, extra_js=''):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="p:domain_verify" content="642a9564402301ca5132151ce8c2a4a5"/>
 <title>%s</title>
 <meta name="description" content="%s">
 <meta property="og:title" content="%s">
