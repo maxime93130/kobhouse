@@ -461,14 +461,20 @@ MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
 MM_ASIN = 'B0HL6LYHMQ'
 MM_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate India Kob House" href="#">%%s Buy on <span class="mk">Amazon</span></a>' % MM_ASIN
 MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Out now'),
-             ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Early 2027'),
+             ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Out now'),
              ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', '2027'),
              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
              ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
              ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
-MM_SERIES_HTML = ''.join('<figure class="mmvol"><img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy"><figcaption><b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span></figcaption></figure>' % (k, n, n, c, t, w) for k, n, c, t, w in MM_SERIES)
+MM_ASINS = {'india': MM_ASIN, 'uzbekistan': 'B0HLXFT9VK'}
+def _mmvol(k, n, c, t, w):
+    cap = '<b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span>' % (n, c, t, w)
+    if k in MM_ASINS:
+        cap += '<a class="mmbuy" data-amazon="auto" data-asin="%s" data-q="Murder Mate %s Kob House" href="#">Buy on Amazon &rarr;</a>' % (MM_ASINS[k], n)
+    return '<figure class="mmvol"><img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy"><figcaption>%s</figcaption></figure>' % (k, n, cap)
+MM_SERIES_HTML = ''.join(_mmvol(*v) for v in MM_SERIES)
 MM_STEPS = '''  <div class="steps">
     <div class="step"><div class="n">1</div><h3>Set up the board</h3><p>On a real chessboard, or scan the QR code on the case: the position opens on your phone, ready to play, with no engine.</p></div>
     <div class="step"><div class="n">2</div><h3>Find every mate</h3><p>Only one white piece moves, whatever Black tries. Several suspects can still pull it off. List them all.</p></div>
@@ -478,7 +484,7 @@ MM_STEPS = '''  <div class="steps">
 
 MURDER_MATE_HUB = """
 <div id="murder-mate" class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
-  <span class="mono">New collection · Book 1 out now</span>
+  <span class="mono">New collection · India and Uzbekistan out now</span>
   <div class="mmate"><span class="w">Murder</span> <span class="l">Mate</span></div>
   <p>Chess murder mysteries. <b>The board is the crime scene.</b></p>
 </div></div>
@@ -574,6 +580,8 @@ MM_CSS = """
 .mmvol span{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
 .mmvol em{font-style:normal;font-weight:700;font-size:15px}
 .mmvol .when{color:#CDB8F5}
+.mmvol .mmbuy{align-self:flex-start;margin-top:8px;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:#CDB8F5;color:#000;border:3px solid #000;box-shadow:4px 4px 0 #000;padding:6px 10px;text-decoration:none}
+.mmvol .mmbuy:hover{transform:translate(-2px,-2px)}
 .mmc{border:3px solid #000;padding:14px 16px;color:#fff;box-shadow:6px 6px 0 #000}
 .mmc b{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;display:block;line-height:1}
 .mmc span{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase}
@@ -690,7 +698,7 @@ def hub():
     <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
     <p class="lead">Two collections of paper murder cases: one on a chessboard, one in real cities. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
     <div class="collections">
-      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">New collection · Out now</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Out now %s</span></a>
+      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">2 books · India, Uzbekistan</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Out now %s</span></a>
       <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">3 books · Paris, Tokyo, New York</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now %s</span></a>
     </div>
     <div class="freecase"><a class="btn" href="/murder-mate/free-case/" style="--acc:#0F7B5F">%s Play a free case</a><span>A Murder Mate mystery you can solve right here, in your browser. Five minutes, no book needed.</span></div>
@@ -738,7 +746,7 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
+    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/#series">Uzbekistan</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
   </div>
 </div></section>
 """ % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
@@ -776,7 +784,7 @@ document.querySelectorAll("[data-review]").forEach(function(a){
 """
 REVIEW_CARD = '<div class="rev-card"><img src="%s" alt="%s cover" loading="lazy"><div><h3>%s</h3><a class="btn light" data-review="auto" data-asin="%s" href="#">Review on <span class="mk">Amazon</span></a><p class="mono rev-stores">Other stores: %s</p></div></div>'
 def review_page():
-    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png')] + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
+    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png'), ('Murder Mate: Uzbekistan', 'B0HLXFT9VK', '/assets/murdermate/covers/uzbekistan-sm.png')] + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
     cards = ''
     for name, asin, img in books:
         others = ' · '.join('<a data-review="%s" data-asin="%s" href="#">%s</a>' % (h, asin, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
