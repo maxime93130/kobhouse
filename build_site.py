@@ -462,18 +462,24 @@ MM_ASIN = 'B0HL6LYHMQ'
 MM_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate India Kob House" href="#">%%s Buy on <span class="mk">Amazon</span></a>' % MM_ASIN
 MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Out now'),
              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Out now'),
-             ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', '2027'),
+             ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', 'Coming in October'),
              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
              ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
              ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
-MM_ASINS = {'india': MM_ASIN, 'uzbekistan': 'B0HLXFT9VK'}
+UZ_ASIN = 'B0HLXFT9VK'
+MM_ASINS = {'india': MM_ASIN, 'uzbekistan': UZ_ASIN}
+MM_PAGES = {'india': '/murder-mate/', 'uzbekistan': '/murder-mate/uzbekistan/'}
 def _mmvol(k, n, c, t, w):
     cap = '<b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span>' % (n, c, t, w)
     if k in MM_ASINS:
         cap += '<a class="mmbuy" data-amazon="auto" data-asin="%s" data-q="Murder Mate %s Kob House" href="#">Buy on Amazon &rarr;</a>' % (MM_ASINS[k], n)
-    return '<figure class="mmvol"><img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy"><figcaption>%s</figcaption></figure>' % (k, n, cap)
+    img = '<img src="/assets/murdermate/covers/%s-sm.png" width="400" height="600" alt="Murder Mate: %s cover" loading="lazy">' % (k, n)
+    if k in MM_PAGES:
+        img = '<a href="%s">%s</a>' % (MM_PAGES[k], img)
+        cap = cap.replace('<b>%s</b>' % n, '<b><a href="%s" style="color:inherit;text-decoration:none">%s</a></b>' % (MM_PAGES[k], n), 1)
+    return '<figure class="mmvol">%s<figcaption>%s</figcaption></figure>' % (img, cap)
 MM_SERIES_HTML = ''.join(_mmvol(*v) for v in MM_SERIES)
 MM_STEPS = '''  <div class="steps">
     <div class="step"><div class="n">1</div><h3>Set up the board</h3><p>On a real chessboard, or scan the QR code on the case: the position opens on your phone, ready to play, with no engine.</p></div>
@@ -677,6 +683,96 @@ def murder_mate_page():
                 'Murder Mate: chess murder mysteries. The board is the crime scene, the black king is the victim, every white piece is a suspect. 40 cases, from your first mate to 1800+. Out now on Amazon.',
                 body, MM_BG, MM_ACC, '/murder-mate/', '/assets/murdermate/cover.png', nav)
 
+UZ_BG, UZ_ACC, UZ_SHADE = '#0E6E8C', '#F6C28B', '#0A5068'
+UZ_CSS = """<style>
+.uz .rule,.uz .mmlevel{background:#F6C28B}
+.uz .mmvol .when{color:#F6C28B}
+.uz .mmvol .mmbuy{background:#F6C28B}
+.uzfig{margin:36px 0 0;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#0E6E8C}
+.uzfig img{width:100%;height:auto;display:block}
+.uzcast{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+.uzcast div{background:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:16px;color:#000}
+.uzcast .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#0A5068}
+.uzcast h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;margin:6px 0 0;line-height:1.05;font-weight:400}
+.uzrooms{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+@media(max-width:860px){.uzcast{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.uzcast{grid-template-columns:1fr}}
+</style>"""
+UZ_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate Uzbekistan Kob House" href="#">%s Buy on <span class="mk">Amazon</span></a>' % (UZ_ASIN, CART)
+UZ_STORES = ' · '.join('<a data-amazon="%s" data-asin="%s" href="#">%s</a>' % (h, UZ_ASIN, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
+
+def uzbekistan_page():
+    levels = [(1, 'Rookie', 'Mate in one. The impostor may already be on the board.', 'Cases 01-08 · 5-10 min'),
+              (2, 'Detective', 'Mate in two, and the first move is rarely a check.', 'Cases 09-20 · 15-30 min'),
+              (3, 'Chief Inspector', 'At least three suspects can kill, and one witness is lying.', 'Cases 21-33 · 25-35 min'),
+              (4, 'Commissioner', 'Mate in three. One liar. Loyalty is the first thing to go.', 'Cases 34-40 · 30-40 min')]
+    lv = ''.join('<div class="mmlevel"><div class="k">%s</div><h3>%s</h3><p>%s</p><span class="mono">%s</span></div>' % ('&#x265A;&#xFE0E;' * n, t, d, m) for n, t, d, m in levels)
+    cast = [('Queen', 'Princess Gulbahor'), ('Queen', 'Khanum Nodira'), ('Rook', 'Amir Bahrom'), ('Rook', 'Don Rodrigo de Alba'),
+            ('Bishop', 'Mavlono Sadriddin'), ('Bishop', 'Master Hasan of Tabriz'), ('Knight', 'Yusuf of Herat'), ('Knight', 'Signor Niccolo Spinola')]
+    cs = ''.join('<div><span class="mono">%s</span><h3>%s</h3></div>' % c for c in cast)
+    rooms = ['Tile Workshop', 'Blue Hall', 'Minaret', 'Pomegranate Garden', 'Treasury Vault', 'Mosque Scaffolds', 'Bread Ovens', 'Camel Yard']
+    rm = ''.join('<span class="tag">%s</span>' % r for r in rooms)
+    body = UZ_CSS + """
+<div class="uz">
+<section class="hero" style="background:#0E6E8C;color:#fff"><div class="wrap mmhub">
+  <div class="mmcov"><img src="/assets/murdermate/covers/uzbekistan.png" width="1000" height="1500" alt="Murder Mate: Uzbekistan cover"></div>
+  <div>
+    <span class="tag">Out now · Paperback on Amazon</span>
+    <h1 class="display" style="color:#fff;font-size:clamp(44px,7.4vw,90px);margin:18px 0 10px">Murder Mate: <span style="color:#F6C28B">Uzbekistan</span></h1>
+    <p class="lead" style="color:#fff">Samarkand, 1403. The Emir has ridden to war and left behind a garden palace, a treasury and a mosque still in scaffolding. Muhtasib Karim, inspector of the markets, was asked to keep order until he returns. Then the guards started lying, and one of them was never a guard at all.</p>
+    <div class="tags"><span class="tag">40 cases</span><span class="tag">The impostor pawn</span><span class="tag">From your first mate to 1800+</span><span class="tag">Full solutions</span></div>
+    <div class="mmcta">@@UZBUY@@<a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
+    <div class="mmstores">Also on @@UZSTORES@@</div>
+  </div>
+</div></section>
+
+<section id="twist" class="paper"><div class="wrap">
+  <span class="tag inv eyebrow">The twist · Promotion</span>
+  <h2 class="display">One of the guards is a suspect.</h2>
+  <p class="lead">Same rules as every Murder Mate: one white piece gives mate, the witnesses tell you which. In Samarkand, the palace guards have a secret.</p>
+  <div class="rules3">
+    <div class="rule"><h3>Guards never kill</h3><p>The white pawns are the palace guards. They stand still, they block, they protect. They never deliver the mate.</p></div>
+    <div class="rule"><h3>Except this one</h3><p>A pawn marked <b>?</b> on the board is someone in disguise. It moves like a pawn, and on the last rank it becomes a queen. Then it can kill.</p></div>
+    <div class="rule"><h3>Killer or decoy</h3><p>In 21 of the 40 cases, a guard is not what he seems. Sometimes he is the killer. Sometimes he is there to make you look the wrong way.</p></div>
+  </div>
+</div></section>
+
+<section id="inside"><div class="wrap">
+  <span class="tag inv eyebrow">Anatomy of a case</span>
+  <h2 class="display">Case 01: The Envoy.</h2>
+  <p class="lead">The crime on the left, the suspects and the witnesses on the right. The envoy from China waited six years for an audience with the Emir. He did not live to see the morning.</p>
+  <figure class="uzfig"><a href="/assets/aplus/murdermate-uzbekistan/03_anatomy_970x600@2x.png"><img src="/assets/aplus/murdermate-uzbekistan/03_anatomy_970x600@2x.png" width="1940" height="1200" alt="Case 01 of Murder Mate: Uzbekistan, annotated: case file, victim, board, scan to play, suspects, testimonies, verdict" loading="lazy"></a></figure>
+</div></section>
+
+<section id="palace" class="tint" style="--bg:#0E6E8C;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">The palace and the court</span>
+  <h2 class="display">Eight rooms around a garden. Eight guests with a reason.</h2>
+  <p class="lead">Every square of the board belongs to a room of the Emir's palace. Every white piece is a guest, always the same piece from one case to the next. You are the white king.</p>
+  <div class="uzrooms">%s</div>
+  <div class="uzcast">%s</div>
+</div></section>
+
+<section id="levels"><div class="wrap">
+  <span class="tag inv eyebrow">Four levels, one book</span>
+  <h2 class="display">Start easy. End at 1800.</h2>
+  <p class="lead">You only need to know how the pieces move. Each book stands alone: you can start the series here.</p>
+  <div class="mmlevels">%s</div>
+  <div class="mmcta">@@UZBUY@@<a class="btn" href="/murder-mate/">%s Start with India instead</a></div>
+</div></section>
+
+<section id="series" class="tint" style="--bg:#0E6E8C;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">The series</span>
+  <h2 class="display">One chess country per book. One chess rule per crime.</h2>
+  <div class="mmseries">%s</div>
+</div></section>
+</div>
+""" % (rm, cs, lv, ARROW, MM_SERIES_HTML)
+    nav = [('/', 'Kob House', False), ('/murder-mate/', 'Murder Mate', False), ('#twist', 'The twist', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('/murder-mate/free-case/', 'Free case', False)]
+    html = page('Murder Mate: Uzbekistan · The Impostor Pawn · Kob House',
+                'Murder Mate: Uzbekistan. Chess murder mysteries in Samarkand, 1403: one of the guards is a suspect. 40 cases, from your first mate to 1800+. Out now on Amazon.',
+                body, UZ_BG, UZ_ACC, '/murder-mate/uzbekistan/', '/assets/murdermate/covers/uzbekistan.png', nav)
+    return html.replace('@@UZBUY@@', UZ_BUY).replace('@@UZSTORES@@', UZ_STORES)
+
 def hub():
     cards = ''
     for b in BOOKS:
@@ -746,7 +842,7 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/#series">Uzbekistan</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
+    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
   </div>
 </div></section>
 """ % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
@@ -766,12 +862,14 @@ for b in BOOKS:
     open(os.path.join(H, b['slug'], 'index.html'), 'w').write(book_page(b))
 os.makedirs(os.path.join(H, 'murder-mate'), exist_ok=True)
 open(os.path.join(H, 'murder-mate', 'index.html'), 'w').write(_mm(murder_mate_page()))
+os.makedirs(os.path.join(H, 'murder-mate', 'uzbekistan'), exist_ok=True)
+open(os.path.join(H, 'murder-mate', 'uzbekistan', 'index.html'), 'w').write(_mm(uzbekistan_page()))
 open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, BRAND_BG, BRAND_ACC, '/legal.html', '/assets/paris/cover.png', HUB_NAV))
 open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
 open(H + '/.nojekyll', 'w').write('')
 open(H + '/robots.txt', 'w').write('User-agent: *\nAllow: /\nSitemap: https://kobhouse.com/sitemap.xml\n')
-urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
+urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/uzbekistan/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
 open(H + '/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % ''.join('<url><loc>%s</loc></url>' % u for u in urls))
 # ------------------------------------------------------------------ review page (kobhouse.com/review, printed in the books)
 REVIEW_JS = """
