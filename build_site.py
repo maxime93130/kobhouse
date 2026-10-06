@@ -460,17 +460,19 @@ def book_page(b):
 MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
 MM_ASIN = 'B0HL6LYHMQ'
 MM_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate India Kob House" href="#">%%s Buy on <span class="mk">Amazon</span></a>' % MM_ASIN
+FA_WHEN = 'Out this week'  # set to 'Out now' with the ASIN
 MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Out now'),
              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Out now'),
-             ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', 'Coming in October'),
+             ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', FA_WHEN),
              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
              ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
              ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
 UZ_ASIN = 'B0HLXFT9VK'
-MM_ASINS = {'india': MM_ASIN, 'uzbekistan': UZ_ASIN}
-MM_PAGES = {'india': '/murder-mate/', 'uzbekistan': '/murder-mate/uzbekistan/'}
+FA_ASIN = ''  # Persia: fill in when KDP gives the ASIN (empty = Amazon search link)
+MM_ASINS = {'india': MM_ASIN, 'uzbekistan': UZ_ASIN, 'persia': FA_ASIN}
+MM_PAGES = {'india': '/murder-mate/', 'uzbekistan': '/murder-mate/uzbekistan/', 'persia': '/murder-mate/persia/'}
 def _mmvol(k, n, c, t, w):
     cap = '<b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span>' % (n, c, t, w)
     if k in MM_ASINS:
@@ -773,6 +775,101 @@ def uzbekistan_page():
                 body, UZ_BG, UZ_ACC, '/murder-mate/uzbekistan/', '/assets/murdermate/covers/uzbekistan.png', nav)
     return html.replace('@@UZBUY@@', UZ_BUY).replace('@@UZSTORES@@', UZ_STORES)
 
+FA_BG, FA_ACC, FA_SHADE = '#243A8C', '#F4A3B8', '#1A2A66'
+FA_CSS = """<style>
+.fa .rule,.fa .mmlevel{background:#F4A3B8}
+.fa .mmvol .when{color:#F4A3B8}
+.fa .mmvol .mmbuy{background:#F4A3B8}
+.fafig{margin:36px 0 0;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
+.fafig img{width:100%;height:auto;display:block}
+.fapages{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.fapages img{width:100%;height:auto;display:block;border:3px solid #000;box-shadow:8px 8px 0 #000;background:#fff}
+.facast{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+.facast div{background:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:16px;color:#000}
+.facast .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1A2A66}
+.facast h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;margin:6px 0 0;line-height:1.05;font-weight:400}
+.farooms{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+@media(max-width:860px){.facast{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.facast,.fapages{grid-template-columns:1fr}}
+</style>"""
+FA_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate Persia Kob House" href="#">%s Buy on <span class="mk">Amazon</span></a>' % (FA_ASIN, CART)
+FA_STORES = ' · '.join('<a data-amazon="%s" data-asin="%s" data-q="Murder Mate Persia Kob House" href="#">%s</a>' % (h, FA_ASIN, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
+
+def persia_page():
+    levels = [(1, 'Rookie', 'Mate in one. Sometimes the killer never moves: someone steps out of his way.', 'Cases 01-08 · 5-10 min'),
+              (2, 'Detective', 'Mate in two. One suspect alone, or an accomplice and a killer.', 'Cases 09-20 · 15-25 min'),
+              (3, 'Chief Inspector', 'More pairs to rule out, and one witness is lying.', 'Cases 21-33 · 25-30 min'),
+              (4, 'Commissioner', 'Mate in three. One liar. Any two guests could have held the door.', 'Cases 34-40 · 30-45 min')]
+    lv = ''.join('<div class="mmlevel"><div class="k">%s</div><h3>%s</h3><p>%s</p><span class="mono">%s</span></div>' % ('&#x265A;&#xFE0E;' * n, t, d, m) for n, t, d, m in levels)
+    cast = [('Queen', 'Princess Shirin'), ('Queen', 'Khanum Golnar'), ('Rook', 'General Kaveh Beg'), ('Rook', 'Captain Thomas Ashby'),
+            ('Bishop', 'Mirza Kamal'), ('Bishop', 'Father Bartolomeo'), ('Knight', 'Khoja Grigor'), ('Knight', 'Nasir')]
+    cs = ''.join('<div><span class="mono">%s</span><h3>%s</h3></div>' % c for c in cast)
+    rooms = ['Music Room', 'Talar', 'Rose Garden', 'Painted Gallery', 'Reflecting Pool', 'Hammam', 'Carpet Workshop', 'Lion Gate']
+    rm = ''.join('<span class="tag">%s</span>' % r for r in rooms)
+    body = FA_CSS + """
+<div class="fa">
+<section class="hero" style="background:#243A8C;color:#fff"><div class="wrap mmhub">
+  <div class="mmcov"><img src="/assets/murdermate/covers/persia.png" width="1000" height="1500" alt="Murder Mate: Persia cover"></div>
+  <div>
+    <span class="tag">New · @@FAWHEN@@ · Paperback on Amazon</span>
+    <h1 class="display" style="color:#fff;font-size:clamp(44px,7.4vw,90px);margin:18px 0 10px">Murder Mate: <span style="color:#F4A3B8">Persia</span></h1>
+    <p class="lead" style="color:#fff">Isfahan, 1611. The Shah is away at war, and his palace on the great square is full of envoys, merchants and relatives who must wait out the winter until he returns. Night after night, one of them dies. Darugha Farhad, chief of the city watch, has been left to keep order. This time, the killer may not have worked alone.</p>
+    <div class="tags"><span class="tag">40 cases</span><span class="tag">The accomplice</span><span class="tag">From your first mate to 1800+</span><span class="tag">Full solutions</span></div>
+    <div class="mmcta">@@FABUY@@<a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
+    <div class="mmstores">Also on @@FASTORES@@</div>
+  </div>
+</div></section>
+
+<section id="twist" class="paper"><div class="wrap">
+  <span class="tag inv eyebrow">The twist · Discovered check</span>
+  <h2 class="display">One piece moved. Another one killed.</h2>
+  <p class="lead">Same rules as every Murder Mate: one white piece gives mate, the witnesses tell you which. In Isfahan, the killer may have had help.</p>
+  <div class="rules3">
+    <div class="rule"><h3>The killer gives mate</h3><p>On the last move, the piece that moves is the piece that gives check. That piece is the killer.</p></div>
+    <div class="rule"><h3>The accomplice opens the door</h3><p>Sometimes another guest moved first: one move, any legal move, then never again. Black answers, and the killer finishes alone. In a mate in one, the accomplice simply steps out of the line, and the killer mates without moving.</p></div>
+    <div class="rule"><h3>Name them both</h3><p>15 of the 40 cases have an accomplice. The others were done alone, but every pair is a possible plan, and the witnesses must rule them all out.</p></div>
+  </div>
+</div></section>
+
+<section id="inside"><div class="wrap">
+  <span class="tag inv eyebrow">Inside a case</span>
+  <h2 class="display">Case 01: The Mirror Maker.</h2>
+  <p class="lead">The crime and the board on the left, the suspects, the witnesses and your verdict on the right. Messer Alvise came from Venice with forty crates of mirror glass. Nine of them went missing, and he knew where.</p>
+  <figure class="fafig"><a href="/assets/murdermate/persia/case01-spread.png"><img src="/assets/murdermate/persia/case01-spread.png" width="1892" height="1440" alt="Case 01 of Murder Mate: Persia, a double page: story, board, suspects, testimonies and verdict" loading="lazy"></a></figure>
+  <div class="mmcta"><a class="btn" href="/mm/3/01/">%s Play case 01 on the board</a></div>
+</div></section>
+
+<section id="palace" class="tint" style="--bg:#243A8C;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">The palace and the court</span>
+  <h2 class="display">Eight rooms around a long pool. Eight guests waiting for the Shah.</h2>
+  <p class="lead">Every square of the board belongs to a room of the palace. Every white piece is a guest, always the same piece from one case to the next. You are the white king, and you never move.</p>
+  <div class="farooms">%s</div>
+  <div class="facast">%s</div>
+  <div class="fapages"><img src="/assets/murdermate/persia/page-palace.png" width="764" height="1171" alt="The palace map of Murder Mate: Persia" loading="lazy"><img src="/assets/murdermate/persia/page-guests.png" width="764" height="1171" alt="The eight guests of Murder Mate: Persia" loading="lazy"></div>
+</div></section>
+
+<section id="levels"><div class="wrap">
+  <span class="tag inv eyebrow">Four levels, one book</span>
+  <h2 class="display">Start easy. End at 1800.</h2>
+  <p class="lead">You only need to know how the pieces move. Each book stands alone: you can start the series here.</p>
+  <div class="mmlevels">%s</div>
+  <div class="mmcta">@@FABUY@@<a class="btn" href="/murder-mate/">%s Start with India instead</a></div>
+</div></section>
+
+<section id="series" class="tint" style="--bg:#243A8C;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">The series</span>
+  <h2 class="display">One chess country per book. One chess rule per crime.</h2>
+  <div class="mmseries">%s</div>
+</div></section>
+</div>
+""" % (ARROW, rm, cs, lv, ARROW, MM_SERIES_HTML)
+    nav = [('/', 'Kob House', False), ('/murder-mate/', 'Murder Mate', False), ('#twist', 'The twist', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('/murder-mate/free-case/', 'Free case', False)]
+    html = page('Murder Mate: Persia · The Accomplice · Kob House',
+                'Murder Mate: Persia. Chess murder mysteries in Isfahan, 1611: one piece moves, another kills. 40 cases, from your first mate to 1800+. Paperback on Amazon.',
+                body, FA_BG, FA_ACC, '/murder-mate/persia/', '/assets/murdermate/covers/persia.png', nav)
+    return html.replace('@@FABUY@@', FA_BUY).replace('@@FASTORES@@', FA_STORES).replace('@@FAWHEN@@', FA_WHEN)
+
+
 def hub():
     cards = ''
     for b in BOOKS:
@@ -842,7 +939,7 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
+    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/murder-mate/persia/">Persia</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
   </div>
 </div></section>
 """ % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
@@ -864,12 +961,14 @@ os.makedirs(os.path.join(H, 'murder-mate'), exist_ok=True)
 open(os.path.join(H, 'murder-mate', 'index.html'), 'w').write(_mm(murder_mate_page()))
 os.makedirs(os.path.join(H, 'murder-mate', 'uzbekistan'), exist_ok=True)
 open(os.path.join(H, 'murder-mate', 'uzbekistan', 'index.html'), 'w').write(_mm(uzbekistan_page()))
+os.makedirs(os.path.join(H, 'murder-mate', 'persia'), exist_ok=True)
+open(os.path.join(H, 'murder-mate', 'persia', 'index.html'), 'w').write(_mm(persia_page()))
 open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, BRAND_BG, BRAND_ACC, '/legal.html', '/assets/paris/cover.png', HUB_NAV))
 open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
 open(H + '/.nojekyll', 'w').write('')
 open(H + '/robots.txt', 'w').write('User-agent: *\nAllow: /\nSitemap: https://kobhouse.com/sitemap.xml\n')
-urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/uzbekistan/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
+urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/uzbekistan/', 'https://kobhouse.com/murder-mate/persia/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
 open(H + '/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % ''.join('<url><loc>%s</loc></url>' % u for u in urls))
 # ------------------------------------------------------------------ review page (kobhouse.com/review, printed in the books)
 REVIEW_JS = """
