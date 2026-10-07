@@ -35,7 +35,7 @@ BOOKS = [
       pages_list=[('page-title', 'Title page'), ('page-rules', 'How to play'), ('page-case', 'Case opener'), ('page-statements', 'Witness statements')],
       card_blurb='Inspector Marchetti retired to Biarritz and left you her notebook. Twenty arrondissements, one killer.'),
  dict(key='tokyo', slug='tokyo', city='Tokyo', bg='#F26A4B', acc='#D9F2E3', dark_on_acc=True,
-      asin=None, status='soon', pages=177, addresses='16,560', statements='47',
+      asin='B0HLXV6W7W', status='out', pages=177, addresses='16,560', statements='47',
       subtitle='A Deduction Puzzle Book for Adults: 3 Murder Cases, 16,560 Addresses, One Loop Line to Ride',
       unit='wards', unit_n='23', street_n='138', num_word='block numbers',
       hero_tags=['3 cases', '23 real wards', 'The Yamanote twist', 'One solution'],
@@ -460,7 +460,7 @@ def book_page(b):
 MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
 MM_ASIN = 'B0HL6LYHMQ'
 MM_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate India Kob House" href="#">%%s Buy on <span class="mk">Amazon</span></a>' % MM_ASIN
-FA_WHEN = 'Out this week'  # set to 'Out now' with the ASIN
+FA_WHEN = 'Out now'  # set to 'Out now' with the ASIN
 MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Out now'),
              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Out now'),
              ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', FA_WHEN),
@@ -470,7 +470,7 @@ MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Ou
              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
 UZ_ASIN = 'B0HLXFT9VK'
-FA_ASIN = ''  # Persia: fill in when KDP gives the ASIN (empty = Amazon search link)
+FA_ASIN = 'B0HM5JGK2Y'  # Persia, live 07/10/2026
 MM_ASINS = {'india': MM_ASIN, 'uzbekistan': UZ_ASIN, 'persia': FA_ASIN}
 MM_PAGES = {'india': '/murder-mate/', 'uzbekistan': '/murder-mate/uzbekistan/', 'persia': '/murder-mate/persia/'}
 def _mmvol(k, n, c, t, w):
@@ -939,7 +939,7 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/murder-mate/persia/">Persia</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a class="soon" href="/tokyo/">Tokyo · soon</a></div>
+    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/murder-mate/persia/">Persia</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a href="/tokyo/">Tokyo</a></div>
   </div>
 </div></section>
 """ % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
@@ -981,7 +981,7 @@ document.querySelectorAll("[data-review]").forEach(function(a){
 """
 REVIEW_CARD = '<div class="rev-card"><img src="%s" alt="%s cover" loading="lazy"><div><h3>%s</h3><a class="btn light" data-review="auto" data-asin="%s" href="#">Review on <span class="mk">Amazon</span></a><p class="mono rev-stores">Other stores: %s</p></div></div>'
 def review_page():
-    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png'), ('Murder Mate: Uzbekistan', 'B0HLXFT9VK', '/assets/murdermate/covers/uzbekistan-sm.png')] + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
+    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png'), ('Murder Mate: Uzbekistan', 'B0HLXFT9VK', '/assets/murdermate/covers/uzbekistan-sm.png'), ('Murder Mate: Persia', FA_ASIN, '/assets/murdermate/covers/persia-sm.png')] + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
     cards = ''
     for name, asin, img in books:
         others = ' · '.join('<a data-review="%s" data-asin="%s" href="#">%s</a>' % (h, asin, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
