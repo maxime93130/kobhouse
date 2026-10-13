@@ -461,18 +461,22 @@ MM_BG, MM_ACC, MM_SHADE = '#0F7B5F', '#CDB8F5', '#0B5A45'
 MM_ASIN = 'B0HL6LYHMQ'
 MM_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate India Kob House" href="#">%%s Buy on <span class="mk">Amazon</span></a>' % MM_ASIN
 FA_WHEN = 'Out now'  # set to 'Out now' with the ASIN
+US_WHEN = 'Out this week'  # set to 'Out now' with the ASIN
+US_ASIN = ''  # Murder Mate: USA, submitted 13/10/2026 (KDP EH2KHXZBE59), ASIN to come
 MM_SERIES = [('india', 'India', 'Udaipur · 1932', 'The weapon is the mate', 'Out now'),
              ('uzbekistan', 'Uzbekistan', 'Samarkand · 1403', 'Promotion: the impostor pawn', 'Out now'),
              ('persia', 'Persia', 'Isfahan · 1611', 'Discovered check: the accomplice', FA_WHEN),
+             ('usa', 'USA', 'Reno · 1985', 'En passant: just passing by', US_WHEN),
              ('spain', 'Spain', 'Toledo · 1283', 'Castling: the perfect alibi', 'To be announced'),
-             ('russia', 'Russia', 'Moscow · 1956', 'En passant: just passing by', 'To be announced'),
+             ('russia', 'Russia', 'Moscow · 1956', 'A new rule, to be revealed', 'To be announced'),
              ('iceland', 'Iceland', 'Reykjavik · 1972', 'Stalemate: the accident', 'To be announced'),
              ('scotland', 'Scotland', 'Isle of Lewis · 1150', "Underpromotion: the knight's choice", 'To be announced'),
              ('cuba', 'Cuba', 'Havana · 1921', 'Endgames: the king runs', 'To be announced')]
 UZ_ASIN = 'B0HLXFT9VK'
 FA_ASIN = 'B0HM5JGK2Y'  # Persia, live 07/10/2026
 MM_ASINS = {'india': MM_ASIN, 'uzbekistan': UZ_ASIN, 'persia': FA_ASIN}
-MM_PAGES = {'india': '/murder-mate/', 'uzbekistan': '/murder-mate/uzbekistan/', 'persia': '/murder-mate/persia/'}
+if US_ASIN: MM_ASINS['usa'] = US_ASIN
+MM_PAGES = {'india': '/murder-mate/', 'uzbekistan': '/murder-mate/uzbekistan/', 'persia': '/murder-mate/persia/', 'usa': '/murder-mate/usa/'}
 def _mmvol(k, n, c, t, w):
     cap = '<b>%s</b><span>%s</span><em>%s</em><span class="when">%s</span>' % (n, c, t, w)
     if k in MM_ASINS:
@@ -492,7 +496,7 @@ MM_STEPS = '''  <div class="steps">
 
 MURDER_MATE_HUB = """
 <div id="murder-mate" class="colband" style="--c:#0F7B5F;--a:#CDB8F5"><div class="wrap">
-  <span class="mono">New collection · India and Uzbekistan out now</span>
+  <span class="mono">Four books · India, Uzbekistan, Persia, USA</span>
   <div class="mmate"><span class="w">Murder</span> <span class="l">Mate</span></div>
   <p>Chess murder mysteries. <b>The board is the crime scene.</b></p>
 </div></div>
@@ -869,6 +873,100 @@ def persia_page():
                 body, FA_BG, FA_ACC, '/murder-mate/persia/', '/assets/murdermate/covers/persia.png', nav)
     return html.replace('@@FABUY@@', FA_BUY).replace('@@FASTORES@@', FA_STORES).replace('@@FAWHEN@@', FA_WHEN)
 
+US_BG, US_ACC, US_SHADE = '#4E5B31', '#FF7B61', '#37411F'
+US_CSS = """<style>
+.us .rule,.us .mmlevel{background:#FF7B61}
+.us .mmvol .when{color:#FF7B61}
+.us .mmvol .mmbuy{background:#FF7B61}
+.fafig{margin:36px 0 0;border:3px solid #000;box-shadow:12px 12px 0 #000;background:#fff}
+.fafig img{width:100%;height:auto;display:block}
+.fapages{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.fapages img{width:100%;height:auto;display:block;border:3px solid #000;box-shadow:8px 8px 0 #000;background:#fff}
+.facast{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+.facast div{background:#fff;border:3px solid #000;box-shadow:6px 6px 0 #000;padding:16px;color:#000}
+.facast .mono{font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#37411F}
+.facast h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:20px;margin:6px 0 0;line-height:1.05;font-weight:400}
+.farooms{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+@media(max-width:860px){.facast{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.facast,.fapages{grid-template-columns:1fr}}
+</style>"""
+US_BUY = '<a class="btn light" data-amazon="auto" data-asin="%s" data-q="Murder Mate USA Kob House" href="#">%s Buy on <span class="mk">Amazon</span></a>' % (US_ASIN, CART)
+US_STORES = ' · '.join('<a data-amazon="%s" data-asin="%s" data-q="Murder Mate USA Kob House" href="#">%s</a>' % (h, US_ASIN, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
+
+def usa_page():
+    levels = [(1, 'Rookie', 'Mate in one. Sometimes the agent beside the arrow did it.', 'Cases 01-08 · 5-10 min'),
+              (2, 'Detective', 'Mate in two. Several suspects can kill, and the witnesses must rule them out together.', 'Cases 09-20 · 20-35 min'),
+              (3, 'Chief Inspector', 'Mate in two, and one witness is lying. Counting contradictions will not save you.', 'Cases 21-33 · 30-60 min'),
+              (4, 'Commissioner', 'Mate in three, one liar, and more than one suspect who almost fits.', 'Cases 34-40 · 45-90 min')]
+    lv = ''.join('<div class="mmlevel"><div class="k">%s</div><h3>%s</h3><p>%s</p><span class="mono">%s</span></div>' % ('&#x265A;&#xFE0E;' * n, t, d, m) for n, t, d, m in levels)
+    cast = [('Queen', 'Mrs. Lorraine Whitcomb'), ('Queen', 'Mrs. Tamara Orlova'), ('Rook', 'Mr. Hal Brannigan'), ('Rook', 'Colonel Gennady Volkov'),
+            ('Bishop', 'Dr. Simon Kessler'), ('Bishop', 'Mr. Pieter van Loon'), ('Knight', 'Mr. Sonny Kincaid'), ('Knight', 'Ms. Kay Holloway')]
+    cs = ''.join('<div><span class="mono">%s</span><h3>%s</h3></div>' % c for c in cast)
+    rooms = ['Sky Lounge', 'Tournament Hall', 'Press Room', 'Casino Floor', 'Wedding Chapel', 'Diner', 'Count Room', 'Parking Garage']
+    rm = ''.join('<span class="tag">%s</span>' % r for r in rooms)
+    body = US_CSS + """
+<div class="us">
+<section class="hero" style="background:#4E5B31;color:#fff"><div class="wrap mmhub">
+  <div class="mmcov"><img src="/assets/murdermate/covers/usa.png" width="1000" height="1500" alt="Murder Mate: USA cover"></div>
+  <div>
+    <span class="tag">New · @@USWHEN@@ · Paperback on Amazon</span>
+    <h1 class="display" style="color:#fff;font-size:clamp(44px,7.4vw,90px);margin:18px 0 10px">Murder Mate: <span style="color:#FF7B61">USA</span></h1>
+    <p class="lead" style="color:#fff">Reno, Nevada, 1985. Americans and Soviets play a friendship chess match under the casino lights of the Golden Pawn, a hotel on Virginia Street, and morning after morning somebody in the hotel misses breakfast for good. The FBI sent Special Agent Ruth Calder to keep the peace. She is running out of peace.</p>
+    <div class="tags"><span class="tag">40 cases</span><span class="tag">Just passing by</span><span class="tag">Built to be hard</span><span class="tag">From your first mate to 1800+</span></div>
+    <div class="mmcta">@@USBUY@@<a class="btn ghost" href="/murder-mate/free-case/">Play a free case online</a></div>
+    <div class="mmstores">Also on @@USSTORES@@</div>
+  </div>
+</div></section>
+
+<section id="twist" class="paper"><div class="wrap">
+  <span class="tag inv eyebrow">The twist · En passant</span>
+  <h2 class="display">A pawn ran past. Who was watching?</h2>
+  <p class="lead">Same rules as every Murder Mate: one white piece gives mate, the witnesses tell you which. At the Golden Pawn, the security agents are the white pawns, and one of them may have stepped off post.</p>
+  <div class="rules3">
+    <div class="rule"><h3>Black's last move</h3><p>Every case shows it with an arrow: a black pawn has just run two squares, straight past one of the agents.</p></div>
+    <div class="rule"><h3>One chance, on move one</h3><p>For that first move only, the agent beside it may take en passant. Then the agent keeps moving like a pawn, and may even become a queen.</p></div>
+    <div class="rule"><h3>Always a suspect</h3><p>Sometimes the agent did it. Sometimes the agent only could have. In 9 of the 40 cases, the agent left the post for good.</p></div>
+  </div>
+</div></section>
+
+<section id="inside"><div class="wrap">
+  <span class="tag inv eyebrow">Inside a case</span>
+  <h2 class="display">Case 01: Opening Ceremony.</h2>
+  <p class="lead">The crime and the board on the left, the suspects, the witnesses and your verdict on the right. Mr. Reinholt had covered every great match since Reykjavik, and on the opening night he told the hotel bar he had the paperwork to prove something.</p>
+  <figure class="fafig"><a href="/assets/murdermate/usa/case01-spread.png"><img src="/assets/murdermate/usa/case01-spread.png" width="1892" height="1419" alt="Case 01 of Murder Mate: USA, a double page: story, board, suspects, testimonies and verdict" loading="lazy"></a></figure>
+  <div class="mmcta"><a class="btn" href="/mm/4/01/">%s Play case 01 on the board</a></div>
+</div></section>
+
+<section id="hotel" class="tint" style="--bg:#4E5B31;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">The hotel and the guests</span>
+  <h2 class="display">Eight rooms under the neon. Eight guests who never check out.</h2>
+  <p class="lead">Every square of the board belongs to a room of the Golden Pawn. Every white piece is a guest, always the same piece from one case to the next. You are the white king, Special Agent Calder, and you never move.</p>
+  <div class="farooms">%s</div>
+  <div class="facast">%s</div>
+  <div class="fapages"><img src="/assets/murdermate/usa/page-hotel.png" width="764" height="1146" alt="The hotel map of Murder Mate: USA" loading="lazy"><img src="/assets/murdermate/usa/page-guests.png" width="764" height="1146" alt="The eight guests of Murder Mate: USA" loading="lazy"></div>
+</div></section>
+
+<section id="levels"><div class="wrap">
+  <span class="tag inv eyebrow">Four levels, built to be hard</span>
+  <h2 class="display">Start easy. End at 1800.</h2>
+  <p class="lead">You only need to know how the pieces move. From Chief Inspector on, several suspects often break exactly one testimony each: only careful reasoning tells you which one is the lie. Each book stands alone.</p>
+  <div class="mmlevels">%s</div>
+  <div class="mmcta">@@USBUY@@<a class="btn" href="/murder-mate/">%s Start with India instead</a></div>
+</div></section>
+
+<section id="series" class="tint" style="--bg:#4E5B31;color:#fff"><div class="wrap">
+  <span class="tag inv eyebrow">The series</span>
+  <h2 class="display">One chess country per book. One chess rule per crime.</h2>
+  <div class="mmseries">%s</div>
+</div></section>
+</div>
+""" % (ARROW, rm, cs, lv, ARROW, MM_SERIES_HTML)
+    nav = [('/', 'Kob House', False), ('/murder-mate/', 'Murder Mate', False), ('#twist', 'The twist', False), ('#inside', 'Inside a case', False), ('#levels', 'The levels', False), ('/murder-mate/free-case/', 'Free case', False)]
+    html = page('Murder Mate: USA · Just Passing By · Kob House',
+                'Murder Mate: USA. Chess murder mysteries in Reno, 1985: a pawn ran past, and one security agent may have stepped off post. 40 hard cases, from your first mate to 1800+. Paperback on Amazon.',
+                body, US_BG, US_ACC, '/murder-mate/usa/', '/assets/murdermate/covers/usa.png', nav)
+    return html.replace('@@USBUY@@', US_BUY).replace('@@USSTORES@@', US_STORES).replace('@@USWHEN@@', US_WHEN)
+
 
 def hub():
     cards = ''
@@ -891,7 +989,7 @@ def hub():
     <h1 class="display khtitle">Mysteries you solve with a pen.</h1>
     <p class="lead">Two collections of paper murder cases: one on a chessboard, one in real cities. Every case has exactly one solution, checked by an independent solver before it goes to print.</p>
     <div class="collections">
-      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">2 books · India, Uzbekistan</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Out now %s</span></a>
+      <a class="coll" href="#murder-mate" style="--c:#0F7B5F;--a:#CDB8F5"><span class="mono">4 books · India, Uzbekistan, Persia, USA</span><b>Murder Mate</b><span>Chess murder mysteries. The weapon is a checkmate.</span><span class="tag">Out now %s</span></a>
       <a class="coll" href="#murder-map" style="--c:#1F6BED;--a:#F4FF1E"><span class="mono">3 books · Paris, Tokyo, New York</span><b>Murder Map</b><span>Deduction in real cities. Cross out the streets until one door is left.</span><span class="tag">Out now %s</span></a>
     </div>
     <div class="freecase"><a class="btn" href="/murder-mate/free-case/" style="--acc:#0F7B5F">%s Play a free case</a><span>A Murder Mate mystery you can solve right here, in your browser. Five minutes, no book needed.</span></div>
@@ -939,7 +1037,7 @@ def hub():
     <h2 class="display">Kob House makes puzzle books you solve with a pen and a suspicious mind.</h2>
     <p class="lead">Every case is generated and then re-solved by an independent solver before it goes to print, which means the logic always holds: one solution, no guessing, no dead ends, no case that falls apart on page forty.</p>
     <p class="lead">Paperbacks, 6 × 9 inches, printed on demand and shipped by Amazon worldwide.</p>
-    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/murder-mate/persia/">Persia</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a href="/tokyo/">Tokyo</a></div>
+    <div class="series"><a href="/murder-mate/">Murder Mate · India</a><a href="/murder-mate/uzbekistan/">Uzbekistan</a><a href="/murder-mate/persia/">Persia</a><a href="/murder-mate/usa/">USA</a><a href="/paris/">Murder Map · Paris</a><a href="/new-york/">New York</a><a href="/tokyo/">Tokyo</a></div>
   </div>
 </div></section>
 """ % (ARROW, ARROW, ARROW, fan, MURDER_MATE_HUB, cards, why, twists, FROG)
@@ -963,12 +1061,14 @@ os.makedirs(os.path.join(H, 'murder-mate', 'uzbekistan'), exist_ok=True)
 open(os.path.join(H, 'murder-mate', 'uzbekistan', 'index.html'), 'w').write(_mm(uzbekistan_page()))
 os.makedirs(os.path.join(H, 'murder-mate', 'persia'), exist_ok=True)
 open(os.path.join(H, 'murder-mate', 'persia', 'index.html'), 'w').write(_mm(persia_page()))
+os.makedirs(os.path.join(H, 'murder-mate', 'usa'), exist_ok=True)
+open(os.path.join(H, 'murder-mate', 'usa', 'index.html'), 'w').write(_mm(usa_page()))
 open(H + '/legal.html', 'w').write(page('Legal notice · Kob House', 'Legal notice for kobhouse.com.', LEGAL, BRAND_BG, BRAND_ACC, '/legal.html', '/assets/paris/cover.png', HUB_NAV))
 open(H + '/assets/favicon.svg', 'w').write(FAVICON)
 open(H + '/CNAME', 'w').write('kobhouse.com\n')
 open(H + '/.nojekyll', 'w').write('')
 open(H + '/robots.txt', 'w').write('User-agent: *\nAllow: /\nSitemap: https://kobhouse.com/sitemap.xml\n')
-urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/uzbekistan/', 'https://kobhouse.com/murder-mate/persia/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
+urls = ['https://kobhouse.com/'] + ['https://kobhouse.com/%s/' % b['slug'] for b in BOOKS] + ['https://kobhouse.com/murder-mate/', 'https://kobhouse.com/murder-mate/uzbekistan/', 'https://kobhouse.com/murder-mate/persia/', 'https://kobhouse.com/murder-mate/usa/', 'https://kobhouse.com/murder-mate/free-case/', 'https://kobhouse.com/legal.html']
 open(H + '/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>\n' % ''.join('<url><loc>%s</loc></url>' % u for u in urls))
 # ------------------------------------------------------------------ review page (kobhouse.com/review, printed in the books)
 REVIEW_JS = """
@@ -981,7 +1081,7 @@ document.querySelectorAll("[data-review]").forEach(function(a){
 """
 REVIEW_CARD = '<div class="rev-card"><img src="%s" alt="%s cover" loading="lazy"><div><h3>%s</h3><a class="btn light" data-review="auto" data-asin="%s" href="#">Review on <span class="mk">Amazon</span></a><p class="mono rev-stores">Other stores: %s</p></div></div>'
 def review_page():
-    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png'), ('Murder Mate: Uzbekistan', 'B0HLXFT9VK', '/assets/murdermate/covers/uzbekistan-sm.png'), ('Murder Mate: Persia', FA_ASIN, '/assets/murdermate/covers/persia-sm.png')] + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
+    books = [('Murder Mate: India', MM_ASIN, '/assets/murdermate/cover.png'), ('Murder Mate: Uzbekistan', 'B0HLXFT9VK', '/assets/murdermate/covers/uzbekistan-sm.png'), ('Murder Mate: Persia', FA_ASIN, '/assets/murdermate/covers/persia-sm.png')] + ([('Murder Mate: USA', US_ASIN, '/assets/murdermate/covers/usa-sm.png')] if US_ASIN else []) + [('Murder Map: %s' % b['city'], b['asin'], '/assets/%s/cover.png' % b['slug'].replace('-', '')) for b in BOOKS if b['asin']]
     cards = ''
     for name, asin, img in books:
         others = ' · '.join('<a data-review="%s" data-asin="%s" href="#">%s</a>' % (h, asin, h.replace('amazon', 'Amazon')) for h in ('amazon.com', 'amazon.co.uk', 'amazon.fr', 'amazon.de'))
